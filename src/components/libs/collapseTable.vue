@@ -1,0 +1,119 @@
+<template>
+    <div class="collapse-table">
+        <!-- 搜索、导出表格 -->
+        <el-row>
+            <el-col :span="4" :offset="17" v-if="tableConfigData.search">
+                <el-input placeholder="请输入搜索内容" icon="search" v-model="inputSearch" :on-icon-click="handleIconClick"></el-input>
+            </el-col>
+            <el-col :span="2" :offset="1" v-if="tableConfigData.export">
+                <el-button type="primary" @click="exportTable">导出表格</el-button>
+            </el-col>
+        </el-row>
+        <!-- 表格 带有父子表-->
+        <el-table :data="tableData" :default-sort="tableConfigData.defaultSort" border style="width:100%; margin-top: 20px;">
+            <el-table-column type="expand" prop="children">
+                <template scope="scope">
+                    <son-table :scope="scope" :cols="tableConfigData.sub_columns" v-on:outputrow="recieveSonRow"></son-table>
+                </template>
+            </el-table-column>
+            <el-table-column v-for="col in tableConfigData.columns" :key="col.name" :prop="col.name" :label="col.title" :sortable="col.sortable" :formatter="col.formatter" :width="col.width" :align="col.align" :fixed="col.fixed">
+                <template scope="scope">
+                    <div v-if="col.template">
+                        <el-button v-for="btn in col.template.btns" :size="small" :key="btn.name" :type="btn.type" @click="outPutRow(scope.$index, scope.row, btn.funcName)">{{btn.name}}</el-button>
+                    </div>
+                    <div v-if="col.template&&col.template.user_link">
+                        <a :href="pathname+'#/user/user_data?userid='+scope.row[col.name]" target="_blank" :style="{'color':'#20A0FF'}">{{scope.row[col.name]}}</a>
+                    </div>
+                    <div v-if="!col.template">
+                        {{col.formatter ? col.formatter(scope.row, '', scope.row[col.name]) : scope.row[col.name]}}
+                    </div>
+                </template>
+                <el-table-column v-for="sub_col in col.sub" :key="sub_col.name" :prop="sub_col.name" :label="sub_col.title" :sortable="sub_col.sortable" :formatter="sub_col.formatter" :width="sub_col.width" :align="sub_col.align" :fixed="sub_col.fixed">
+                    <template scope="scope">
+                        <div v-if="sub_col.template">
+                            <el-button v-for="btn in sub_col.template.btns" size="small" :key="btn.name" :type="btn.type" @click="outPutRow(scope.$index, scope.row,btn.funcName)">{{btn.name}}</el-button>
+                        </div>
+                        <div v-if="sub_col.template&&sub_col.template.user_link">
+                            <a :href="pathname+'#/user/user_data?userid='+scope.row[sub_col.name]" target="_blank" style="color:#20A0FF;">{{scope.row[sub_col.name]}}</a>
+                        </div>
+                        <div v-if="!sub_col.template">
+                            {{sub_col.formatter?sub_col.formatter(scope.row,'',scope.row[sub_col.name]):scope.row[sub_col.name]}}
+                        </div>
+                    </template>
+                </el-table-column>
+            </el-table-column>
+        </el-table>
+        <!-- <div style="margin-top: 15px; overflow: hidden" v-if="this.tableConfigData.pagination">
+            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[10, 50, 100, 1000]" :page-size="this.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="this.tableConfigData.serverPagination?this.tableConfigData.total:this.tableConfigData.data.length" style="float:right">
+            </el-pagination>
+        </div> -->
+    </div>
+</template>
+<script>
+import sonTable from '@/components/libs/sonTable'
+import {
+    tableExport
+} from '@/libs/tableExport'
+export default {
+    name: 'table-option',
+    data() {
+        return {
+            inputSearch: '',
+            pathname: location.pathname,
+        }
+    },
+    props: ['parentMessage'],
+    methods: {
+        /*! 导出表格 */
+        exportTable() {
+            tableExport('tableExport', this.$el);
+        },
+        /*! 搜索方法 */
+        handleIconClick() {
+            this.$emit('message', this.inputSearch);
+        },
+        /*! 数据行按钮方法 */
+        outPutRow() {
+            this.$emit('outputrow', arguments);
+        },
+        /*! 父子表行按钮方法 */
+        recieveSonRow(arg) {
+            this.$emit('outputsonrow', arg);
+        },
+        // handleSizeChange(val) {
+        //     this.pageSize = val;
+        //     if (this.parentMessage.serverPagination) {
+        //         this.$emit('pagedata', [this.currentPage, this.pageSize]);
+        //     }
+        // },
+        // handleCurrentChange(val) {
+        //     this.currentPage = val;
+        //     if (this.parentMessage.serverPagination) {
+        //         this.$emit('pagedata', [this.currentPage, this.pageSize]);
+        //     }
+        // },
+    },
+    computed: {
+        /*! 数据渲染 */
+        tableData: function() {
+            if (!this.parentMessage || !this.parentMessage.data) {
+                return [];
+            }
+            let returnData = [];
+            this.parentMessage.data.map(function(val) {
+                if (!val.noMatch) {
+                    returnData.push(val);
+                }
+            });
+            return returnData;
+        },
+        tableConfigData: function() {
+            return this.parentMessage;
+        }
+    },
+    components: {
+        sonTable
+    }
+}
+
+</script>

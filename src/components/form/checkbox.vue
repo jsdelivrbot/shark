@@ -1,0 +1,35 @@
+<template>
+    <el-checkbox-group v-model="input" :disabled="configData.disabled" :readonly="configData.readonly" :default="defaultValue" @change="checkEvent">
+        <el-checkbox v-for="option in configData.options" :key="option.value" :label="option.value" :disabled="option.disabled">{{option.label}}</el-checkbox>
+    </el-checkbox-group>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                input: []
+            }
+        },
+        methods: {
+            checkEvent() {
+                this.$emit('text', {
+                    key: this.config.name,
+                    value: this.input
+                });
+            }
+        },
+        props: ['config', 'default'],
+        computed: {
+            //配置读取方法
+            configData: function() {
+                return this.config
+            },
+            defaultValue() {
+                if (this.default) {
+                    this.input = this.default[this.config.name]
+                }
+            }
+        }
+    }
+</script>

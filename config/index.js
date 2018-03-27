@@ -4,8 +4,8 @@ var path = require('path')
 module.exports = {
     build: {
         env: require('./prod.env'),
-        index: path.resolve('F:/wamp/www/Home/cms/application/cms_foxnetwork/view/index/test/', '../index.html'),
-        assetsRoot: path.resolve('F:/wamp/www/Home/cms/application/cms_foxnetwork/view/index/test/', '../'),
+        index: path.resolve('F:/wamp/www/Home/shark/application/admin/view/index/test/', '../index.html'),
+        assetsRoot: path.resolve('F:/wamp/www/Home/shark/application/admin/view/index/test/', '../'),
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         productionSourceMap: false,

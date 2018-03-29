@@ -694,6 +694,12 @@ export function payStatusFormatter(row, columns, result) {
             res = '支付成功';
             break;
         case 2:
+            res = '交易创建';
+            break;
+        case 3:
+            res = '交易完成';
+            break;
+        case 4:
             res = '交易关闭';
             break;
     }

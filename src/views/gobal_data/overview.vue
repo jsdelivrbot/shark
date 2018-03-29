@@ -7,6 +7,7 @@
             <el-button type="success" plain @click="jiguang_btn">极光推送SDK</el-button>
             <el-button type="success" plain @click="xml_btn">解析XML</el-button>
             <el-button type="success" plain @click="pay_btn">alipay</el-button>
+            <el-button type="success" plain @click="wxpay_btn">wxpay</el-button>
         </div>
     </div>
 </template>
@@ -53,7 +54,20 @@
                         platform: 'zfb'
                     }
                 }).then((response) => {
+                    this.$message.success('支付宝支付');
+                });
+            },
+            wxpay_btn() {
+                this.$res.getSingleData(this, '/Wechatalipay/pay/', {
+                    params: {
+                        uid: 890,
+                        sys: 'ios',
+                        chargeid: 1012,
+                        platform: 'wx'
+                    }
+                }).then((response) => {
                     console.log(response);
+                    this.$message.success('微信支付');
                 });
             }
         },

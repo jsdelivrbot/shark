@@ -1,5 +1,5 @@
 {
-    "name": "dwc_cms",
+    "name": "shark",
     "version": "1.0.0",
     "description": "基于element-ui搭建的后台管理系统（游戏开发专用）",
     "author": "chenfuxin <since1991_vip@163.com>",
@@ -11,7 +11,7 @@
     },
     "dependencies": {
         "echarts": "^3.6.2",
-        "element-ui": "^1.4.2",
+        "element-ui": "^2.3.2",
         "highcharts": "^5.0.14",
         "jquery": "^3.2.1",
         "ueditor": "^1.2.3",

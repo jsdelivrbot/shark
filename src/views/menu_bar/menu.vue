@@ -2,10 +2,10 @@
     <div id="app">
         <header-tab></header-tab>
         <div class="side-tab">
-            <el-menu class="el-menu-vertical-demo" default-active="2" router @open="handleOpen" @close="handleClose">
+            <el-menu class="el-menu-vertical-demo" default-active="2" router @open="handleOpen" @close="handleClose" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
                 <template v-for="(tab, index) in sideTab">
-                        <el-submenu v-bind:index="index+''" v-if="tab.permit && tab.sub" :key="tab.title">
-                            <template slot="title">{{tab.title}}</template>
+                    <el-submenu v-bind:index="index+''" v-if="tab.permit && tab.sub" :key="tab.title">
+                        <template slot="title">{{tab.title}}</template>
                         <el-menu-item v-if="sub.permit" v-bind:index="sub.to" v-for="sub in tab.sub" :key="sub.name" @click="addTab(sub)">
                             <a :href="'#' + sub.to" @click="addTab(sub)">{{sub.title}}</a>
                         </el-menu-item>
@@ -18,14 +18,14 @@
         </div>
         <div class="main-container">
             <el-tabs v-model="editableTabsValue2" type="border-card" closable @tab-remove="removeTab" @tab-click="clickTab">
-                <el-tab-pane v-for="(item, index) in editableTabs2" :key="item.name" :label="item.title" :name="item.name" :to="item.to"></el-tab-pane>
+                <el-tab-pane v-for="item in editableTabs2" :key="item.name" :label="item.title" :name="item.name" :to="item.to"></el-tab-pane>
             </el-tabs>
         </div>
-        <div id="element-main" class="element-main">
-            <div class="element-content">
+        <div id="element-main" class="el-container element-main">
+            <div class="element-content el-main">
                 <keep-alive>
-                    <!-- <router-view></router-view> -->
-                    <router-view v-on:login="checkPermits"></router-view>
+                    <!-- <router-view v-on:login="checkPermits"></router-view> -->
+                    <router-view></router-view>
                 </keep-alive>
             </div>
         </div>
@@ -184,7 +184,7 @@
     }
     a {
         text-decoration: none;
-        color: #333;
+        color: #fff;
     }
     a:hover,
     a:focus {
@@ -204,8 +204,8 @@
         bottom: 0;
         z-index: 1999;
         overflow-x: hidden;
-        width: 220px;
-        background: #eef1f6;
+        width: 219px;
+        background: #545c64;
     }
     .side-tab ul {
         position: relative;
@@ -245,7 +245,7 @@
         box-sizing: border-box;
     }
     .element-main .element-content {
-        padding: 15px;
+        padding: 10px;
     }
     .h1-title {
         padding: 15px;

@@ -13,7 +13,7 @@ export function lookcardQxForm() {
             "placeholder": "请选择查询时间",
             "type": "timeRange",
             "name": "query",
-            "span": 6,
+            "span": 7,
         }]
     }
 }
@@ -32,7 +32,7 @@ export function lookcardSingleFrom() {
             "placeholder": "请选择查询时间",
             "type": "timeRange",
             "name": "query",
-            "span": 6,
+            "span": 7,
         }]
     }
 }

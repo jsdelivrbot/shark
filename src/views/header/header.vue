@@ -1,5 +1,5 @@
 <template>
-    <el-menu theme="dark" :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
         <el-menu-item index="1" style="font-size: 24px">{{serverName2}} CMS管理系统</el-menu-item>
         <el-menu-item index="3">
             未处理的留言反馈<span style="margin: 0 6px; color: #ff6700;">{{feedback}}</span>条<span style="margin: 0 6px;">|</span>已处理的留言反馈<span style="margin: 0 6px; color: #ff6700;">{{is_feedback}}</span>条

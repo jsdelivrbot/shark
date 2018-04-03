@@ -24,8 +24,8 @@
         <div id="element-main" class="el-container element-main">
             <div class="element-content el-main">
                 <keep-alive>
-                    <!-- <router-view v-on:login="checkPermits"></router-view> -->
-                    <router-view></router-view>
+                    <router-view v-on:login="checkPermits"></router-view>
+                    <!-- <router-view></router-view> -->
                 </keep-alive>
             </div>
         </div>

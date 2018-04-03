@@ -28,8 +28,9 @@
                     </el-collapse>
                 </el-tab-pane>
                 <el-tab-pane label="留存用户" name="2">留存用户</el-tab-pane>
-                <el-tab-pane label="漏斗分析" name="3">漏斗分析</el-tab-pane>
             </el-tabs>
+            <br />
+            <h1 class="h1-title">漏斗分析</h1>
         </div>
     </div>
 </template>

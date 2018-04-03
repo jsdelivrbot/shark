@@ -24,12 +24,12 @@ export function feedbackTable() {
             title: '反馈ID',
             name: 'FeedbackID',
             sortable: true,
-            width: '80px'
+            width: '120px'
         }, {
             title: '处理状态',
             name: 'IsProcessed',
             sortable: true,
-            width: '100px',
+            width: '120px',
             formatter: feedbackHandleStatusFormatter
         }, {
             title: '提交时间',
@@ -60,13 +60,13 @@ export function feedbackTable() {
             title: '问题类型',
             name: 'QuestionType',
             sortable: true,
-            width: '100px',
+            width: '120px',
             formatter: feedbackProblemTypeFormatter
         }, {
             title: '游戏类型',
             name: 'GameType',
             sortable: true,
-            width: '100px',
+            width: '120px',
             formatter: feedbackGameTypeFormatter
         }, {
             title: '回复时间',
@@ -77,7 +77,7 @@ export function feedbackTable() {
             title: '回复人',
             name: 'RevertUserID',
             sortable: true,
-            width: '100px',
+            width: '120px',
             formatter: feedbackReverUserFormatter
         }, {
             title: '回复内容',
@@ -88,7 +88,7 @@ export function feedbackTable() {
             title: '显示状态',
             name: 'Nullity',
             sortable: true,
-            width: '100px',
+            width: '120px',
             formatter: feedbackShowStatusFormatter
         }, {
             title: '操作',

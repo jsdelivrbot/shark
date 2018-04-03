@@ -2,13 +2,13 @@ export function permits() {
     return [{
         title: '首页',
         permit: true,
-        permit_id: 43,
+        permit_id: 40,
         sub: [{
             title: '我的桌面',
             name: '我的桌面',
             to: '/',
             permit: true,
-            permit_id: 44,
+            permit_id: 41,
         }]
     }, {
         title: '游戏总览',
@@ -189,7 +189,7 @@ export function permits() {
             permit: true,
             permit_id: 31
         }, {
-            title: '走马灯管理',
+            title: '走马灯',
             name: 'notice',
             to: '/game_config/notice',
             permit: true,

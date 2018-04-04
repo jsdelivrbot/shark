@@ -2,16 +2,21 @@
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
         <el-menu-item index="1" style="font-size: 24px">{{serverName2}} CMS管理系统</el-menu-item>
         <el-menu-item index="3">
-            未处理的留言反馈<span style="margin: 0 6px; color: #ff6700;">{{feedback}}</span>条<span style="margin: 0 6px;">|</span>已处理的留言反馈<span style="margin: 0 6px; color: #ff6700;">{{is_feedback}}</span>条
+            未处理的留言反馈<span style="margin: 0 6px; color: #ff6700;">{{feedback}}</span>条<span style="margin: 0 6px;">
         </el-menu-item>
-        <el-menu-item-group style="float:right;">
+        <!-- <el-menu-item-group style="float:right;">
             <el-submenu index="2">
                 <template slot="title">{{username}}</template>
                 <el-menu-item index="2-2" @click="modify_password">修改密码</el-menu-item>
                 <el-menu-item index="2-3" @click="logout">注销</el-menu-item>
             </el-submenu>
-        </el-menu-item-group>
-        <el-dialog title="修改密码" size="tiny" :visible.sync="dialogFormVisible">
+        </el-menu-item-group> -->
+            <el-submenu index="2" style="float:right">
+                <template slot="title">{{username}}</template>
+                <el-menu-item index="2-2" @click="modify_password">修改密码</el-menu-item>
+                <el-menu-item index="2-3" @click="logout">注销</el-menu-item>
+            </el-submenu>
+        <el-dialog title="修改密码" width="30%" :visible.sync="dialogFormVisible">
             <ele-form :config="headerDialogConfig" v-on:receive="headerDialogSubmit" :defaultdata="defaultHtml"></ele-form>
         </el-dialog>
     </el-menu>
@@ -94,16 +99,10 @@
             this.headerDialogConfig = modityPassForm();
             /* 未处理留言反馈条数 */
             let _self = this;
-            _self.$res.postData(_self, '/Manu/get_not_feecback/', {
+            _self.$res.postData(_self, '/Manu/get_feedback/', {
                 deal: 0
             }).then((response) => {
                 this.feedback = response.length;
-            });
-            /* 已处理留言反馈条数 */
-            _self.$res.postData(_self, '/Manu/get_not_feecback/', {
-                deal: 1
-            }).then((response) => {
-                this.is_feedback = response.length;
             });
             /* 玩家昵称 */
             this.$res.getSingleData(this, '/Aashare/user_info/').then((response) => {

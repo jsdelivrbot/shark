@@ -1,4 +1,4 @@
-import { bigNumberFormatter, transToTime } from '@/libs/dataColumnFormatter'
+import { bigNumberFormatter, transToTime, userInfoFormatter } from '@/libs/dataColumnFormatter'
 export function gameGoldTable() {
     return {
         //导出按钮
@@ -28,6 +28,11 @@ export function gameGoldTable() {
             name: 'UserID',
             sortable: true,
             template: { 'user_link': true }
+        }, {
+            title: '昵称',
+            name: 'UserID',
+            sortable: true,
+            formatter: userInfoFormatter
         }, {
             title: '身上金币',
             name: 'Score',

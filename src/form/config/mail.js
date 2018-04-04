@@ -1,8 +1,7 @@
 export function queryMailForm() {
     return {
         "inline": true,
-        "btnSpan": 6,
-        "rows": 24,
+        "btnSpan": 8,
         "btns": [{
             "name": "query",
             "title": "查 询",
@@ -13,7 +12,7 @@ export function queryMailForm() {
             "placeholder": "邮件发送时间范围",
             "type": "timeRange",
             "name": "send",
-            "span": 6
+            "span": 8
         }, {
             "label": "邮件范围",
             "type": "select",

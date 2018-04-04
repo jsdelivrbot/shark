@@ -6,91 +6,29 @@
                 <el-col :span="24">
                     <div class="team-content">
                         <ul class="clearfix">
-                            <li>
-                                <div class="main-team">
-                                    <span class="title">美味的汉堡</span>
-                                    <div class="text">上课是卡卡看看是看看山卡卡上课扩大苦苦思索咔咔看到卡卡卡达克卡达克快睡看卡看看是卡开始卡卡卡看打开时空卡斯柯卡斯柯io山卡卡开心库萨克 山卡卡开心哦I看 点卡都麻了基督教垃圾垃圾的垃圾丽江大理大家啊来得及案例案例</div>
-                                    <div class="bottom">
-                                        <span class="time">2018-04-03 20:11:12</span>
-                                        <div slot="footer" class="dialog-footer">
-                                            <el-button type="warning" plain>编 辑</el-button>
-                                            <el-button type="success" plain>详 情</el-button>
+                            <template v-for="todo in teamHtml">
+                                <li>
+                                    <div class="main-team">
+                                        <span class="title">{{todo.ID}}</span>
+                                        <div class="text">{{todo.Content}}</div>
+                                        <div class="bottom">
+                                            <span class="time">{{todo.CollectDate}}</span>
+                                            <div slot="footer" class="dialog-footer">
+                                                <el-button type="warning" plain @click.native="editTeam">编 辑</el-button>
+                                                <el-button type="success" plain @click.native="detailTeam">详 情</el-button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="main-team">
-                                    <span class="title">美味的汉堡</span>
-                                    <div class="text">上课是卡卡看看是看看山卡卡上课扩大苦苦思索咔咔看到卡卡卡达克卡达克快睡看卡看看是卡开始卡卡卡看打开时空卡斯柯卡斯柯io山卡卡开心库萨克 山卡卡开心哦I看 点卡都麻了基督教垃圾垃圾的垃圾丽江大理大家啊来得及案例案例点卡都麻了基督教垃圾垃圾的垃圾丽江大理大家啊来得及案例案例点卡都麻了基督教垃圾垃圾的垃圾丽江大理大家啊来得及案例案例点卡都麻了基督教垃圾垃圾的垃圾丽江大理大家啊来得及案例案例点卡都麻了基督教垃圾垃圾的垃圾丽江大理大家啊来得及案例案例</div>
-                                    <div class="bottom">
-                                        <span class="time">2018-04-03 20:11:12</span>
-                                        <div slot="footer" class="dialog-footer">
-                                            <el-button type="warning" plain>编 辑</el-button>
-                                            <el-button type="success" plain>详 情</el-button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="main-team">
-                                    <span class="title">美味的汉堡</span>
-                                    <div class="text">上课是卡卡看看是看看山卡卡上课扩大苦苦思索咔咔看到卡卡卡达克卡达克快睡看卡看看是卡开始卡卡卡看打开时空卡斯柯卡斯柯io山卡卡开心库萨克 山卡卡开心哦I看 点卡都麻了基督教垃圾垃圾的垃圾丽江大理大家啊来得及案例案例</div>
-                                    <div class="bottom">
-                                        <span class="time">2018-04-03 20:11:12</span>
-                                        <div slot="footer" class="dialog-footer">
-                                            <el-button type="warning" plain>编 辑</el-button>
-                                            <el-button type="success" plain>详 情</el-button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="main-team">
-                                    <span class="title">美味的汉堡</span>
-                                    <div class="text">上课是卡卡看看是看看山卡卡上课扩大苦苦思索咔咔看到卡卡卡达克卡达克快睡看卡看看是卡开始卡卡卡看打开时空卡斯柯卡斯柯io山卡卡开心库萨克 山卡卡开心哦I看 点卡都麻了基督教垃圾垃圾的垃圾丽江大理大家啊来得及案例案例</div>
-                                    <div class="bottom">
-                                        <span class="time">2018-04-03 20:11:12</span>
-                                        <div slot="footer" class="dialog-footer">
-                                            <el-button type="warning" plain>编 辑</el-button>
-                                            <el-button type="success" plain>详 情</el-button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="main-team">
-                                    <span class="title">美味的汉堡</span>
-                                    <div class="text">上课是卡卡看看是看看山卡卡上课扩大苦苦思索咔咔看到卡卡卡达克卡达克快睡看卡看看是卡开始卡卡卡看打开时空卡斯柯卡斯柯io山卡卡开心库萨克 山卡卡开心哦I看 点卡都麻了基督教垃圾垃圾的垃圾丽江大理大家啊来得及案例案例点卡都麻了基督教垃圾垃圾的垃圾丽江大理大家啊来得及案例案例点卡都麻了基督教垃圾垃圾的垃圾丽江大理大家啊来得及案例案例</div>
-                                    <div class="bottom">
-                                        <span class="time">2018-04-03 20:11:12</span>
-                                        <div slot="footer" class="dialog-footer">
-                                            <el-button type="warning" plain>编 辑</el-button>
-                                            <el-button type="success" plain>详 情</el-button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="main-team">
-                                    <span class="title">美味的汉堡</span>
-                                    <div class="text">上课是卡卡看看是看看山卡卡上课扩大苦苦思索咔咔看到卡卡卡达克卡达克快睡看卡看看是卡开始卡卡卡看打开时空卡斯柯卡斯柯io山卡卡开心库萨克 山卡卡开心哦I看 点卡都麻了基督教垃圾垃圾的垃圾丽江大理大家啊来得及案例案例点卡都麻了基督教垃圾垃圾的垃圾丽江大理大家啊来得及案例案例点卡都麻了基督教垃圾垃圾的垃圾丽江大理大家啊来得及案例案例</div>
-                                    <div class="bottom">
-                                        <span class="time">2018-04-03 20:11:12</span>
-                                        <div slot="footer" class="dialog-footer">
-                                            <el-button type="warning" plain>编 辑</el-button>
-                                            <el-button type="success" plain>详 情</el-button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li style="cursor: pointer;">
+                                </li>
+                            </template>
+                            <li style="cursor: pointer;" @click="addTeamPrinciple">
                                 <i class="el-icon-circle-plus-outline"></i>
                             </li>
                         </ul>
                     </div>
                 </el-col>
             </el-row>
+
             <el-row>
                 <el-col :span="24">
                     <h2 style="font-size: 22px;">欢迎登录 鲨鱼互动 管理界面平台</h2>
@@ -109,25 +47,110 @@
                 </el-col>
             </el-row>
         </div>
+        <!-- 新增团队原则 -->
+        <el-dialog title="新增团队原则" :visible.sync="addTeamPrincipleDialog">
+            <ele-form :config="addTeamPrincipleDialogConfig" :eventname="teamPrincipleSubmitEvent" v-on:receive="teamPrincipleDialogSubmit"></ele-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="addTeamPrincipleDialog = false">取 消</el-button>
+                <el-button type="success" @click="submitTeamPrincipleEvent">确 定</el-button>
+            </div>
+        </el-dialog>
+        <!-- 编辑 -->
+        <el-dialog title="编辑" :visible.sync="editDialog">
+            <ele-form :config="editTeamPrincipleDialogConfig" :eventname="teamPrincipleSubmitEvent1" v-on:receive="teamPrincipleDialogSubmit1" :defaultdata="editHtml"></ele-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="editDialog = false">取 消</el-button>
+                <el-button type="success" @click="submitTeamPrincipleEvent1">确 定</el-button>
+            </div>
+        </el-dialog>
     </div>
 </template>
 <script>
+    import {
+        addTeamPrincipleDialogForm
+    } from '@/form/config/team'
     export default {
         name: 'index',
         /* 组件内自行使用的数据可以在data内渲染 */
         data() {
             return {
-                version: '1.0.0',
+                version: '1.0.1',
                 login_time: '',
                 login_count: '',
                 login_ip: '',
-                currentDate: new Date(),
+                /* 新增团队原则 */
+                addTeamPrincipleDialog: false,
+                addTeamPrincipleDialogConfig: addTeamPrincipleDialogForm(),
+                teamPrincipleSubmitEvent: false,
+                teamHtml: null,
+                /* 编辑 */
+                editDialog: false,
+                editTeamPrincipleDialogConfig: addTeamPrincipleDialogForm(),
+                teamPrincipleSubmitEvent1: false,
+                editHtml: {},
+                /* 详情 */
             }
         },
         /* 需要元素渲染完调用的方法放在mounted内 */
         mounted() {},
         /* 需要事件调用的方法放在methods内 */
-        methods: {},
+        methods: {
+            /* 新增团队原则 */
+            addTeamPrinciple() {
+                this.addTeamPrincipleDialog = true;
+            },
+            teamPrincipleDialogSubmit(arg) {
+                switch (arg[1]) {
+                    case 'submitEvent':
+                        let param = {
+                            title: arg[0].title,
+                            content: arg[0].content,
+                            author: localStorage.getItem('Username')
+                        };
+                        this.$res.postData(this, '/Team/add_team_principle/', param).then((response) => {
+                            if (response.code == 0) {
+                                this.addTeamPrincipleDialog = false;
+                                this.teamPrincipleSubmitEvent = false;
+                                this.$res.postData(this, '/Team/get_team_principle/').then((response) => {
+                                    this.teamHtml = response;
+                                    this.$message.success('新增成功');
+                                });
+                            } else {
+                                this.$message.error('标题重复');
+                            }
+                        });
+                        break;
+                }
+            },
+            submitTeamPrincipleEvent() {
+                this.teamPrincipleSubmitEvent = 'submitEvent';
+            },
+            /* 编辑 */
+            editTeam(text) {
+                let username = localStorage.getItem('Username');
+                if (username == 'huangjingshan') {
+                    this.editDialog = true;
+                    this.$message.success('足够权限');
+                } else {
+                    this.$message.error('没有权限，请联系管理员');
+                }
+            },
+            teamPrincipleDialogSubmit1(arg) {
+                switch (arg[1]) {
+                    case 'submitEvent':
+                        this.editDialog = false;
+                        this.teamPrincipleSubmitEvent1 = false;
+                }
+            },
+            submitTeamPrincipleEvent1() {
+                this.teamPrincipleSubmitEvent1 = 'submitEvent';
+            },
+            /* 详情 */
+            detailTeam() {
+                this.editDialog = true;
+                this.$message.success('详情');
+            }
+        },
         /* 引入组件放在components */
         components: {},
         /* 计算属性放于computed内 */
@@ -141,6 +164,9 @@
                 _self.login_count = response.LoginTimes;
                 _self.login_time = response.PreLogintime;
                 _self.login_ip = response.PreLoginIP;
+            });
+            _self.$res.postData(_self, '/Team/get_team_principle/').then((response) => {
+                _self.teamHtml = response;
             });
         }
     }
@@ -188,6 +214,7 @@
                 text-align: center;
             }
             .text {
+                height: 203px;
                 font-size: 14px;
                 color: #303133;
                 line-height: 26px;

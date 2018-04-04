@@ -11,7 +11,7 @@
                         </el-collapse-item>
                         <el-collapse-item title="新增列表" name="1">
                             <ele-form :config="new_user_config" v-on:receive="new_user_submit" :defaultdata="newUserHtml"></ele-form>
-                            <table-option :parent-message="newUser_Msg" v-on:message="newUserMessage" v-loading="loading2" element-loading-text="拼命加载中"></table-option>
+                            <table-option :parent-message="newUser_Msg" v-on:message="newUserMessage" v-on:pagedata="newUserChangePage" v-loading="loading2" element-loading-text="拼命加载中"></table-option>
                         </el-collapse-item>
                     </el-collapse>
                 </el-tab-pane>
@@ -119,15 +119,31 @@
             new_user_submit(arg) {
                 let _self = this;
                 _self.loading2 = true;
+                _self.newUserHtml.query_start_time = arg[0].query_start_time;
+                _self.newUserHtml.query_end_time = arg[0].query_end_time;
                 _self.$res.postData(_self, '/User/get_create_account_info/', arg[0]).then((response) => {
-                    _self.newUser_Msg.data = [];
-                    _self.newUser_Msg.data = response;
+                    this.newUser_Msg.data = response.rows.map((val) => {
+                        return val;
+                    });
+                    this.newUser_Msg.total = response.total;
                     _self.loading2 = false;
                     _self.$message.success('查询成功');
                 });
             },
             newUserMessage(text) {
                 this.newUser_Msg.data = tableSearch(text, this.newUser_Msg.data);
+            },
+            /* 服务器分页 */
+            newUserChangePage(arg) {
+                this.$res.postData(this, '/User/get_create_account_info/', {
+                    page: arg[0],
+                    psize: arg[1],
+                    query_start_time: this.newUserHtml.query_start_time,
+                    query_end_time: this.newUserHtml.query_end_time
+                }).then((response) => {
+                    this.newUser_Msg.data = response.rows;
+                    this.newUser_Msg.total = response.total;
+                });
             },
             /* 活跃用户 */
             /* 概况 */
@@ -180,7 +196,8 @@
                 query_end_time: _self.newUserHtml.query_end_time
             }).then((res) => {
                 _self.newUser_Msg.data = [];
-                _self.newUser_Msg.data = res;
+                _self.newUser_Msg.data = res.rows;
+                _self.newUser_Msg.total = res.total;
             });
             /* 活跃用户 */
             /* 概况 */

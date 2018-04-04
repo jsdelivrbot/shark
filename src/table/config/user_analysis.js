@@ -12,7 +12,7 @@ export function newUserTable() {
         //分页
         pagination: true,
         //是否为服务器分页
-        serverPagination: false,
+        serverPagination: true,
         //默认排序
         defaultSort: {
             prop: ''

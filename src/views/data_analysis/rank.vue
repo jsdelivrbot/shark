@@ -25,7 +25,7 @@
     } from '@/form/config/rank'
     import {
         gameGoldTable
-    } from '@/table/config/gold_rank'
+    } from '@/table/config/rank'
     export default {
         name: 'rank',
         /* 组件内自行使用的数据可以在data内渲染 */

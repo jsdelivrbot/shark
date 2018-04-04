@@ -20,7 +20,7 @@
                 <el-tab-pane label="在线人数统计">
                     <span style="margin-bottom: 15px; color: red; display: block;">注意：只能统计在房间里面的人数，停留在大厅的人数统计不到</span>
                     <ele-form :config="online_config" v-on:receive="online_submit" :defaultdata="onlineDefaultHtml"></ele-form>
-                    <table-option :parent-message="online_Msg" v-on:message="onlineMessage" v-loading="loading" element-loading-text="拼命加载中"></table-option>
+                    <table-option :parent-message="online_Msg" v-on:message="onlineMessage" v-loading="loading2" element-loading-text="拼命加载中"></table-option>
                 </el-tab-pane>
                 <el-tab-pane label="金币分布"></el-tab-pane>
                 <el-tab-pane label="流失玩家"></el-tab-pane>
@@ -52,6 +52,7 @@
             return {
                 activeName: '0',
                 loading: false,
+                loading2: false,
                 /* 注册统计 */
                 reg_qx_config: regQxForm(),
                 chartD: registerChart(),
@@ -98,11 +99,11 @@
             },
             /* 在线人数统计 */
             online_submit(arg) {
-                this.loading = true;
+                this.loading2 = true;
                 this.$res.postData(this, '/Realtime/get_online_user/', arg[0]).then((response) => {
                     this.online_Msg.data = [];
                     this.online_Msg.data = response;
-                    this.loading = false;
+                    this.loading2 = false;
                     this.$message.success('查询成功');
                 });
             },
@@ -148,12 +149,14 @@
                 _self.register_Msg.data = response;
             });
             /* 在线人数统计 - 查询 */
+            _self.loading2 = true;
             _self.$res.postData(_self, '/Realtime/get_online_user/', {
                 query_start_time: _self.onlineDefaultHtml.query_start_time,
                 query_end_time: _self.onlineDefaultHtml.query_end_time
             }).then((response) => {
                 _self.online_Msg.data = [];
                 _self.online_Msg.data = response;
+                _self.loading2 = false;
             });
             /* 在线人数统计 选择游戏下拉列表 */
             let baseGameListConfig = roomUserForm();

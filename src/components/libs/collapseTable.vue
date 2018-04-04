@@ -22,7 +22,7 @@
                         <el-button v-for="btn in col.template.btns" :size="small" :key="btn.name" :type="btn.type" @click="outPutRow(scope.$index, scope.row, btn.funcName)">{{btn.name}}</el-button>
                     </div>
                     <div v-if="col.template&&col.template.user_link">
-                        <a :href="pathname+'#/user/user_data?userid='+scope.row[col.name]" target="_blank" :style="{'color':'#20A0FF'}">{{scope.row[col.name]}}</a>
+                        <a :href="pathname+'#/users/user_info?userid='+scope.row[col.name]" target="_blank" :style="{'color':'#20A0FF'}">{{scope.row[col.name]}}</a>
                     </div>
                     <div v-if="!col.template">
                         {{col.formatter ? col.formatter(scope.row, '', scope.row[col.name]) : scope.row[col.name]}}
@@ -34,7 +34,7 @@
                             <el-button v-for="btn in sub_col.template.btns" size="small" :key="btn.name" :type="btn.type" @click="outPutRow(scope.$index, scope.row,btn.funcName)">{{btn.name}}</el-button>
                         </div>
                         <div v-if="sub_col.template&&sub_col.template.user_link">
-                            <a :href="pathname+'#/user/user_data?userid='+scope.row[sub_col.name]" target="_blank" style="color:#20A0FF;">{{scope.row[sub_col.name]}}</a>
+                            <a :href="pathname+'#/users/user_info?userid='+scope.row[sub_col.name]" target="_blank" style="color:#20A0FF;">{{scope.row[sub_col.name]}}</a>
                         </div>
                         <div v-if="!sub_col.template">
                             {{sub_col.formatter?sub_col.formatter(scope.row,'',scope.row[sub_col.name]):scope.row[sub_col.name]}}

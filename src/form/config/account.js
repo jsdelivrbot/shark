@@ -106,10 +106,11 @@ export function accountEditForm() {
     return {
         "inline": true,
         "btnSpan": 6,
+        "btnOffset": 3,
         "btns": [{
             "name": "query",
             "title": "确 定",
-            "valid": false
+            "valid": false,
         }],
         "formEle": [{
             "label": "登录账号",

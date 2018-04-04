@@ -1,4 +1,4 @@
-import { bigNumberFormatter, transToTime, userInfoFormatter } from '@/libs/dataColumnFormatter'
+import { bigNumberFormatter, transToTime2, userInfoFormatter, NullityFormatter } from '@/libs/dataColumnFormatter'
 export function gameGoldTable() {
     return {
         //导出按钮
@@ -22,7 +22,7 @@ export function gameGoldTable() {
             title: '注册时间',
             name: 'RegisterDate',
             sortable: true,
-            formatter: transToTime
+            formatter: transToTime2
         }, {
             title: '玩家ID',
             name: 'UserID',
@@ -34,6 +34,11 @@ export function gameGoldTable() {
             sortable: true,
             formatter: userInfoFormatter
         }, {
+            title: '玩家总金币',
+            name: 'TotalGold',
+            sortable: true,
+            formatter: bigNumberFormatter
+        }, {
             title: '身上金币',
             name: 'Score',
             sortable: true,
@@ -44,45 +49,66 @@ export function gameGoldTable() {
             sortable: true,
             formatter: bigNumberFormatter
         }, {
-            title: '税收',
-            name: 'Revenue',
+            title: '总充值',
+            name: 'TotalPayAmount',
+            sortable: true
+        }, {
+            title: '封号时间',
+            name: 'FreezeTime',
+            sortable: true
+        }],
+        data: []
+    }
+}
+
+export function diamondsTable() {
+    return {
+        //导出按钮
+        export: true,
+        //搜索内容
+        search: true,
+        //生成索引
+        index: false,
+        //行选择框
+        select: false,
+        //分页
+        pagination: true,
+        //是否为服务器分页
+        serverPagination: false,
+        //默认排序
+        defaultSort: {
+            prop: ''
+        },
+        //表头配置
+        columns: [{
+            title: '注册时间',
+            name: 'RegisterDate',
+            sortable: true,
+            formatter: transToTime2
+        }, {
+            title: '用户ID',
+            name: 'UserID',
+            sortable: true,
+            template: { 'user_link': true }
+        }, {
+            title: '昵称',
+            name: 'NickName',
+            sortable: true
+        }, {
+            title: '钻石',
+            name: 'UserMedal',
             sortable: true,
             formatter: bigNumberFormatter
         }, {
-            title: '赢局',
-            name: 'WinCount',
+            title: '状态',
+            name: 'Nullity',
             sortable: true,
-            formatter: bigNumberFormatter
+            formatter: NullityFormatter
         }, {
-            title: '输局',
-            name: 'LostCount',
+            title: '封号时间',
+            name: 'NullityOverDate',
             sortable: true,
-            formatter: bigNumberFormatter
-        }, {
-            title: '和局',
-            name: 'DrawCount',
-            sortable: true,
-            formatter: bigNumberFormatter
-        }, {
-            title: '逃局',
-            name: 'FleeCount',
-            sortable: true,
-            formatter: bigNumberFormatter
-        }, {
-            title: '登录次数',
-            name: 'AllLogonTimes',
-            sortable: true,
-            formatter: bigNumberFormatter
-        }, {
-            title: '游戏时长（秒）',
-            name: 'PlayTimeCount',
-            sortable: true,
-            formatter: bigNumberFormatter
-        }, {
-            title: '在线时长（秒）',
-            name: 'OnLineTimeCount',
-            sortable: true,
-            formatter: bigNumberFormatter
+            formatter: transToTime2
         }],
         data: []
     }

@@ -1,31 +1,34 @@
 <template>
     <div id="container">
-        <h1 class="h1-title">弹窗配置</h1>
+        <h1 class="h1-title">防沉迷系统</h1>
         <div class="cms-content">
-            <ele-form :config="popup_config" v-on:receive="popup_submit" :defaltdata="popupHtml"></ele-form>
+            <ele-form :config="indulge_config" v-on:receive="indulge_submit" :defaultdata="indulgeHtml"></ele-form>
         </div>
     </div>
 </template>
 
 <script>
     import {
-        popupForm
-    } from '@/form/config/popup_config'
+        indulgeForm
+    } from '@/form/config/indulge'
     export default {
-        name: 'popup_config',
+        name: 'indulge',
         /* 组件内自行使用的数据可以在data内渲染 */
         data() {
             return {
-                popup_config: popupForm(),
-                popupHtml: {},
+                indulge_config: indulgeForm(),
+                indulgeHtml: {
+                    indulge_tip: true
+                }
             }
         },
         /* 需要元素渲染完调用的方法放在mounted内 */
         mounted() {},
         /* 需要事件调用的方法放在methods内 */
         methods: {
-            popup_submit(arg) {
-                this.$message.success('success');
+            indulge_submit(arg) {
+                console.log(arg[0]);
+                this.$message.success('防沉迷系统');
             }
         },
         /* 引入组件放在components */

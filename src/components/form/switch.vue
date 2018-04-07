@@ -1,5 +1,5 @@
 <template>
-    <el-switch v-model="input" :default="defaultValue" @change="checkEvent">
+    <el-switch v-model="input" :default="defaultValue" @change="checkEvent" :disabled="configData.disabled">
     </el-switch>
 </template>
 
@@ -14,7 +14,7 @@
             checkEvent() {
                 this.$emit('text', {
                     key: this.config.name,
-                    value: !this.input
+                    value: this.input
                 });
             }
         },

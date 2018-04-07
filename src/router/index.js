@@ -16,6 +16,7 @@ import mini_game from "@/views/data_analysis/mini_game"; /* 小游戏 */
 import rank from "@/views/data_analysis/rank"; /* 排行榜 */
 import pay_analysis from "@/views/data_analysis/pay_analysis"; /* 付费分析 */
 import buy_item from "@/views/data_analysis/buy_item"; /* 道具购买分析 */
+import timing from "@/views/data_analysis/timing"; /* 定时奖励 */
 // 用户管理 users
 import user_info from "@/views/users/user_info"; /* 用户信息 */
 import risk_manage from "@/views/users/risk_manage"; /* 封禁管理 */
@@ -37,6 +38,7 @@ import lookCards_config from "@/views/game_config/lookCards_config"; /* 看牌�
 import task_config from "@/views/game_config/task_config"; /* 任务配置 */
 import activity_config from "@/views/game_config/activity_config"; /* 活动配置 */
 import popup_config from "@/views/game_config/popup_config"; /* 弹窗配置 */
+import indulge from '@/views/game_config/indulge'; /* 防沉迷系统 */
 import shop_config from "@/views/game_config/shop_config"; /* 商城订单配置 */
 import notice from "@/views/game_config/notice"; /* 走马灯配置 */
 import mail from "@/views/game_config/mail"; /* 系统邮件 */
@@ -91,6 +93,10 @@ export default new Router({
         path: '/data_analysis/buy_item',
         name: 'buy_item',
         component: buy_item
+    }, {
+        path: '/data_analysis/timing',
+        name: 'timing',
+        component: timing
     }, {
         path: '/users/user_info',
         name: 'user_info',
@@ -155,6 +161,10 @@ export default new Router({
         path: '/game_config/popup_config',
         name: 'popup_config',
         component: popup_config
+    }, {
+        path: '/game_config/indulge',
+        name: 'indulge',
+        component: indulge
     }, {
         path: '/game_config/shop_config',
         name: 'shop_config',

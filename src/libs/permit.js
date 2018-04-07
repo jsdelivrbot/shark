@@ -67,6 +67,12 @@ export function permits() {
             to: '/data_analysis/buy_item',
             permit: true,
             permit_id: 10
+        }, {
+            title: '定时奖励',
+            name: 'timing',
+            to: '/data_analysis/timing',
+            permit: true,
+            permit_id: 44
         }]
     }, {
         title: '用户管理',
@@ -199,6 +205,12 @@ export function permits() {
             to: '/game_config/popup_config',
             permit: true,
             permit_id: 30
+        }, {
+            title: '防沉迷系统',
+            name: 'indulge',
+            to: '/game_config/indulge',
+            permit: true,
+            permit_id: 45
         }, {
             title: '商城订单配置',
             name: 'shop_config',

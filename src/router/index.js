@@ -31,6 +31,7 @@ import payment_order from "@/views/pay/payment_order"; /* 支付订单 */
 import exchange_audit from "@/views/exchange/exchange_audit"; /* 兑换审核 */
 import exchange_record from "@/views/exchange/exchange_record"; /* 兑换记录 */
 // 游戏配置 game_config
+import robot from '@/views/game_config/robot'; /* AI配置 */
 import match_config from "@/views/game_config/match_config"; /* 比赛配置 */
 import lookCards_config from "@/views/game_config/lookCards_config"; /* 看牌抢庄配置 */
 import task_config from "@/views/game_config/task_config"; /* 任务配置 */
@@ -130,6 +131,10 @@ export default new Router({
         path: '/exchange/exchange_record',
         name: 'exchange_record',
         component: exchange_record
+    }, {
+        path: '/game_config/robot',
+        name: 'robot',
+        component: robot
     }, {
         path: '/game_config/match_config',
         name: 'match_config',

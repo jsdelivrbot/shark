@@ -2,7 +2,7 @@
     <div id="app">
         <header-tab></header-tab>
         <div class="side-tab">
-            <el-menu class="el-menu-vertical-demo" default-active="2" router @open="handleOpen" @close="handleClose" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+            <el-menu class="el-menu-vertical-demo" default-active="2" unique-opened="true" router @open="handleOpen" @close="handleClose" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
                 <template v-for="(tab, index) in sideTab">
                     <el-submenu v-bind:index="index+''" v-if="tab.permit && tab.sub" :key="tab.title">
                         <template slot="title">{{tab.title}}</template>

@@ -1,15 +1,15 @@
 <template>
     <div id="container">
-        <h1 class="h1-title">黑名单</h1>
+        <h1 class="h1-title">AI配置</h1>
         <div class="cms-content">
-
+            
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'blacklist',
+        name: 'robot',
         /* 组件内自行使用的数据可以在data内渲染 */
         data() {
             return {}

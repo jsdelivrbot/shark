@@ -149,10 +149,27 @@ export function permits() {
             permit_id: 24
         }]
     }, {
+        title: '客服工具',
+        permit: true,
+        permit_id: 42,
+        sub: [{
+            title: '问题反馈',
+            name: 'feedback',
+            to: '/game_config/feedback',
+            permit: true,
+            permit_id: 34
+        }]
+    }, {
         title: '游戏配置',
         permit: true,
         permit_id: 25,
         sub: [{
+            title: 'AI配置',
+            name: 'robot',
+            to: '/game_config/robot',
+            permit: true,
+            permit_id: 43
+        }, {
             title: '比赛配置',
             name: 'match_config',
             to: '/game_config/match_config',
@@ -200,12 +217,6 @@ export function permits() {
             to: '/game_config/mail',
             permit: true,
             permit_id: 33
-        }, {
-            title: '问题反馈',
-            name: 'feedback',
-            to: '/game_config/feedback',
-            permit: true,
-            permit_id: 34
         }]
     }, {
         title: '后台管理',

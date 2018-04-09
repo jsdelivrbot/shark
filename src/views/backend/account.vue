@@ -452,9 +452,6 @@
             this.role_Msg = roleTable();
             this.createRoleDialogConfig = roleDialogForm();
             this.createRoleFormConfig2 = createRoleForm2();
-            this.$res.getSingleData(this, '/Backend/get_role/').then((response) => {
-                window.role_list = response;
-            });
             //获取权限列表
             let baseRoleFormConfig_id = roleDialogForm();
             let baseRoleFormConfig_id2 = createRoleForm2();

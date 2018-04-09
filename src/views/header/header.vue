@@ -4,18 +4,11 @@
         <el-menu-item index="3">
             未处理的留言反馈<span style="margin: 0 6px; color: #ff6700;">{{feedback}}</span>条<span style="margin: 0 6px;">
         </el-menu-item>
-        <!-- <el-menu-item-group style="float:right;">
-            <el-submenu index="2">
-                <template slot="title">{{username}}</template>
-                <el-menu-item index="2-2" @click="modify_password">修改密码</el-menu-item>
-                <el-menu-item index="2-3" @click="logout">注销</el-menu-item>
-            </el-submenu>
-        </el-menu-item-group> -->
-            <el-submenu index="2" style="float:right">
-                <template slot="title">{{username}}</template>
-                <el-menu-item index="2-2" @click="modify_password">修改密码</el-menu-item>
-                <el-menu-item index="2-3" @click="logout">注销</el-menu-item>
-            </el-submenu>
+        <el-submenu index="2" style="float:right">
+            <template slot="title">{{username}}</template>
+            <el-menu-item index="2-2" @click="modify_password">修改密码</el-menu-item>
+            <el-menu-item index="2-3" @click="logout">注销</el-menu-item>
+        </el-submenu>
         <el-dialog title="修改密码" width="30%" :visible.sync="dialogFormVisible">
             <ele-form :config="headerDialogConfig" v-on:receive="headerDialogSubmit" :defaultdata="defaultHtml"></ele-form>
         </el-dialog>
@@ -111,6 +104,10 @@
             /* 在线人数统计 */
             this.$res.getSingleData(this, '/Aashare/room_info').then((response) => {
                 window.roomInfo = response;
+            });
+            /* 所属角色 */
+            this.$res.getSingleData(this, '/Backend/get_role/').then((response) => {
+                window.role_list = response;
             });
         }
     }

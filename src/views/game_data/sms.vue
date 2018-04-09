@@ -122,7 +122,7 @@
                 });
             },
             get_item() {
-                this.$res.postData(this, '/Clientapi/get_tbl/').then((response) => {
+                this.$res.postData(this, '/Shop/query_shop_prop/').then((response) => {
                     console.log(response);
                 });
             },

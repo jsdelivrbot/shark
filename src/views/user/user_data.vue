@@ -376,7 +376,7 @@ export default {
     created() {
         //道具表
         if (!window.item_info) {
-            this.$res.getSingleData(this, '/Clientapi/get_tbl/').then((response) => {
+            this.$res.getSingleData(this, '/Shop/query_shop_prop/').then((response) => {
                 if (response) {
                     window.item_info = response;
                 }

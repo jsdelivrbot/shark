@@ -2,8 +2,8 @@
     <div :userid="open_user_id">
         <el-tabs v-model="gameCollaspe" type="border-card">
             <el-tab-pane label="单局记录" name="1">
-                <ele-form :config="brnn_single_config" v-on:receive="brnn_single_submit" :defaultdata="brnnSingleHtml"></ele-form>
-                <table-option :parent-message="brnn_single_Msg"></table-option>
+                <!-- <ele-form :config="brnn_single_config" v-on:receive="brnn_single_submit" :defaultdata="brnnSingleHtml"></ele-form>
+                <table-option :parent-message="brnn_single_Msg"></table-option> -->
             </el-tab-pane>
             <el-tab-pane label="盈亏曲线" name="2">盈亏曲线</el-tab-pane>
         </el-tabs>
@@ -38,15 +38,15 @@ export default {
     },
     methods: {
         brnn_single_submit(arg) {
-            this.$res.postData(this, '/Personal/brnn_user_info/', {
-                open_user_id: this.userid,
-                KindID: 10005,
-                query_start_time: arg[0].query_start_time,
-                query_end_time: arg[0].query_end_time
-            }).then((res) => {
-                this.brnn_single_Msg.data = [];
-                this.brnn_single_Msg.data = res;
-            });
+            // this.$res.postData(this, '/Personal/brnn_user_info/', {
+            //     open_user_id: this.userid,
+            //     KindID: 10005,
+            //     query_start_time: arg[0].query_start_time,
+            //     query_end_time: arg[0].query_end_time
+            // }).then((res) => {
+            //     this.brnn_single_Msg.data = [];
+            //     this.brnn_single_Msg.data = res;
+            // });
         }
     },
     components: {},
@@ -57,15 +57,15 @@ export default {
         }
     },
     created() {
-        this.$res.postData(this, '/Personal/brnn_user_info/', {
-            open_user_id: this.userid,
-            KindID: 10005,
-            query_start_time: this.brnnSingleHtml.query_start_time,
-            query_end_time: this.brnnSingleHtml.query_end_time
-        }).then((res) => {
-            this.brnn_single_Msg.data = [];
-            this.brnn_single_Msg.data = res;
-        });
+        // this.$res.postData(this, '/Personal/brnn_user_info/', {
+        //     open_user_id: this.userid,
+        //     KindID: 10005,
+        //     query_start_time: this.brnnSingleHtml.query_start_time,
+        //     query_end_time: this.brnnSingleHtml.query_end_time
+        // }).then((res) => {
+        //     this.brnn_single_Msg.data = [];
+        //     this.brnn_single_Msg.data = res;
+        // });
     }
 }
 

@@ -8,6 +8,7 @@
             <el-button type="success" plain @click="xml_btn">解析XML</el-button>
             <el-button type="success" plain @click="pay_btn">alipay</el-button>
             <el-button type="success" plain @click="wxpay_btn">wxpay</el-button>
+            <el-button type="success" plain @click="month_btn">至尊月卡</el-button>
         </div>
     </div>
 </template>
@@ -23,6 +24,18 @@
         mounted() {},
         /* 需要事件调用的方法放在methods内 */
         methods: {
+            month_btn() {
+                this.$res.getSingleData(this, '/Card/buy_month_card/', {
+                    params: {
+                        uid: 118,
+                        sys: 'ios',
+                        chargeid: 5010,
+                        platform: 'zfb'
+                    }
+                }).then((response) => {
+                    console.log(response);
+                });
+            },
             zhichong_btn() {
                 this.$res.getSingleData(this, '/Recharge/Test_Recharge/').then((response) => {
                     console.log(response);

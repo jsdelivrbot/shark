@@ -4,9 +4,9 @@
         <div class="cms-content">
             <el-collapse v-model="activeName">
                 <el-collapse-item title="走马灯" name="0">
-                    <editor v-on:editorcontent="getEditorContent" :getcontext="getcontext"></editor>
-                    <br />
                     <ele-form :config="notice_config" v-on:receive="notice_submit" :defaultdata="noticeDefaultHtml"></ele-form>
+                    <br />
+                    <editor v-on:editorcontent="getEditorContent" :getcontext="getcontext"></editor>
                 </el-collapse-item>
                 <el-collapse-item title="走马灯列表" name="1">
                     <ele-form :config="notice_list_config" v-on:receive="notice_list_submit" :defaultdata="noticeListHtml"></ele-form>

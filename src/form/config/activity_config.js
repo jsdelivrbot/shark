@@ -345,7 +345,7 @@ export function tempDialogForm() {
             "label": "注册时间",
             "placeholder": "请选择可见的注册时间段",
             "type": "timeRange",
-            "name": "RegisterDate",
+            "name": "query",
             "span": 10,
             "offset": 1,
         }, {
@@ -380,6 +380,38 @@ export function tempDialogForm() {
             "name": "WebUrl",
             "span": 10,
             "offset": 1,
+        }, {
+            "row": 24
+        }, {
+            "label": "按钮样式",
+            "placeholder": "按钮样式（1,2,3,4,5等等）",
+            "type": "text",
+            "name": "BtnStyle",
+            "span": 10,
+            "offset": 1,
+        }, {
+            "label": "按钮文字",
+            "placeholder": "按钮文字",
+            "type": "text",
+            "name": "BtnWords",
+            "span": 10,
+            "offset": 1,
+        }, {
+            "row": 24
+        }, {
+            "label": "规则按钮",
+            "placeholder": "规则按钮（1-不显示，2-显示）",
+            "type": "select",
+            "name": "RuleBtn",
+            "span": 10,
+            "offset": 1,
+            "options": [{
+                value: 1,
+                label: '不显示'
+            }, {
+                value: 2,
+                label: '显示'
+            }]
         }]
     }
 }
@@ -512,7 +544,7 @@ export function tempDialogForm2() {
             "label": "注册时间",
             "placeholder": "请选择可见的注册时间段",
             "type": "timeRange",
-            "name": "RegisterDate",
+            "name": "query",
             "span": 10,
             "offset": 1,
         }, {
@@ -533,6 +565,20 @@ export function tempDialogForm2() {
             "offset": 1,
         }, {
             "row": 24
+        }, {
+            "label": "规则按钮",
+            "placeholder": "规则按钮（1-不显示，2-显示）",
+            "type": "select",
+            "name": "RuleBtn",
+            "span": 10,
+            "offset": 1,
+            "options": [{
+                value: 1,
+                label: '不显示'
+            }, {
+                value: 2,
+                label: '显示'
+            }]
         }]
     }
 }
@@ -665,7 +711,7 @@ export function tempDialogForm3() {
             "label": "注册时间",
             "placeholder": "请选择可见的注册时间段",
             "type": "timeRange",
-            "name": "RegisterDate",
+            "name": "query",
             "span": 10,
             "offset": 1,
         }, {
@@ -686,6 +732,20 @@ export function tempDialogForm3() {
             "offset": 1,
         }, {
             "row": 24
+        }, {
+            "label": "规则按钮",
+            "placeholder": "规则按钮（1-不显示，2-显示）",
+            "type": "select",
+            "name": "RuleBtn",
+            "span": 10,
+            "offset": 1,
+            "options": [{
+                value: 1,
+                label: '不显示'
+            }, {
+                value: 2,
+                label: '显示'
+            }]
         }]
     }
 }
@@ -694,17 +754,17 @@ export function tempDialogForm4Notice1() {
     return {
         "inline": true,
         "formEle": [{
-            "label": "活动ID",
-            "placeholder": "请输入活动ID",
+            "label": "公告ID",
+            "placeholder": "请输入公告ID",
             "type": "text",
-            "name": "ActivityID",
+            "name": "NoticeID",
             "span": 10,
             "offset": 1,
         }, {
-            "label": "活动名",
-            "placeholder": "请输入活动名",
+            "label": "公告名",
+            "placeholder": "请输入公告名",
             "type": "text",
-            "name": "ActivityName",
+            "name": "NoticeName",
             "span": 10,
             "offset": 1,
         }, {
@@ -818,7 +878,7 @@ export function tempDialogForm4Notice1() {
             "label": "注册时间",
             "placeholder": "请选择可见的注册时间段",
             "type": "timeRange",
-            "name": "RegisterDate",
+            "name": "query",
             "span": 10,
             "offset": 1,
         }, {
@@ -840,13 +900,19 @@ export function tempDialogForm4Notice1() {
         }, {
             "row": 24
         }, {
-            "label": "公告内容",
-            "placeholder": "公告内容",
-            "type": "textarea",
-            "name": "Content",
-            "span": 21,
+            "label": "按钮样式",
+            "placeholder": "按钮样式（1,2,3,4,5等等）",
+            "type": "text",
+            "name": "BtnStyle",
+            "span": 10,
             "offset": 1,
-            "rows": 4
+        }, {
+            "label": "按钮文字",
+            "placeholder": "按钮文字",
+            "type": "text",
+            "name": "BtnWords",
+            "span": 10,
+            "offset": 1,
         }]
     }
 }
@@ -855,17 +921,17 @@ export function tempDialogForm4Notice2() {
     return {
         "inline": true,
         "formEle": [{
-            "label": "活动ID",
-            "placeholder": "请输入活动ID",
+            "label": "公告ID",
+            "placeholder": "请输入公告ID",
             "type": "text",
-            "name": "ActivityID",
+            "name": "NoticeID",
             "span": 10,
             "offset": 1,
         }, {
-            "label": "活动名",
-            "placeholder": "请输入活动名",
+            "label": "公告名",
+            "placeholder": "请输入公告名",
             "type": "text",
-            "name": "ActivityName",
+            "name": "NoticeName",
             "span": 10,
             "offset": 1,
         }, {
@@ -979,7 +1045,7 @@ export function tempDialogForm4Notice2() {
             "label": "注册时间",
             "placeholder": "请选择可见的注册时间段",
             "type": "timeRange",
-            "name": "RegisterDate",
+            "name": "query",
             "span": 10,
             "offset": 1,
         }, {
@@ -1001,13 +1067,19 @@ export function tempDialogForm4Notice2() {
         }, {
             "row": 24
         }, {
-            "label": "公告内容",
-            "placeholder": "公告内容",
-            "type": "textarea",
-            "name": "Content",
-            "span": 21,
+            "label": "按钮样式",
+            "placeholder": "按钮样式（1,2,3,4,5等等）",
+            "type": "text",
+            "name": "BtnStyle",
+            "span": 10,
             "offset": 1,
-            "rows": 4
+        }, {
+            "label": "按钮文字",
+            "placeholder": "按钮文字",
+            "type": "text",
+            "name": "BtnWords",
+            "span": 10,
+            "offset": 1,
         }]
     }
 }
@@ -1016,17 +1088,17 @@ export function tempDialogForm4Notice3() {
     return {
         "inline": true,
         "formEle": [{
-            "label": "活动ID",
-            "placeholder": "请输入活动ID",
+            "label": "公告ID",
+            "placeholder": "请输入公告ID",
             "type": "text",
-            "name": "ActivityID",
+            "name": "NoticeID",
             "span": 10,
             "offset": 1,
         }, {
-            "label": "活动名",
-            "placeholder": "请输入活动名",
+            "label": "公告名",
+            "placeholder": "请输入公告名",
             "type": "text",
-            "name": "ActivityName",
+            "name": "NoticeName",
             "span": 10,
             "offset": 1,
         }, {
@@ -1140,7 +1212,7 @@ export function tempDialogForm4Notice3() {
             "label": "注册时间",
             "placeholder": "请选择可见的注册时间段",
             "type": "timeRange",
-            "name": "RegisterDate",
+            "name": "query",
             "span": 10,
             "offset": 1,
         }, {
@@ -1187,13 +1259,19 @@ export function tempDialogForm4Notice3() {
         }, {
             "row": 24
         }, {
-            "label": "公告内容",
-            "placeholder": "公告内容",
-            "type": "textarea",
-            "name": "Content",
-            "span": 21,
+            "label": "按钮样式",
+            "placeholder": "按钮样式（1,2,3,4,5等等）",
+            "type": "text",
+            "name": "BtnStyle",
+            "span": 10,
             "offset": 1,
-            "rows": 4
+        }, {
+            "label": "按钮文字",
+            "placeholder": "按钮文字",
+            "type": "text",
+            "name": "BtnWords",
+            "span": 10,
+            "offset": 1,
         }]
     }
 }

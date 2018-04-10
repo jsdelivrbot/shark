@@ -1,4 +1,4 @@
-import { transToTime } from '@/libs/dataColumnFormatter'
+import { transToTime2 } from '@/libs/dataColumnFormatter'
 export function taskTable() {
     return {
         //导出按钮
@@ -81,12 +81,12 @@ export function activityTable() {
             title: '开始时间',
             name: 'StartTime',
             sortable: true,
-            formatter: transToTime
+            formatter: transToTime2
         }, {
             title: '结束时间',
             name: 'EndTime',
             sortable: true,
-            formatter: transToTime
+            formatter: transToTime2
         }, {
             title: '描述',
             name: 'Describe',
@@ -101,6 +101,10 @@ export function tempTable() {
         //分页
         pagination: true,
         columns: [{
+            title: '模板ID',
+            name: 'TempID',
+            sortable: true
+        }, {
             title: '活动ID',
             name: 'ActivityID',
             sortable: true
@@ -123,11 +127,13 @@ export function tempTable() {
         }, {
             title: '开始时间',
             name: 'StartTime',
-            sortable: true
+            sortable: true,
+            formatter: transToTime2
         }, {
             title: '结束时间',
             name: 'EndTime',
-            sortable: true
+            sortable: true,
+            formatter: transToTime2
         }, {
             title: '设备类型',
             name: 'DeviceType',
@@ -147,11 +153,13 @@ export function tempTable() {
         }, {
             title: '注册时间开始时间',
             name: 'RegisterDate1',
-            sortable: true
+            sortable: true,
+            formatter: transToTime2
         }, {
             title: '注册时间结束时间',
             name: 'RegisterDate2',
-            sortable: true
+            sortable: true,
+            formatter: transToTime2
         }, {
             title: '玩家ID',
             name: 'PlayerID',
@@ -167,6 +175,71 @@ export function tempTable() {
         }, {
             title: 'web跳转链接',
             name: 'WebUrl',
+            sortable: true
+        }, {
+            title: 'Banner图',
+            name: 'Bannar',
+            sortable: true
+        }],
+        data: []
+    }
+}
+
+export function bannerActTable() {
+    return {
+        //分页
+        pagination: true,
+        columns: [{
+            title: '活动ID',
+            name: 'ActivityID',
+            sortable: true
+        }, {
+            title: '任务ID',
+            name: 'TaskID',
+            sortable: true
+        }, {
+            title: '排序',
+            name: 'SortID',
+            sortable: true
+        }, {
+            title: '任务说明',
+            name: 'TaskDesc',
+            sortable: true
+        }, {
+            title: '任务类型',
+            name: 'TaskType',
+            sortable: true
+        }, {
+            title: '任务局数',
+            name: 'TaskNum',
+            sortable: true
+        }, {
+            title: '前置任务编号',
+            name: 'FrontTask',
+            sortable: true
+        }, {
+            title: '奖励',
+            name: 'Rewards',
+            sortable: true
+        }, {
+            title: '前往按钮跳转',
+            name: 'Jump',
+            sortable: true
+        }, {
+            title: '累计充值额度可见区间',
+            name: 'Recharge',
+            sortable: true
+        }, {
+            title: '每日限制次数',
+            name: 'DayLimitCount',
+            sortable: true
+        }, {
+            title: '每周限制次数',
+            name: 'WeekLimitCount',
+            sortable: true
+        }, {
+            title: '总限制次',
+            name: 'TotalLimitCount',
             sortable: true
         }],
         data: []
@@ -212,11 +285,13 @@ export function noticeTable() {
         }, {
             title: '开始时间',
             name: 'StartTime',
-            sortable: true
+            sortable: true,
+            formatter: transToTime2
         }, {
             title: '结束时间',
             name: 'EndTime',
-            sortable: true
+            sortable: true,
+            formatter: transToTime2
         }, {
             title: '设备类型',
             name: 'DeviceType',
@@ -232,11 +307,13 @@ export function noticeTable() {
         }, {
             title: '注册开始时间',
             name: 'RegisterDate1',
-            sortable: true
+            sortable: true,
+            formatter: transToTime2
         }, {
             title: '注册结束时间',
             name: 'RegisterDate2',
-            sortable: true
+            sortable: true,
+            formatter: transToTime2
         }, {
             title: '充值额度',
             name: 'Recharge',

@@ -1,6 +1,6 @@
 <template>
     <div id="container">
-        <h1 class="h1-title">付费概况</h1>
+        <h1 class="h1-title">鹰眼系统</h1>
         <div class="cms-content">
             
         </div>
@@ -9,7 +9,7 @@
 
 <script>
     export default {
-        name: 'mail',
+        name: 'eye',
         /* 组件内自行使用的数据可以在data内渲染 */
         data() {
             return {}

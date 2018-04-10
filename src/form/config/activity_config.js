@@ -622,7 +622,7 @@ export function tempDialogForm3() {
             "type": "text",
             "name": "SortID",
             "span": 10,
-            "offset": 1,
+            "offset": 1
         }, {
             "row": 24
         }, {
@@ -1285,7 +1285,7 @@ export function task2DialogForm() {
             "type": "text",
             "name": "ActivityID",
             "span": 6,
-            "offset": 2
+            "offset": 2,
         }, {
             "label": "任务ID",
             "placeholder": "请输入任务ID",
@@ -1299,7 +1299,7 @@ export function task2DialogForm() {
             "type": "text",
             "name": "SortID",
             "span": 6,
-            "offset": 1
+            "offset": 1,
         }, {
             "rows": 24
         }, {

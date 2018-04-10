@@ -1,6 +1,6 @@
 <template>
     <div id="container">
-        <h1 class="h1-title">团队原则</h1>
+        <h1 class="h1-title">离线推送</h1>
         <div class="cms-content">
             
         </div>
@@ -9,7 +9,7 @@
 
 <script>
     export default {
-        name: 'team',
+        name: 'push',
         /* 组件内自行使用的数据可以在data内渲染 */
         data() {
             return {}

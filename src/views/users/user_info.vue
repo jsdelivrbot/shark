@@ -70,7 +70,7 @@
                     <el-col :span="24">
                         <el-collapse v-model="gameCollaspe1">
                             <el-collapse-item :title="brnn_game" name="1">
-                                <brnn :userid="open_user_id"></brnn>
+                                <!-- <brnn :userid="open_user_id"></brnn> -->
                             </el-collapse-item>
                             <el-collapse-item :title="lookcard_game" name="2"></el-collapse-item>
                             <el-collapse-item :title="xjssc_game" name="3"></el-collapse-item>
@@ -129,7 +129,7 @@ import {
     bankTable
 } from '@/table/config/user_data'
 import userAttrItem from '@/components/libs/userAttrItem'
-import brnn from '@/views/personal_data/brnn';
+// import brnn from '@/views/personal_data/brnn';
 export default {
     name: 'user_data',
     /* 组件内自行使用的数据可以在data内渲染 */
@@ -365,7 +365,7 @@ export default {
     /* 引入组件放在components */
     components: {
         userAttrItem,
-        brnn,
+        // brnn,
     },
     /* 计算属性放于computed内 */
     computed: {},

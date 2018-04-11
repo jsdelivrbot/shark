@@ -225,17 +225,15 @@ export function tempDialogForm() {
             "placeholder": "请输入活动ID",
             "type": "text",
             "name": "ActivityID",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
+            // "offset": 1,
         }, {
             "label": "活动名",
             "placeholder": "请输入活动名",
             "type": "text",
             "name": "ActivityName",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
+            // "offset": 1,
         }, {
             "label": "分类",
             "placeholder": "请选择分类",
@@ -248,15 +246,15 @@ export function tempDialogForm() {
                 value: 2,
                 label: '公告'
             }],
-            "span": 10,
-            "offset": 1,
+            "span": 6,
+            // "offset": 1,
         }, {
             "label": "排序",
             "placeholder": "排序",
             "type": "text",
             "name": "SortID",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
+            // "offset": 1,
         }, {
             "row": 24
         }, {
@@ -264,24 +262,22 @@ export function tempDialogForm() {
             "placeholder": "请选择开始时间",
             "type": "time",
             "name": "StartTime",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
+            // "offset": 1,
         }, {
             "label": "结束时间",
             "placeholder": "请选择结束时间",
             "type": "time",
             "name": "EndTime",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
+            // "offset": 1,
         }, {
             "label": "背景图",
             "placeholder": "请输入背景图的url",
             "type": "text",
             "name": "BgImage",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
+            // "offset": 1,
         }, {
             "label": "设备类型",
             "placeholder": "请选择可见的设备类型",
@@ -297,8 +293,8 @@ export function tempDialogForm() {
                 value: 3,
                 label: 'Android'
             }],
-            "span": 10,
-            "offset": 1,
+            "span": 6,
+            // "offset": 1,
         }, {
             "row": 24
         }, {
@@ -322,89 +318,76 @@ export function tempDialogForm() {
                 value: 5,
                 label: '游客帐号'
             }],
-            "span": 10,
-            "offset": 1,
+            "span": 6,
+            // "offset": 1,
         }, {
             "label": "渠道",
             "placeholder": "请选择可见的渠道",
             "type": "select",
             "name": "ChannelID",
             "options": [],
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
+            // "offset": 1,
         }, {
             "label": "累计充值",
             "placeholder": "累计充值额度区间 例如：[1000, 2000]",
             "type": "text",
             "name": "Recharge",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "label": "注册时间",
-            "placeholder": "请选择可见的注册时间段",
-            "type": "timeRange",
-            "name": "query",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
+            // "offset": 1,
         }, {
             "label": "玩家ID",
             "placeholder": "玩家ID 例如：118,124,131,134",
             "type": "text",
             "name": "PlayerID",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
+            // "offset": 1,
+        }, {
+            "row": 24
         }, {
             "label": "配置图片",
             "placeholder": "请输入配置图片的url",
             "type": "text",
             "name": "ImageUrl",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
+            // "offset": 1,
         }, {
             "label": "跳转页面",
             "placeholder": "请输入游戏内跳转页面",
             "type": "text",
             "name": "LocationUrl",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
+            // "offset": 1,
         }, {
             "label": "Web跳转",
             "placeholder": "请输入web跳转url",
             "type": "text",
             "name": "WebUrl",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
+            // "offset": 1,
         }, {
             "label": "按钮样式",
             "placeholder": "按钮样式（1,2,3,4,5等等）",
             "type": "text",
             "name": "BtnStyle",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
+            // "offset": 1,
+        }, {
+            "row": 4
         }, {
             "label": "按钮文字",
             "placeholder": "按钮文字",
             "type": "text",
             "name": "BtnWords",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
+            // "offset": 1,
         }, {
-            "row": 24
-        }, {
-            "label": "规则按钮",
-            "placeholder": "规则按钮（1-不显示，2-显示）",
+            "label": "标签显示",
+            "placeholder": "是否显示标签（1-不显示，2-显示）",
             "type": "select",
-            "name": "RuleBtn",
-            "span": 10,
-            "offset": 1,
+            "name": "IsTab",
+            "span": 6,
+            // "offset": 1,
             "options": [{
                 value: 1,
                 label: '不显示'
@@ -412,7 +395,38 @@ export function tempDialogForm() {
                 value: 2,
                 label: '显示'
             }]
-        }]
+        }, {
+            "label": "标签类型",
+            "placeholder": "标签的类型（1,2,3,4等等）",
+            "type": "select",
+            "name": "TabType",
+            "span": 6,
+            // "offset": 1,
+            "options": []
+        }, {
+            "label": "规则显示",
+            "placeholder": "规则按钮显示（1-不显示，2-显示）",
+            "type": "select",
+            "name": "RuleBtn",
+            "span": 6,
+            // "offset": 1,
+            "options": [{
+                value: 1,
+                label: '不显示'
+            }, {
+                value: 2,
+                label: '显示'
+            }]
+        }, {
+            "row": 4
+        }, {
+            "label": "注册时间",
+            "placeholder": "请选择可见的注册时间段",
+            "type": "timeRange",
+            "name": "query",
+            "span": 8,
+            // "offset": 1,
+        }, ]
     }
 }
 
@@ -424,17 +438,13 @@ export function tempDialogForm2() {
             "placeholder": "请输入活动ID",
             "type": "text",
             "name": "ActivityID",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "活动名",
             "placeholder": "请输入活动名",
             "type": "text",
             "name": "ActivityName",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "分类",
             "placeholder": "请选择分类",
@@ -447,15 +457,13 @@ export function tempDialogForm2() {
                 value: 2,
                 label: '公告'
             }],
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "排序",
             "placeholder": "排序",
             "type": "text",
             "name": "SortID",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "row": 24
         }, {
@@ -463,24 +471,19 @@ export function tempDialogForm2() {
             "placeholder": "请选择开始时间",
             "type": "time",
             "name": "StartTime",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "结束时间",
             "placeholder": "请选择结束时间",
             "type": "time",
             "name": "EndTime",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "背景图",
             "placeholder": "请输入背景图的url",
             "type": "text",
             "name": "BgImage",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "设备类型",
             "placeholder": "请选择可见的设备类型",
@@ -496,8 +499,7 @@ export function tempDialogForm2() {
                 value: 3,
                 label: 'Android'
             }],
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "row": 24
         }, {
@@ -521,57 +523,40 @@ export function tempDialogForm2() {
                 value: 5,
                 label: '游客帐号'
             }],
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "渠道",
             "placeholder": "请选择可见的渠道",
             "type": "select",
             "name": "ChannelID",
             "options": [],
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "累计充值",
             "placeholder": "累计充值额度区间 例如：[1000, 2000]",
             "type": "text",
             "name": "Recharge",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "label": "注册时间",
-            "placeholder": "请选择可见的注册时间段",
-            "type": "timeRange",
-            "name": "query",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "玩家ID",
             "placeholder": "玩家ID 例如：118,124,131,134",
             "type": "text",
             "name": "PlayerID",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
+        }, {
+            "row": 24
         }, {
             "label": "Bannar",
             "placeholder": "请输入Bannar的url",
             "type": "text",
             "name": "Bannar",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
-            "row": 24
-        }, {
-            "label": "规则按钮",
-            "placeholder": "规则按钮（1-不显示，2-显示）",
+            "label": "标签显示",
+            "placeholder": "是否显示标签（1-不显示，2-显示）",
             "type": "select",
-            "name": "RuleBtn",
-            "span": 10,
-            "offset": 1,
+            "name": "IsTab",
+            "span": 6,
             "options": [{
                 value: 1,
                 label: '不显示'
@@ -579,6 +564,34 @@ export function tempDialogForm2() {
                 value: 2,
                 label: '显示'
             }]
+        }, {
+            "label": "标签类型",
+            "placeholder": "标签的类型（1,2,3,4等等）",
+            "type": "select",
+            "name": "TabType",
+            "span": 6,
+            "options": []
+        }, {
+            "label": "规则按钮",
+            "placeholder": "规则按钮（1-不显示，2-显示）",
+            "type": "select",
+            "name": "RuleBtn",
+            "span": 6,
+            "options": [{
+                value: 1,
+                label: '不显示'
+            }, {
+                value: 2,
+                label: '显示'
+            }]
+        }, {
+            "row": 24
+        }, {
+            "label": "注册时间",
+            "placeholder": "请选择可见的注册时间段",
+            "type": "timeRange",
+            "name": "query",
+            "span": 6,
         }]
     }
 }
@@ -591,17 +604,13 @@ export function tempDialogForm3() {
             "placeholder": "请输入活动ID",
             "type": "text",
             "name": "ActivityID",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "活动名",
             "placeholder": "请输入活动名",
             "type": "text",
             "name": "ActivityName",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "分类",
             "placeholder": "请选择分类",
@@ -614,15 +623,13 @@ export function tempDialogForm3() {
                 value: 2,
                 label: '公告'
             }],
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "排序",
             "placeholder": "排序",
             "type": "text",
             "name": "SortID",
-            "span": 10,
-            "offset": 1
+            "span": 6,
         }, {
             "row": 24
         }, {
@@ -630,24 +637,19 @@ export function tempDialogForm3() {
             "placeholder": "请选择开始时间",
             "type": "time",
             "name": "StartTime",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "结束时间",
             "placeholder": "请选择结束时间",
             "type": "time",
             "name": "EndTime",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "背景图",
             "placeholder": "请输入背景图的url",
             "type": "text",
             "name": "BgImage",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "设备类型",
             "placeholder": "请选择可见的设备类型",
@@ -663,8 +665,7 @@ export function tempDialogForm3() {
                 value: 3,
                 label: 'Android'
             }],
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "row": 24
         }, {
@@ -688,57 +689,40 @@ export function tempDialogForm3() {
                 value: 5,
                 label: '游客帐号'
             }],
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "渠道",
             "placeholder": "请选择可见的渠道",
             "type": "select",
             "name": "ChannelID",
             "options": [],
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "累计充值",
             "placeholder": "累计充值额度区间 例如：[1000, 2000]",
             "type": "text",
             "name": "Recharge",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "label": "注册时间",
-            "placeholder": "请选择可见的注册时间段",
-            "type": "timeRange",
-            "name": "query",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "玩家ID",
             "placeholder": "玩家ID 例如：[118,124,131,134]",
             "type": "text",
             "name": "PlayerID",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
+        }, {
+            "row": 24
         }, {
             "label": "Bannar",
             "placeholder": "请输入Bannar的url",
             "type": "text",
             "name": "Bannar",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
-            "row": 24
-        }, {
-            "label": "规则按钮",
-            "placeholder": "规则按钮（1-不显示，2-显示）",
+            "label": "标签显示",
+            "placeholder": "是否显示标签（1-不显示，2-显示）",
             "type": "select",
-            "name": "RuleBtn",
-            "span": 10,
-            "offset": 1,
+            "name": "IsTab",
+            "span": 6,
             "options": [{
                 value: 1,
                 label: '不显示'
@@ -746,6 +730,34 @@ export function tempDialogForm3() {
                 value: 2,
                 label: '显示'
             }]
+        }, {
+            "label": "标签类型",
+            "placeholder": "标签的类型（1,2,3,4等等）",
+            "type": "select",
+            "name": "TabType",
+            "span": 6,
+            "options": []
+        }, {
+            "label": "规则按钮",
+            "placeholder": "规则按钮（1-不显示，2-显示）",
+            "type": "select",
+            "name": "RuleBtn",
+            "span": 6,
+            "options": [{
+                value: 1,
+                label: '不显示'
+            }, {
+                value: 2,
+                label: '显示'
+            }]
+        }, {
+            "row": 24
+        }, {
+            "label": "注册时间",
+            "placeholder": "请选择可见的注册时间段",
+            "type": "timeRange",
+            "name": "query",
+            "span": 6,
         }]
     }
 }
@@ -758,17 +770,13 @@ export function tempDialogForm4Notice1() {
             "placeholder": "请输入公告ID",
             "type": "text",
             "name": "NoticeID",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "公告名",
             "placeholder": "请输入公告名",
             "type": "text",
             "name": "NoticeName",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "分类",
             "placeholder": "请选择分类",
@@ -781,15 +789,13 @@ export function tempDialogForm4Notice1() {
                 value: 2,
                 label: '公告'
             }],
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "排序",
             "placeholder": "排序",
             "type": "text",
             "name": "SortID",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "row": 24
         }, {
@@ -797,24 +803,19 @@ export function tempDialogForm4Notice1() {
             "placeholder": "请选择开始时间",
             "type": "time",
             "name": "StartTime",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "结束时间",
             "placeholder": "请选择结束时间",
             "type": "time",
             "name": "EndTime",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "背景图",
             "placeholder": "请输入背景图的url",
             "type": "text",
             "name": "BgImage",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "设备类型",
             "placeholder": "请选择可见的设备类型",
@@ -830,8 +831,7 @@ export function tempDialogForm4Notice1() {
                 value: 3,
                 label: 'Android'
             }],
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "row": 24
         }, {
@@ -855,65 +855,75 @@ export function tempDialogForm4Notice1() {
                 value: 5,
                 label: '游客帐号'
             }],
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "渠道",
             "placeholder": "请选择可见的渠道",
             "type": "select",
             "name": "ChannelID",
             "options": [],
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "累计充值",
             "placeholder": "累计充值额度区间 例如：[1000, 2000]",
             "type": "text",
             "name": "Recharge",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "label": "注册时间",
-            "placeholder": "请选择可见的注册时间段",
-            "type": "timeRange",
-            "name": "query",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "玩家ID",
             "placeholder": "玩家ID 例如：[118,124,131,134]",
             "type": "text",
             "name": "PlayerID",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
+        }, {
+            "row": 24
         }, {
             "label": "公告标题",
             "placeholder": "公告标题",
             "type": "text",
             "name": "Title",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "按钮样式",
             "placeholder": "按钮样式（1,2,3,4,5等等）",
             "type": "text",
             "name": "BtnStyle",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "按钮文字",
             "placeholder": "按钮文字",
             "type": "text",
             "name": "BtnWords",
-            "span": 10,
-            "offset": 1,
-        }]
+            "span": 6,
+        }, {
+            "label": "标签显示",
+            "placeholder": "是否显示标签（1-不显示，2-显示）",
+            "type": "select",
+            "name": "IsTab",
+            "span": 6,
+            "options": [{
+                value: 1,
+                label: '不显示'
+            }, {
+                value: 2,
+                label: '显示'
+            }]
+        }, {
+            "row": 24
+        }, {
+            "label": "标签类型",
+            "placeholder": "标签的类型（1,2,3,4等等）",
+            "type": "select",
+            "name": "TabType",
+            "span": 6,
+            "options": []
+        }, {
+            "label": "注册时间",
+            "placeholder": "请选择可见的注册时间段",
+            "type": "timeRange",
+            "name": "query",
+            "span": 6,
+        }, ]
     }
 }
 
@@ -925,17 +935,13 @@ export function tempDialogForm4Notice2() {
             "placeholder": "请输入公告ID",
             "type": "text",
             "name": "NoticeID",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "公告名",
             "placeholder": "请输入公告名",
             "type": "text",
             "name": "NoticeName",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "分类",
             "placeholder": "请选择分类",
@@ -948,15 +954,13 @@ export function tempDialogForm4Notice2() {
                 value: 2,
                 label: '公告'
             }],
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "排序",
             "placeholder": "排序",
             "type": "text",
             "name": "SortID",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "row": 24
         }, {
@@ -964,24 +968,19 @@ export function tempDialogForm4Notice2() {
             "placeholder": "请选择开始时间",
             "type": "time",
             "name": "StartTime",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "结束时间",
             "placeholder": "请选择结束时间",
             "type": "time",
             "name": "EndTime",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "背景图",
             "placeholder": "请输入背景图的url",
             "type": "text",
             "name": "BgImage",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "设备类型",
             "placeholder": "请选择可见的设备类型",
@@ -997,8 +996,7 @@ export function tempDialogForm4Notice2() {
                 value: 3,
                 label: 'Android'
             }],
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "row": 24
         }, {
@@ -1022,65 +1020,75 @@ export function tempDialogForm4Notice2() {
                 value: 5,
                 label: '游客帐号'
             }],
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "渠道",
             "placeholder": "请选择可见的渠道",
             "type": "select",
             "name": "ChannelID",
             "options": [],
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "累计充值",
             "placeholder": "累计充值额度区间 例如：[1000, 2000]",
             "type": "text",
             "name": "Recharge",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "label": "注册时间",
-            "placeholder": "请选择可见的注册时间段",
-            "type": "timeRange",
-            "name": "query",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "玩家ID",
             "placeholder": "玩家ID 例如：118,124,131,134",
             "type": "text",
             "name": "PlayerID",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
+        }, {
+            "row": 24
         }, {
             "label": "公告标题",
             "placeholder": "公告标题",
             "type": "text",
             "name": "Title",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "按钮样式",
             "placeholder": "按钮样式（1,2,3,4,5等等）",
             "type": "text",
             "name": "BtnStyle",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "按钮文字",
             "placeholder": "按钮文字",
             "type": "text",
             "name": "BtnWords",
-            "span": 10,
-            "offset": 1,
-        }]
+            "span": 6,
+        }, {
+            "label": "标签显示",
+            "placeholder": "是否显示标签（1-不显示，2-显示）",
+            "type": "select",
+            "name": "IsTab",
+            "span": 6,
+            "options": [{
+                value: 1,
+                label: '不显示'
+            }, {
+                value: 2,
+                label: '显示'
+            }]
+        }, {
+            "row": 24
+        }, {
+            "label": "标签类型",
+            "placeholder": "标签的类型（1,2,3,4等等）",
+            "type": "select",
+            "name": "TabType",
+            "span": 6,
+            "options": []
+        }, {
+            "label": "注册时间",
+            "placeholder": "请选择可见的注册时间段",
+            "type": "timeRange",
+            "name": "query",
+            "span": 6,
+        }, ]
     }
 }
 
@@ -1092,17 +1100,13 @@ export function tempDialogForm4Notice3() {
             "placeholder": "请输入公告ID",
             "type": "text",
             "name": "NoticeID",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "公告名",
             "placeholder": "请输入公告名",
             "type": "text",
             "name": "NoticeName",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "分类",
             "placeholder": "请选择分类",
@@ -1115,15 +1119,13 @@ export function tempDialogForm4Notice3() {
                 value: 2,
                 label: '公告'
             }],
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "排序",
             "placeholder": "排序",
             "type": "text",
             "name": "SortID",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "row": 24
         }, {
@@ -1131,24 +1133,19 @@ export function tempDialogForm4Notice3() {
             "placeholder": "请选择开始时间",
             "type": "time",
             "name": "StartTime",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "结束时间",
             "placeholder": "请选择结束时间",
             "type": "time",
             "name": "EndTime",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "背景图",
             "placeholder": "请输入背景图的url",
             "type": "text",
             "name": "BgImage",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "设备类型",
             "placeholder": "请选择可见的设备类型",
@@ -1164,8 +1161,7 @@ export function tempDialogForm4Notice3() {
                 value: 3,
                 label: 'Android'
             }],
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "row": 24
         }, {
@@ -1189,73 +1185,52 @@ export function tempDialogForm4Notice3() {
                 value: 5,
                 label: '游客帐号'
             }],
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "渠道",
             "placeholder": "请选择可见的渠道",
             "type": "select",
             "name": "ChannelID",
             "options": [],
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "累计充值",
             "placeholder": "累计充值额度区间 例如：[1000, 2000]",
             "type": "text",
             "name": "Recharge",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "label": "注册时间",
-            "placeholder": "请选择可见的注册时间段",
-            "type": "timeRange",
-            "name": "query",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "玩家ID",
             "placeholder": "玩家ID 例如：118,124,131,134",
             "type": "text",
             "name": "PlayerID",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
+        }, {
+            "row": 24
         }, {
             "label": "配置图片",
             "placeholder": "请输入配置图片的url",
             "type": "text",
             "name": "ImageUrl",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "跳转页面",
             "placeholder": "请输入游戏内跳转页面",
             "type": "text",
             "name": "LocationUrl",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "Web跳转",
             "placeholder": "请输入web跳转url",
             "type": "text",
             "name": "WebUrl",
-            "span": 10,
-            "offset": 1,
-        }, {
-            "row": 24
+            "span": 6,
         }, {
             "label": "公告标题",
             "placeholder": "公告标题",
             "type": "text",
             "name": "Title",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "row": 24
         }, {
@@ -1263,15 +1238,41 @@ export function tempDialogForm4Notice3() {
             "placeholder": "按钮样式（1,2,3,4,5等等）",
             "type": "text",
             "name": "BtnStyle",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
         }, {
             "label": "按钮文字",
             "placeholder": "按钮文字",
             "type": "text",
             "name": "BtnWords",
-            "span": 10,
-            "offset": 1,
+            "span": 6,
+        }, {
+            "label": "标签显示",
+            "placeholder": "是否显示标签（1-不显示，2-显示）",
+            "type": "select",
+            "name": "IsTab",
+            "span": 6,
+            "options": [{
+                value: 1,
+                label: '不显示'
+            }, {
+                value: 2,
+                label: '显示'
+            }]
+        }, {
+            "label": "标签类型",
+            "placeholder": "标签的类型（1,2,3,4等等）",
+            "type": "select",
+            "name": "TabType",
+            "span": 6,
+            "options": []
+        }, {
+            "row": 24
+        }, {
+            "label": "注册时间",
+            "placeholder": "请选择可见的注册时间段",
+            "type": "timeRange",
+            "name": "query",
+            "span": 6,
         }]
     }
 }

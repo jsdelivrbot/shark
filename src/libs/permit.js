@@ -181,6 +181,12 @@ export function permits() {
         permit: true,
         permit_id: 25,
         sub: [{
+            title: '系统表推送',
+            name: 'json_push',
+            to: '/deploy/json_push',
+            permit: true,
+            permit_id: 37
+        }, {
             title: '离线推送',
             name: 'push',
             to: '/deploy/push',
@@ -257,12 +263,6 @@ export function permits() {
             to: '/cms/account',
             permit: true,
             permit_id: 36
-        }, {
-            title: '系统配置',
-            name: 'sys_config',
-            to: '/cms/sys_config',
-            permit: true,
-            permit_id: 37
         }, {
             title: '操作日志',
             name: 'loger',

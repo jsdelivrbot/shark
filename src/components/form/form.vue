@@ -8,7 +8,7 @@
                 <ele-input-number v-if="item.type == 'inputNumber'" :config="item" v-on:text="refreshInput" v-on:register="regComp" :default="data[item.name]"></ele-input-number>
                 <ele-radio v-if="item.type == 'radio'" :config="item" v-on:text="refreshInput" v-on:register="regComp" :default="data[item.name]"></ele-radio>
                 <ele-checkbox v-if="item.type == 'checkbox'" :config="item" v-on:text="refreshInput" v-on:register="regComp" :default="data[item.name]"></ele-checkbox>
-                <ele-select v-if="item.type == 'select'" :config="item" :filterable="item.filterable" v-on:text="refreshInput" v-on:register="regComp" :default="data[item.name]"></ele-select>
+                <ele-select v-if="item.type == 'select'" :config="item" :filterable="item.filterable" v-on:text="refreshSelect" v-on:register="regComp" :default="data[item.name]"></ele-select>
                 <ele-switch v-if="item.type == 'switch'" :config="item" v-on:text="refreshInput" v-on:register="regComp" :default="data[item.name]"></ele-switch>
                 <ele-date v-if="item.type == 'date'" :config="item" v-on:text="refreshInput" v-on:register="regComp" :default="data[item.name]"></ele-date>
                 <ele-date-range v-if="item.type == 'dateRange'" :config="item" v-on:text="refreshInputDateRange" v-on:register="regComp" :default="[data[item.name+'_start_time'],data[item.name+'_end_time']]"></ele-date-range>

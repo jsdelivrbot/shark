@@ -36,6 +36,7 @@ import feedback from "@/views/kefu/feedback"; /* 问题反馈 */
 // 鹰眼系统 hawkeye
 import eye from "@/views/hawkeye/eye";
 // 游戏配置 deploy
+import json_push from "@/views/deploy/json_push"; /* 系统配置 */
 import push from '@/views/deploy/push'; /* 离线推送 */
 import robot from '@/views/deploy/robot'; /* AI配置 */
 import match_config from "@/views/deploy/match_config"; /* 比赛配置 */
@@ -50,7 +51,6 @@ import mail from "@/views/deploy/mail"; /* 系统邮件 */
 
 // 后台管理 cms
 import account from "@/views/cms/account"; /* 权限/账号管理 */
-import sys_config from "@/views/cms/sys_config"; /* 系统配置 */
 import loger from "@/views/cms/loger"; /* 操作日志 */
 import team from "@/views/cms/team"; /* 团队原则 */
 
@@ -199,9 +199,9 @@ export default new Router({
         name: 'account',
         component: account
     }, {
-        path: '/cms/sys_config',
-        name: 'sys_config',
-        component: sys_config
+        path: '/deploy/json_push',
+        name: 'json_push',
+        component: json_push
     }, {
         path: '/cms/loger',
         name: 'loger',

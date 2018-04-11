@@ -4,9 +4,20 @@
         <div class="cms-content">
             <el-collapse v-model="activeName">
                 <el-collapse-item title="走马灯" name="0">
-                    <ele-form :config="notice_config" v-on:receive="notice_submit" :defaultdata="noticeDefaultHtml"></ele-form>
-                    <br />
+                    <h1 class="h1-title">消息内容：</h1>
                     <editor v-on:editorcontent="getEditorContent" :getcontext="getcontext"></editor>
+                    <br />
+                    <el-form ref="form" :inline="false" label-width="80px">
+                        <el-col :span="6">
+                            <el-form-item label="标签：">
+                                <el-select v-model="value8" filterable placeholder="输入可搜索" v-on:change="getSingleLabel">
+                                    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                        </el-col>
+                    </el-form>
+                    <ele-form :config="notice_config" v-on:receive="notice_submit" :defaultdata="noticeDefaultHtml" style="z-index: 9999;"></ele-form>
                 </el-collapse-item>
                 <el-collapse-item title="走马灯列表" name="1">
                     <ele-form :config="notice_list_config" v-on:receive="notice_list_submit" :defaultdata="noticeListHtml"></ele-form>
@@ -34,8 +45,58 @@
         /* 组件内自行使用的数据可以在data内渲染 */
         data() {
             return {
+                value8: '',
+                options: [{
+                    value: 'vip1',
+                    label: 'vip1'
+                }, {
+                    value: 'vip2',
+                    label: 'vip2'
+                }, {
+                    value: 'vip3',
+                    label: 'vip3'
+                }, {
+                    value: 'vip4',
+                    label: 'vip4'
+                }, {
+                    value: 'vip5',
+                    label: 'vip5'
+                }, {
+                    value: 'vip6',
+                    label: 'vip6'
+                }, {
+                    value: 'vip7',
+                    label: 'vip7'
+                }, {
+                    value: 'vip8',
+                    label: 'vip8'
+                }, {
+                    value: 'vip9',
+                    label: 'vip9'
+                }, {
+                    value: 'vp10',
+                    label: 'vp10'
+                }, {
+                    value: 'vp11',
+                    label: 'vp11'
+                }, {
+                    value: 'vp12',
+                    label: 'vp12'
+                }, {
+                    value: 'vp13',
+                    label: 'vp13'
+                }, {
+                    value: 'vp14',
+                    label: 'vp14'
+                }, {
+                    value: 'gold',
+                    label: '金币'
+                }, { 
+                    value: 'zuan',
+                    label: '钻石'
+                }],
                 noticeDefault: '',
-                activeName: '',
+                activeName: ['0'],
                 notice_config: noticeForm(),
                 noticeDefaultHtml: {
                     showPlace: '',
@@ -57,79 +118,13 @@
         /* 需要事件调用的方法放在methods内 */
         methods: {
             /* 推送走马灯 */
+            getSingleLabel(val) {
+                let info = '/:' + val;
+                $('#editorElem').find('.w-e-text-container').find('.w-e-text p').append(info);
+            },
             notice_submit(arg) {
                 this.getcontext = true;
                 this.editorHtml = arg;
-                // let _self = this;
-                // let showPlace = arg[0].showPlace;
-                // if (showPlace == 0) {
-                //     _self.$res.postData(_self, '/Manu/push_notification/', {
-                //         jumpID: arg[0].jumpID,
-                //         showPlace: arg[0].showPlace,
-                //         gameKindID: '',
-                //         gameServerID: '',
-                //         startTime: arg[0].startTime,
-                //         endTime: arg[0].endTime,
-                //         intervalTime: arg[0].intervalTime,
-                //         message: arg[0].message,
-                //         sendUserName: localStorage.getItem('Username'),
-                //     }).then((response) => {
-                //         if (response.code == 0) {
-                //             _self.$message.success('推送成功');
-                //         } else {
-                //             _self.$message.error('推送失败');
-                //         }
-                //     });
-                // } else if (showPlace == 1) {
-                //     _self.$res.postData(_self, '/Manu/push_notification/', {
-                //         jumpID: arg[0].jumpID,
-                //         showPlace: arg[0].showPlace,
-                //         gameKindID: JSON.stringify(arg[0].gameKindID),
-                //         gameServerID: '',
-                //         startTime: arg[0].startTime,
-                //         endTime: arg[0].endTime,
-                //         intervalTime: arg[0].intervalTime,
-                //         message: arg[0].message,
-                //         sendUserName: localStorage.getItem('Username'),
-                //     }).then((response) => {
-                //         if (response.code == 0) {
-                //             _self.$message.success('推送成功');
-                //         } else {
-                //             _self.$message.error('推送失败');
-                //         }
-                //     });
-                // } else if (showPlace == 2) {
-                //     _self.$res.postData(_self, '/Manu/push_notification/', {
-                //         jumpID: arg[0].jumpID,
-                //         showPlace: arg[0].showPlace,
-                //         gameKindID: JSON.stringify(arg[0].gameKindID),
-                //         gameServerID: JSON.stringify(arg[0].gameServerID),
-                //         startTime: arg[0].startTime,
-                //         endTime: arg[0].endTime,
-                //         intervalTime: arg[0].intervalTime,
-                //         message: arg[0].message,
-                //         sendUserName: localStorage.getItem('Username'),
-                //     }).then((response) => {
-                //         if (response.code == 0) {
-                //             _self.$message.success('推送成功');
-                //         } else {
-                //             _self.$message.error('推送失败');
-                //         }
-                //     });
-                // }
-            },
-            /* 走马灯列表 */
-            //查询
-            notice_list_submit(arg) {
-                this.$res.postData(this, '/Manu/get_notice_list/', arg[0]).then((response) => {
-                    this.notice_msg.data = [];
-                    this.notice_msg.data = response;
-                    this.$message.success('查询成功');
-                });
-            },
-            /* 搜索 */
-            notice_Message(text) {
-                this.notice_msg.data = tableSearch(text, this.notice_msg.data);
             },
             getEditorContent(html) {
                 this.getcontext = false;
@@ -190,7 +185,20 @@
                         }
                     });
                 }
-            }
+            },
+            /* 走马灯列表 */
+            //查询
+            notice_list_submit(arg) {
+                this.$res.postData(this, '/Manu/get_notice_list/', arg[0]).then((response) => {
+                    this.notice_msg.data = [];
+                    this.notice_msg.data = response;
+                    this.$message.success('查询成功');
+                });
+            },
+            /* 搜索 */
+            notice_Message(text) {
+                this.notice_msg.data = tableSearch(text, this.notice_msg.data);
+            },
         },
         /* 引入组件放在components */
         components: {

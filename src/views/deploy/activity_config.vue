@@ -32,8 +32,9 @@
             </el-tabs>
         </div>
         <!-- 活动模板1 -->
-        <el-dialog title="新建活动模板1 -- 全宣传图" width="60%" :visible.sync="temp_1_dialog">
+        <el-dialog title="新建活动模板1 -- 全宣传图" width="98%" :visible.sync="temp_1_dialog">
             <ele-form :config="temp_1_dialog_config" v-on:receive="temp_1_dialog_submit" :eventname="temp_1_dialog_event" :defaultdata="temp1DialogHtml"></ele-form>
+            <h1 class="h1-title">规则内容：</h1>
             <editor v-on:editorcontent="getEditorContent" :getcontext="getcontext"></editor>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="temp_1_dialog = false">取 消</el-button>
@@ -41,8 +42,9 @@
             </div>
         </el-dialog>
         <!-- 活动模板2 -->
-        <el-dialog title="新建活动模板2 -- Bannar+任务链" width="60%" :visible.sync="temp_2_dialog">
+        <el-dialog title="新建活动模板2 -- Bannar+任务链" width="98%" :visible.sync="temp_2_dialog">
             <ele-form :config="temp_2_dialog_config" v-on:receive="temp_2_dialog_submit" :eventname="temp_2_dialog_event" :defaultdata="temp2DialogHtml"></ele-form>
+            <h1 class="h1-title">规则内容：</h1>
             <editor2 v-on:editorcontent="getTemp2EditorContent" :gettemp2content="gettemp2content"></editor2>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="temp_2_dialog = false">取 消</el-button>
@@ -50,8 +52,9 @@
             </div>
         </el-dialog>
         <!-- 活动模板3 -->
-        <el-dialog title="新建活动模板3 -- Bannar+功能区" width="60%" :visible.sync="temp_3_dialog">
+        <el-dialog title="新建活动模板3 -- Bannar+功能区" width="98%" :visible.sync="temp_3_dialog">
             <ele-form :config="temp_3_dialog_config" v-on:receive="temp_3_dialog_submit" :eventname="temp_3_dialog_event" :defaultdata="temp3DialogHtml"></ele-form>
+            <h1 class="h1-title">规则内容：</h1>
             <editor3 v-on:editorcontent="getTemp3EditorContent" :gettemp3content="gettemp3content"></editor3>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="temp_3_dialog = false">取 消</el-button>
@@ -59,8 +62,9 @@
             </div>
         </el-dialog>
         <!-- 活动模板4 - 公告1 -->
-        <el-dialog title="新建公告模板1" width="60%" :visible.sync="temp_4_notice_1_dialog">
+        <el-dialog title="新建公告模板1" width="98%" :visible.sync="temp_4_notice_1_dialog">
             <ele-form :config="temp_4_notice_dialog_config" v-on:receive="temp_4_notice_dialog_submit" :eventname="temp_4_notice_dialog_event" :defaultdata="temp4NoticeDialogHtml"></ele-form>
+            <h1 class="h1-title">公告内容：</h1>
             <editor4 v-on:editorcontent="notice1EditorContent" :notice1content="notice1content"></editor4>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="temp_4_notice_1_dialog = false">取 消</el-button>
@@ -68,8 +72,9 @@
             </div>
         </el-dialog>
         <!-- 活动模板4 - 公告2 -->
-        <el-dialog title="新建公告模板1" width="60%" :visible.sync="temp_4_notice_2_dialog">
+        <el-dialog title="新建公告模板1" width="98%" :visible.sync="temp_4_notice_2_dialog">
             <ele-form :config="temp_4_notice2_dialog_config" v-on:receive="temp_4_notice2_dialog_submit" :eventname="temp_4_notice2_dialog_event" :defaultdata="temp4NoticeDialogHtml1"></ele-form>
+            <h1 class="h1-title">公告内容：</h1>
             <editor5 v-on:editorcontent="notice2EditorContent" :notice2content="notice2content"></editor5>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="temp_4_notice_2_dialog = false">取 消</el-button>
@@ -77,8 +82,9 @@
             </div>
         </el-dialog>
         <!-- 活动模板4 - 公告3 -->
-        <el-dialog title="新建公告模板1" width="60%" :visible.sync="temp_4_notice_3_dialog">
+        <el-dialog title="新建公告模板1" width="98%" :visible.sync="temp_4_notice_3_dialog">
             <ele-form :config="temp_4_notice3_dialog_config" v-on:receive="temp_4_notice3_dialog_submit" :eventname="temp_4_notice3_dialog_event" :defaultdata="temp4NoticeDialogHtml2"></ele-form>
+            <h1 class="h1-title">公告内容：</h1>
             <editor6 v-on:editorcontent="notice3EditorContent" :notice3content="notice3content"></editor6>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="temp_4_notice_3_dialog = false">取 消</el-button>
@@ -260,6 +266,8 @@
                     BtnWords: this.editorHtml[0].BtnWords,
                     RuleBtn: this.editorHtml[0].RuleBtn,
                     RuleContent: html,
+                    IsTab: this.editorHtml[0].IsTab,
+                    TabType: this.editorHtml[0].TabType,
                     TempID: 1
                 };
                 this.$res.postData(this, '/Activity/add_activity/', param).then((response) => {
@@ -281,7 +289,7 @@
             },
             temp_2_dialog_submit(arg) {
                 this.gettemp2content = true,
-                this.temp2Html = arg;
+                    this.temp2Html = arg;
             },
             getTemp2EditorContent(html) {
                 this.gettemp2content = false;
@@ -303,6 +311,8 @@
                     Bannar: this.temp2Html[0].Bannar,
                     RuleBtn: this.temp2Html[0].RuleBtn,
                     RuleContent: html,
+                    IsTab: this.temp2Html[0].IsTab,
+                    TabType: this.temp2Html[0].TabType,
                     TempID: 2
                 };
                 this.$res.postData(this, '/Activity/add_activity/', param).then((response) => {
@@ -359,7 +369,7 @@
             },
             temp_3_dialog_submit(arg) {
                 this.gettemp3content = true,
-                this.temp3Html = arg;
+                    this.temp3Html = arg;
             },
             getTemp3EditorContent(html) {
                 this.gettemp3content = false;
@@ -381,6 +391,8 @@
                     Bannar: this.temp3Html[0].Bannar,
                     RuleBtn: this.temp3Html[0].RuleBtn,
                     RuleContent: html,
+                    IsTab: this.temp3Html[0].IsTab,
+                    TabType: this.temp3Html[0].TabType,
                     TempID: 3
                 };
                 this.$res.postData(this, '/Activity/add_activity/', param).then((response) => {
@@ -426,6 +438,8 @@
                     Bannar: this.notice1Html[0].Bannar,
                     BtnStyle: this.notice1Html[0].BtnStyle,
                     BtnWords: this.notice1Html[0].BtnWords,
+                    IsTab: this.notice1Html[0].IsTab,
+                    TabType: this.notice1Html[0].TabType,
                     TempID: 4
                 };
                 this.$res.postData(this, '/Activity/add_notice/', param).then((response) => {
@@ -471,6 +485,8 @@
                     Bannar: this.notice2Html[0].Bannar,
                     BtnStyle: this.notice2Html[0].BtnStyle,
                     BtnWords: this.notice2Html[0].BtnWords,
+                    IsTab: this.notice2Html[0].IsTab,
+                    TabType: this.notice2Html[0].TabType,
                     TempID: 5
                 };
                 this.$res.postData(this, '/Activity/add_notice/', param).then((response) => {
@@ -516,6 +532,8 @@
                     Bannar: this.notice3Html[0].Bannar,
                     BtnStyle: this.notice3Html[0].BtnStyle,
                     BtnWords: this.notice3Html[0].BtnWords,
+                    IsTab: this.notice3Html[0].IsTab,
+                    TabType: this.notice3Html[0].TabType,
                     TempID: 6
                 };
                 this.$res.postData(this, '/Activity/add_notice/', param).then((response) => {

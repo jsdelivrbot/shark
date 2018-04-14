@@ -1,5 +1,5 @@
 import { transToTime, itemTypeFormatter, bigNumberFormatter, bankTranstFormatter, transtPlaceFormatter } from '@/libs/dataColumnFormatter'
-
+import { transToTime2, payStatusFormatter, payPlatformFormatter, orderStatusFormatter } from '@/libs/dataColumnFormatter'
 export function bagInfoTable() {
     return {
         //分页
@@ -110,18 +110,8 @@ export function buyItemDialogTable() {
 
 export function bankTable() {
     return {
-        //导出按钮
-        export: true,
-        //搜索内容
-        search: true,
-        //生成索引
-        index: false,
-        //行选择框
-        select: false,
         //分页
         pagination: true,
-        //是否为服务器分页
-        serverPagination: false,
         //表头配置
         columns: [{
             title: '汇款时间',
@@ -166,6 +156,153 @@ export function bankTable() {
             title: '汇款IP',
             name: 'ClientIP',
             sortable: true,
+        }],
+        data: []
+    }
+}
+
+export function rechargeTable() {
+    return {
+        //分页
+        pagination: true,
+        columns: [{
+            title: '订单ID',
+            name: 'OrderNum',
+            sortable: true,
+        }, {
+            title: '订单状态',
+            name: 'PayStatus',
+            sortable: true,
+            formatter: payStatusFormatter
+        }, {
+            title: '订单收入',
+            name: 'OrderAmount',
+            sortable: true,
+        }, {
+            title: '充值渠道',
+            name: 'PayPlatform',
+            sortable: true,
+            formatter: payPlatformFormatter
+        }, {
+            title: '商品名称',
+            name: 'ItemName',
+            sortable: true,
+        }, {
+            title: '订单时间',
+            name: 'PayDate',
+            sortable: true,
+            formatter: transToTime2
+        }, {
+            title: '订单IP',
+            name: 'PayIP',
+            sortable: true,
+        }, {
+            title: '回调时间',
+            name: 'returnDate',
+            sortable: true,
+            formatter: transToTime2
+        }, {
+            title: '交易号',
+            name: 'trade_no',
+            sortable: true,
+        }, {
+            title: '用户ID',
+            name: 'UserID',
+            sortable: true,
+            template: { 'user_link': true }
+        }, {
+            title: '昵称',
+            name: 'UserName',
+            sortable: true,
+        }],
+        data: []
+    }
+}
+
+export function exchangeTable() {
+    return {
+        pagination: true,
+        //表头配置
+        columns: [{
+            title: '订单状态',
+            name: 'OrderStatus',
+            sortable: true,
+            fixed: 'left',
+            width: '120px',
+            formatter: orderStatusFormatter
+        }, {
+            title: '订单号码',
+            name: 'OrderNum',
+            sortable: true,
+            width: '200px;'
+        }, {
+            title: '用户ID',
+            name: 'UserID',
+            sortable: true,
+            width: '120px',
+            template: { 'user_link': true }
+        }, {
+            title: '商品名称',
+            name: 'itemName',
+            sortable: true,
+            width: '160px',
+        }, {
+            title: '商品价格(积分)',
+            name: 'AwardPrice',
+            sortable: true,
+            width: '160px',
+        }, {
+            title: '购买数量',
+            name: 'AwardCount',
+            sortable: true,
+            width: '120px',
+        }, {
+            title: '花费金额(积分)',
+            name: 'TotalAmount',
+            sortable: true,
+            width: '160px',
+        }, {
+            title: '购买时间',
+            name: 'BuyDate',
+            sortable: true,
+            formatter: transToTime,
+            width: '120px',
+        }, {
+            title: '购买地址',
+            name: 'BuyIP',
+            sortable: true,
+            width: '120px',
+        }, {
+            title: '处理时间',
+            name: 'SolveDate',
+            sortable: true,
+            formatter: transToTime2,
+            width: '120px',
+        }, {
+            title: '收货人',
+            name: 'Compellation',
+            sortable: true,
+            width: '130px',
+        }, {
+            title: '电话号码',
+            name: 'MobilePhone',
+            sortable: true,
+            width: '130px',
+        }, {
+            title: '收货地址',
+            name: 'Address',
+            sortable: true,
+            width: '420px',
+        }, {
+            title: '单号',
+            name: 'KuaiDiNumber',
+            sortable: true,
+            width: '200px',
+        }, {
+            title: '快递公司',
+            name: 'KuaiDiName',
+            sortable: true,
+            width: '200px'
         }],
         data: []
     }

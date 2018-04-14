@@ -26,15 +26,15 @@
                     <el-col :span="4">最后登录IP：<span>{{user_data.LastLogonIP}}</span></el-col>
                     <el-col :span="4">最后登录MAC：<span></span></el-col>
                     <el-col :span="4">最后登录机器：<span>{{user_data.LastLogonMachine}}</span></el-col>
-                    <el-col :span="4">最后充值时间：<span></span></el-col>
+                    <el-col :span="4">最后充值时间：<span>{{user_data.lastPayDate | transToTime}}</span></el-col>
                 </el-row>
                 <el-row>
                     <el-col :span="4">身上金币：<span>{{user_data.Score | bigNumberFormatter}}</span></el-col>
                     <el-col :span="4">银行金币：<span>{{user_data.InsureScore | bigNumberFormatter}}</span></el-col>
                     <el-col :span="4">玩家等级：<span>{{user_data.Experience}} / {{user_data.GrowLevelID}} 级</span></el-col>
                     <el-col :span="4">VIP等级：<span>{{user_data.MemberOrder}} 级</span></el-col>
-                    <el-col :span="4">兑现总额：<span></span></el-col>
-                    <el-col :span="4">充值总额：<span></span></el-col>
+                    <el-col :span="4">兑换总次数：<span>{{user_data.ExchangeAmount}}</span></el-col>
+                    <el-col :span="4">充值总额：<span>{{user_data.PayAmount}}</span></el-col>
                 </el-row>
             </div>
             <el-collapse v-model="userPackage" style="margin-top: 10px;">
@@ -57,10 +57,16 @@
                     <el-tabs type="border-card">
                         <el-tab-pane label="银行记录">
                             <ele-form :config="bank_config" v-on:receive="bank_submit" :defaultdata="{'TradeType': '1'}"></ele-form>
-                            <table-option :parent-message="bankMsg" v-on:message="bankMessage"></table-option>
+                            <table-option :parent-message="bankMsg"></table-option>
                         </el-tab-pane>
-                        <el-tab-pane label="充值记录"></el-tab-pane>
-                        <el-tab-pane label="兑换记录"></el-tab-pane>
+                        <el-tab-pane label="充值记录">
+                            <el-button type="success" plain @click.native="recharge_btn">查 询</el-button>
+                            <table-option :parent-message="rechargeMsg" v-loading="rechargeLoading"></table-option>
+                        </el-tab-pane>
+                        <el-tab-pane label="兑换记录">
+                            <el-button type="success" plain @click.native="exchange_btn">查 询</el-button>
+                            <table-option :parent-message="exchangeMsg" v-loading="exchangeLoading"></table-option>
+                        </el-tab-pane>
                     </el-tabs>
                 </el-collapse-item>
             </el-collapse>
@@ -113,7 +119,7 @@ import {
 } from '@/libs/tableSearch'
 import {
     bigNumberFormatter,
-    transToTime
+    transToTime,
 } from '@/libs/filters'
 import {
     playerInfoForm,
@@ -126,7 +132,9 @@ import {
     bagInfoTable,
     buyItemTable,
     buyItemDialogTable,
-    bankTable
+    bankTable,
+    rechargeTable,
+    exchangeTable
 } from '@/table/config/user_data'
 import userAttrItem from '@/components/libs/userAttrItem'
 // import brnn from '@/views/personal_data/brnn';
@@ -154,6 +162,12 @@ export default {
             /* 银行记录 */
             bank_config: bankForm(),
             bankMsg: bankTable(),
+            /* 充值记录 */
+            rechargeMsg: rechargeTable(),
+            rechargeLoading: false,
+            /* 兑换记录 */
+            exchangeMsg: exchangeTable(),
+            exchangeLoading: false,
             /* 各种弹窗 */
             dialog: {
                 title: '解绑手机',
@@ -357,9 +371,29 @@ export default {
                 this.bankMsg.data = response;
             });
         },
-        /* 银行记录 搜索功能 */
-        bankMessage(text) {
-            this.bankMsg.data = tableSearch(text, this.bankMsg.data);
+        /* 充值记录 */
+        recharge_btn() {
+            this.rechargeLoading = true;
+            this.$res.postData(this, '/User/query_user_recharge/', {
+                open_user_id: this.open_user_id
+            }).then((response) => {
+                this.rechargeMsg.data = [];
+                this.rechargeMsg.data = response;
+                this.rechargeLoading = false;
+                this.$message.success('查询成功');
+            });
+        },
+        /* 兑换记录 */
+        exchange_btn() {
+            this.exchangeLoading = true;
+            this.$res.postData(this, '/User/query_user_exchange/', {
+                open_user_id: this.open_user_id
+            }).then((response) => {
+                this.exchangeMsg.data = [];
+                this.exchangeMsg.data = response;
+                this.exchangeLoading = false;
+                this.$message.success('查询成功');
+            });
         }
     },
     /* 引入组件放在components */

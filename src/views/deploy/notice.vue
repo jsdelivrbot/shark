@@ -111,6 +111,7 @@
                 },
                 getcontext: false,
                 editorHtml: '',
+                biaoqianHtml: '',
             }
         },
         /* 需要元素渲染完调用的方法放在mounted内 */
@@ -120,6 +121,7 @@
             /* 推送走马灯 */
             getSingleLabel(val) {
                 let info = '/:' + val;
+                this.biaoqianHtml = info;
                 $('#editorElem').find('.w-e-text-container').find('.w-e-text p').append(info);
             },
             notice_submit(arg) {
@@ -132,15 +134,23 @@
                 let showPlace = this.editorHtml[0].showPlace;
                 if (showPlace == 0) {
                     _self.$res.postData(_self, '/Manu/push_notification/', {
-                        jumpID: this.editorHtml[0].jumpID,
-                        showPlace: this.editorHtml[0].showPlace,
-                        gameKindID: '',
-                        gameServerID: '',
-                        startTime: this.editorHtml[0].startTime,
-                        endTime: this.editorHtml[0].endTime,
-                        intervalTime: this.editorHtml[0].intervalTime,
-                        message: html,
-                        sendUserName: localStorage.getItem('Username'),
+                        jumpID: this.editorHtml[0].jumpID, //前往场景
+                        showPlace: this.editorHtml[0].showPlace, //显示场合
+                        gameKindID: '', //选择游戏
+                        gameServerID: '',//游戏房间
+                        startTime: this.editorHtml[0].startTime,//开始时间
+                        endTime: this.editorHtml[0].endTime,//结束时间
+                        intervalTime: this.editorHtml[0].intervalTime,//间隔时间
+                        message: html, //邮件内容
+                        sendUserName: localStorage.getItem('Username'),//发送人
+                        tag: this.biaoqianHtml, //标签
+                        channel: this.editorHtml[0].channel_id, //渠道
+                        accountType: this.editorHtml[0].account_id, //帐号类型
+                        showID: this.editorHtml[0].UserID, //可见玩家ID
+                        payArea: this.editorHtml[0].payArea, //充值区间
+                        signTimeStart: this.editorHtml[0].query_start_time, //注册开始时间
+                        signTimeEnd:　this.editorHtml[0].query_end_time, //注册结束时间
+                        rollTime: this.editorHtml[0].rollTime, //滚动时长
                     }).then((response) => {
                         if (response.code == 0) {
                             _self.$message.success('推送成功');
@@ -159,6 +169,14 @@
                         intervalTime: this.editorHtml[0].intervalTime,
                         message: html,
                         sendUserName: localStorage.getItem('Username'),
+                        tag: this.biaoqianHtml, //标签
+                        channel: this.editorHtml[0].channel_id, //渠道
+                        accountType: this.editorHtml[0].account_id, //帐号类型
+                        showID: this.editorHtml[0].UserID, //可见玩家ID
+                        payArea: this.editorHtml[0].payArea, //充值区间
+                        signTimeStart: this.editorHtml[0].query_start_time, //注册开始时间
+                        signTimeEnd:　this.editorHtml[0].query_end_time, //注册结束时间
+                        rollTime: this.editorHtml[0].rollTime, //滚动时长
                     }).then((response) => {
                         if (response.code == 0) {
                             _self.$message.success('推送成功');
@@ -177,6 +195,14 @@
                         intervalTime: this.editorHtml[0].intervalTime,
                         message: html,
                         sendUserName: localStorage.getItem('Username'),
+                        tag: this.biaoqianHtml, //标签
+                        channel: this.editorHtml[0].channel_id, //渠道
+                        accountType: this.editorHtml[0].account_id, //帐号类型
+                        showID: this.editorHtml[0].UserID, //可见玩家ID
+                        payArea: this.editorHtml[0].payArea, //充值区间
+                        signTimeStart: this.editorHtml[0].query_start_time, //注册开始时间
+                        signTimeEnd:　this.editorHtml[0].query_end_time, //注册结束时间
+                        rollTime: this.editorHtml[0].rollTime, //滚动时长
                     }).then((response) => {
                         if (response.code == 0) {
                             _self.$message.success('推送成功');

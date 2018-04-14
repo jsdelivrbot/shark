@@ -11,8 +11,26 @@
                     <ele-form :config="diamonds_config" v-on:receive="diamonds_submit" :defaultdata="golddefaultTime"></ele-form>
                     <table-option :parent-message="diamonds_Msg" v-on:message="diamondsMessage" v-loading="diamondsloading" element-loading-text="拼命加载中"></table-option>
                 </el-collapse-item>
-                <el-collapse-item title="充值排行榜" name="2"></el-collapse-item>
-                <el-collapse-item title="兑奖排行榜" name="3"></el-collapse-item>
+                <el-collapse-item title="充值排行榜" name="2">
+                    <el-button type="success" plain @click.native="pay_btn">查 询</el-button>
+                    <table-option :parent-message="pay_Msg"  v-loading="payloading" element-loading-text="拼命加载中"></table-option>
+                </el-collapse-item>
+                <el-collapse-item title="兑奖排行榜" name="3">
+                    <el-tabs type="border-card">
+                        <el-tab-pane label="金币兑换排行">
+                            <el-button type="success" plain @click.native="goldExchange_btn">查 询</el-button>
+                            <table-option :parent-message="goldExchange_Msg" v-loading="goldExchangeLoading"></table-option>
+                        </el-tab-pane>
+                        <el-tab-pane label="话费兑换排行">
+                            <el-button type="success" plain @click.native="telExchange_btn">查 询</el-button>
+                            <table-option :parent-message="telExchange_Msg" v-loading="telExchangeLoading"></table-option>
+                        </el-tab-pane>
+                        <el-tab-pane label="实物兑换排行">
+                            <el-button type="success" plain @click.native="itemExchange_btn">查 询</el-button>
+                            <table-option :parent-message="itemExchange_Msg" v-loading="itemExchangeLoading"></table-option>
+                        </el-tab-pane>
+                    </el-tabs>
+                </el-collapse-item>
             </el-collapse>
         </div>
     </div>
@@ -28,7 +46,11 @@
     } from '@/form/config/rank'
     import {
         gameGoldTable,
-        diamondsTable
+        diamondsTable,
+        payTable,
+        goldExchangeTable,
+        telExchangeTable,
+        itemExchangeTable
     } from '@/table/config/rank'
     export default {
         name: 'rank',
@@ -48,6 +70,16 @@
                 diamondsloading: false,
                 diamonds_config: gameGoldForm(),
                 diamonds_Msg: diamondsTable(),
+                /* 充值排行版 */
+                pay_Msg: payTable(),
+                payloading: false,
+                /* 金币兑换排行 */
+                goldExchange_Msg: goldExchangeTable(),
+                goldExchangeLoading: false,
+                telExchange_Msg: telExchangeTable(),
+                telExchangeLoading: false,
+                itemExchange_Msg: itemExchangeTable(),
+                itemExchangeLoading: false,
             }
         },
         /* 需要元素渲染完调用的方法放在mounted内 */
@@ -80,6 +112,53 @@
             },
             diamondsMessage(text) {
                 this.diamonds_Msg.data = tableSearch(text, this.diamonds_Msg.data);
+            },
+            /* 充值排行榜 */
+            pay_btn() {
+                this.payloading = true;
+                this.$res.postData(this, '/Rank/user_pay_rank/').then((response) => {
+                    this.pay_Msg.data = [];
+                    this.pay_Msg.data = response;
+                    this.payloading = false;
+                    this.$message.success('查询成功');
+                });
+            },
+            /* 兑奖排行榜 */
+            // 金币
+            goldExchange_btn() {
+                this.goldExchangeLoading = true;
+                this.$res.postData(this, '/Rank/query_user_exchange/', {
+                    type: 1
+                }).then((response) => {
+                    this.goldExchange_Msg.data = [];
+                    this.goldExchange_Msg.data = response;
+                    this.goldExchangeLoading = false;
+                    this.$message.success('查询成功');
+                });
+            },
+            // 话费
+            telExchange_btn() {
+                this.telExchangeLoading = true;
+                this.$res.postData(this, '/Rank/query_user_exchange/', {
+                    type: 2
+                }).then((response) => {
+                    this.telExchange_Msg.data = [];
+                    this.telExchange_Msg.data = response;
+                    this.telExchangeLoading = false;
+                    this.$message.success('查询成功');
+                });
+            },
+            // 实物
+            itemExchange_btn() {
+                this.itemExchangeLoading = true;
+                this.$res.postData(this, '/Rank/query_user_exchange/', {
+                    type: 3
+                }).then((response) => {
+                    this.itemExchange_Msg.data = [];
+                    this.itemExchange_Msg.data = response;
+                    this.itemExchangeLoading = false;
+                    this.$message.success('查询成功');
+                });
             }
         },
         /* 引入组件放在components */

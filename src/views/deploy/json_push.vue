@@ -41,7 +41,7 @@
                         </el-col>
                     </el-row>
                 </el-collapse-item>
-                <el-collapse-item title="上传apk" name="1">
+                <!-- <el-collapse-item title="上传apk" name="1">
                     <el-row>
                         <el-col :span="12">
                             <el-form :model="form" action="/Backend/upload_apk/" enctype="multipart/form-data" method="POST">
@@ -56,14 +56,14 @@
                             </el-form>
                         </el-col>
                     </el-row>
-                </el-collapse-item>
+                </el-collapse-item> -->
             </el-collapse>
         </div>
     </div>
 </template>
 <script>
     export default {
-        name: 'sys_config',
+        name: 'json_push',
         /* 组件内自行使用的数据可以在data内渲染 */
         data() {
             return {
@@ -173,6 +173,12 @@
             },
             tblCellDbClick() {
                 this.$message.success('success');
+                this.opening(arguments[0][0], arguments[0][1]['property']);
+            },
+            opening(arg, cell) {
+                let newData = this.$res.deepClone(arg);
+                newData[cell] = arg[cell];
+                console.log(newData[cell]);
             },
             convertDataToTbl(response) {
                 let obj = {
@@ -183,23 +189,18 @@
                 response.map((row_data, index, tbl) => {
                     let data_obj = {};
                     let row_obj = {};
-                    if (index >= 1) {
-                        data_obj['_' + index] = row_data;
-                    } else {
-                        row_obj['title'] = row_data;
-                        row_obj['sub'] = [];
-                        row_obj['name'] = '_' + index;
-                        row_obj['fixed'] = (index == 0 ? true : false);
-                        obj.columns.push(row_obj);
-                    }
-                    if (index >= 1) {
-                        obj.data.push(data_obj);
-                    }
+                    data_obj['_' + index] = row_data;
+                    row_obj['title'] = '_' + index;
+                    row_obj['sub'] = [];
+                    row_obj['name'] = '_' + index;
+                    row_obj['fixed'] = (index == 0 ? true : false);
+                    obj.columns.push(row_obj);
+                    obj.data.push(data_obj);
                 });
                 this.tblMsg = {};
-                console.log(obj);
-                this.tblMsg = obj;
-                console.log(this.tblMsg);
+                setTimeout(() => {
+                    this.tblMsg = obj;
+                }, 100);
             },
             clearCsv() {
                 // this.$refs.uploadJson.clearFiles();

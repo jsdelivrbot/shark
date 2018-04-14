@@ -572,7 +572,41 @@
         },
         /* 计算属性放于computed内 */
         computed: {},
-        created() {}
+        created() {
+            let _self = this;
+            let baseActivityTaskConfig = task2DialogForm();
+            /* 任务类型 */
+            if (!window.taskType) {
+                let task_list = new Promise((resolve, reject) => {
+                    _self.$res.getSingleData(_self, '/Activitypoints/point_task_type_id/').then((response) => {
+                        if (response) {
+                            resolve(response);
+                        } else {
+                            reject('error');
+                        }
+                    });
+                });
+                task_list.then((response) => {
+                    window.taskType = response;
+                    fillTaskID(response);
+                }, () => {
+                    _self.$message.error('获取任务类型列表失败');
+                });
+            } else {
+                fillTaskID(window.taskType);
+            }
+            function fillTaskID(response) {
+                response.map((val, i) => {
+                    if (i >= 0) {
+                        baseActivityTaskConfig.formEle[6].options.push({
+                            value: val.PointTaskTypeID,
+                            label: val.TaskDescribe + '-' + val.PointTaskTypeID
+                        });
+                    }
+                });
+                _self.task_2_dialog_config = _self.$res.deepClone(baseActivityTaskConfig);
+            }
+        }
     }
 </script>
 

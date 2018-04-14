@@ -73,6 +73,12 @@ export function permits() {
             to: '/analyse/timing',
             permit: true,
             permit_id: 44
+        }, {
+            title: '埋点数据',
+            name: 'buried_point',
+            to: '/analyse/buried_point',
+            permit: true,
+            permit_id: 49
         }]
     }, {
         title: '用户管理',

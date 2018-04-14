@@ -60,7 +60,7 @@ export function noticeForm() {
             "placeholder": "请选择帐号类型",
             "type": "select",
             "options": [],
-            "name": "channel_id",
+            "name": "account_id",
             "span": 6
         }, {
             "label": "玩家ID",
@@ -72,7 +72,7 @@ export function noticeForm() {
             "label": "充值区间",
             "placeholder": "累计充值额度可见区间[100,10000]",
             "type": "text",
-            "name": "",
+            "name": "payArea",
             "span": 6
         }, {
             "row": 24
@@ -115,7 +115,7 @@ export function noticeForm() {
             "label": "滚动时长",
             "placeholder": "请输入滚动时长",
             "type": "text",
-            "name": "",
+            "name": "rollTime",
             "span": 6
         }, {
             "row": 24

@@ -718,3 +718,8 @@ export function payPlatformFormatter(row, columns, result) {
     }
     return res;
 }
+
+export function bigNumberMoneyFormatter(cellValue) {
+    let num = ((cellValue || 0) / 100).toFixed(2);
+    return num ? (num + '').replace(/\d(?=(\d{3})+(\.\d{1,2})?$)/g, ($1) => { return $1 + ',' }) : 0;
+}

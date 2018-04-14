@@ -17,6 +17,7 @@ import rank from "@/views/analyse/rank"; /* 排行榜 */
 import pay_analysis from "@/views/analyse/pay_analysis"; /* 付费分析 */
 import buy_item from "@/views/analyse/buy_item"; /* 道具购买分析 */
 import timing from "@/views/analyse/timing"; /* 定时奖励 */
+import buried_point from "@/views/analyse/buried_point"; /* 定时奖励 */
 // 用户管理 users
 import user_info from "@/views/users/user_info"; /* 用户信息 */
 import risk_manage from "@/views/users/risk_manage"; /* 封禁管理 */
@@ -102,6 +103,10 @@ export default new Router({
         path: '/analyse/timing',
         name: 'timing',
         component: timing
+    }, {
+        path: '/analyse/buried_point',
+        name: 'buried_point',
+        component: buried_point
     }, {
         path: '/users/user_info',
         name: 'user_info',

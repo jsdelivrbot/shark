@@ -9,6 +9,8 @@
             <el-button type="success" plain @click="pay_btn">alipay</el-button>
             <el-button type="success" plain @click="wxpay_btn">wxpay</el-button>
             <el-button type="success" plain @click="month_btn">至尊月卡</el-button>
+            <el-button type="success" plain @click="global_btn">全局统计</el-button>
+            <el-button type="success" plain @click="exchange_btn">兑换记录</el-button>
         </div>
     </div>
 </template>
@@ -24,6 +26,24 @@
         mounted() {},
         /* 需要事件调用的方法放在methods内 */
         methods: {
+            exchange_btn() {
+                this.$res.getSingleData(this, '/Playerinfo/query_order_info/', {
+                    params: {
+                        uid: 118
+                    }
+                }).then((response) => {
+                    console.log(response);
+                });
+            },
+            global_btn() {
+                this.$res.getSingleData(this, '/Playerinfo/query_user_global_info/', {
+                    params: {
+                        uid: 118
+                    }
+                }).then((response) => {
+                    console.log(response);
+                });
+            },
             month_btn() {
                 this.$res.getSingleData(this, '/Card/buy_month_card/', {
                     params: {

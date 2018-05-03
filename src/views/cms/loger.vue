@@ -34,7 +34,7 @@
         methods: {
             log_submit(arg) {
                 let _self = this;
-                _self.$res.postData(_self, '/Backend/loger/').then((response) => {
+                _self.$res.postData(_self, '/Loger/query_log/').then((response) => {
                     _self.log_Msg.data = [];
                     _self.log_Msg.data = response;
                     _self.$message.success('查询成功');
@@ -47,7 +47,7 @@
         computed: {},
         created() {
             let _self = this;
-            _self.$res.postData(_self, '/Backend/loger/').then((response) => {
+            _self.$res.postData(_self, '/Loger/query_log/').then((response) => {
                 _self.log_Msg.data = [];
                 _self.log_Msg.data = response;
                 _self.$message.success('查询成功');

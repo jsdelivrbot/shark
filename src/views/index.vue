@@ -194,28 +194,9 @@
                 </el-col>
             </el-row>
         </div>
-        <!-- 新增团队原则 -->
-        <el-dialog title="新增团队原则" :visible.sync="addTeamPrincipleDialog">
-            <ele-form :config="addTeamPrincipleDialogConfig" :eventname="teamPrincipleSubmitEvent" v-on:receive="teamPrincipleDialogSubmit"></ele-form>
-            <div slot="footer" class="dialog-footer">
-                <el-button @click="addTeamPrincipleDialog = false">取 消</el-button>
-                <el-button type="success" @click="submitTeamPrincipleEvent">确 定</el-button>
-            </div>
-        </el-dialog>
-        <!-- 编辑 -->
-        <el-dialog title="编辑" :visible.sync="editDialog">
-            <ele-form :config="editTeamPrincipleDialogConfig" :eventname="teamPrincipleSubmitEvent1" v-on:receive="teamPrincipleDialogSubmit1" :defaultdata="editHtml"></ele-form>
-            <div slot="footer" class="dialog-footer">
-                <el-button @click="editDialog = false">取 消</el-button>
-                <el-button type="success" @click="submitTeamPrincipleEvent1">确 定</el-button>
-            </div>
-        </el-dialog>
     </div>
 </template>
 <script>
-    import {
-        addTeamPrincipleDialogForm
-    } from '@/form/config/team'
     export default {
         name: 'index',
         /* 组件内自行使用的数据可以在data内渲染 */
@@ -225,78 +206,12 @@
                 login_time: '',
                 login_count: '',
                 login_ip: '',
-                /* 新增团队原则 */
-                addTeamPrincipleDialog: false,
-                addTeamPrincipleDialogConfig: addTeamPrincipleDialogForm(),
-                teamPrincipleSubmitEvent: false,
-                teamHtml: null,
-                /* 编辑 */
-                editDialog: false,
-                editTeamPrincipleDialogConfig: addTeamPrincipleDialogForm(),
-                teamPrincipleSubmitEvent1: false,
-                editHtml: {},
-                /* 详情 */
             }
         },
         /* 需要元素渲染完调用的方法放在mounted内 */
         mounted() {},
         /* 需要事件调用的方法放在methods内 */
         methods: {
-            /* 新增团队原则 */
-            addTeamPrinciple() {
-                this.addTeamPrincipleDialog = true;
-            },
-            teamPrincipleDialogSubmit(arg) {
-                switch (arg[1]) {
-                    case 'submitEvent':
-                        let param = {
-                            title: arg[0].title,
-                            content: arg[0].content,
-                            author: localStorage.getItem('Username')
-                        };
-                        this.$res.postData(this, '/Team/add_team_principle/', param).then((response) => {
-                            if (response.code == 0) {
-                                this.addTeamPrincipleDialog = false;
-                                this.teamPrincipleSubmitEvent = false;
-                                this.$res.postData(this, '/Team/get_team_principle/').then((response) => {
-                                    this.teamHtml = response;
-                                    this.$message.success('新增成功');
-                                });
-                            } else {
-                                this.$message.error('标题重复');
-                            }
-                        });
-                        break;
-                }
-            },
-            submitTeamPrincipleEvent() {
-                this.teamPrincipleSubmitEvent = 'submitEvent';
-            },
-            /* 编辑 */
-            editTeam(text) {
-                let username = localStorage.getItem('Username');
-                if (username == 'huangjingshan') {
-                    this.editDialog = true;
-                    this.$message.success('足够权限');
-                } else {
-                    this.$message.error('没有权限，请联系管理员');
-                }
-            },
-            teamPrincipleDialogSubmit1(arg) {
-                switch (arg[1]) {
-                    case 'submitEvent':
-                        this.editDialog = false;
-                        this.teamPrincipleSubmitEvent1 = false;
-                }
-            },
-            submitTeamPrincipleEvent1() {
-                this.teamPrincipleSubmitEvent1 = 'submitEvent';
-            },
-            /* 详情 */
-            detailTeam() {
-                this.editDialog = true;
-                this.$message.success('详情');
-            }
         },
         /* 引入组件放在components */
         components: {},
@@ -311,10 +226,6 @@
                 _self.login_count = response.LoginTimes;
                 _self.login_time = response.PreLogintime;
                 _self.login_ip = response.PreLoginIP;
-            });
-            /* 团队原则 */
-            _self.$res.postData(_self, '/Team/get_team_principle/').then((response) => {
-                _self.teamHtml = response;
             });
         }
     }
@@ -375,5 +286,3 @@
         clear: both;
     }
 </style>
-
-

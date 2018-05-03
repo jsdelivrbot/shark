@@ -1,5 +1,5 @@
 //引入数据处理方法
-import { bigNumberFormatter, transToTime,roomInfoFormatter } from '@/libs/dataColumnFormatter'
+import { bigNumberFormatter, transToTime, roomInfoFormatter } from '@/libs/dataColumnFormatter'
 
 export function xjsscSingleTable() {
 	return {

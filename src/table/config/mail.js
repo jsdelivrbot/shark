@@ -1,5 +1,6 @@
 //引入数据处理方法
 import { transToTime, mailUserIDFormatter, mailRangeFormatter, mailTypeFormatter, mailIsGotFormatter, mailIsReadFormatter } from '@/libs/dataColumnFormatter'
+
 export function mailTable() {
     return {
         //导出按钮

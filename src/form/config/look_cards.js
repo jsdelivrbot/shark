@@ -11,9 +11,16 @@ export function lookcardQxForm() {
         "formEle": [{
             "label": "选择时间",
             "placeholder": "请选择查询时间",
-            "type": "timeRange",
+            "type": "dateRange",
             "name": "query",
-            "span": 7,
+            "span": 6,
+        }, {
+            "label": "选择房间",
+            "placeholder": "请选择房间",
+            "type": "select",
+            "options": [],
+            "name": 'room',
+            "span": 6
         }]
     }
 }
@@ -30,9 +37,9 @@ export function lookcardSingleFrom() {
         "formEle": [{
             "label": "选择时间",
             "placeholder": "请选择查询时间",
-            "type": "timeRange",
+            "type": "dateRange",
             "name": "query",
-            "span": 7,
+            "span": 6,
         }]
     }
 }

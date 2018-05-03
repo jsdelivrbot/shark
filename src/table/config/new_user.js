@@ -1,4 +1,5 @@
 import { transToTime, NullityFormatter, bigNumberFormatter } from '@/libs/dataColumnFormatter'
+
 export function newUserTable() {
   return {
     //导出按钮

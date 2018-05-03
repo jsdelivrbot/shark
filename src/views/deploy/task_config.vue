@@ -54,17 +54,17 @@ import {
     addActivityDialogForm,
     addTaskDialogForm,
     editTaskDialogForm
-} from '@/form/config/activity_config'
+} from '@/form/config/task_config'
 import {
     taskTable,
     activityTable
-} from '@/table/config/activity_config'
+} from '@/table/config/task_config'
 export default {
-    name: 'activity_config',
+    name: 'task_config',
     /* 组件内自行使用的数据可以在data内渲染 */
     data() {
         return {
-            activeName: '0',
+            activeName: '',
             loading: false,
             /* 任务列表 */
             task_config: activityForm(),
@@ -95,7 +95,7 @@ export default {
             switch (arg[1]) {
                 case 'query':
                     this.loading = true;
-                    this.$res.postData(this, '/Activitypoints/get_task_list/').then((response) => {
+                    this.$res.postData(this, '/Taskconfig/get_task_list/').then((response) => {
                         this.task_Msg.data = [];
                         this.task_Msg.data = response;
                         this.loading = false;
@@ -116,13 +116,13 @@ export default {
                         cancelButtonText: '取消',
                         type: 'warning'
                     }).then(() => {
-                        this.$res.postData(this, '/Activitypoints/delete_task/', {
+                        this.$res.postData(this, '/Taskconfig/delete_task/', {
                             ActivityID: arg[1].ActivityID,
                             PointTaskTypeID: arg[1].PointTaskTypeID
                         }).then((response) => {
                             if (response.code == 0) {
                                 this.loading = true;
-                                this.$res.postData(this, '/Activitypoints/get_task_list/').then((response) => {
+                                this.$res.postData(this, '/Taskconfig/get_task_list/').then((response) => {
                                     this.task_Msg.data = [];
                                     this.task_Msg.data = response;
                                     this.loading = false;
@@ -142,7 +142,7 @@ export default {
         /* 活动列表 */
         activity_query() {
             this.loading = true;
-            this.$res.postData(this, '/Activitypoints/get_activity_list/').then((response) => {
+            this.$res.postData(this, '/Taskconfig/get_activity_list/').then((response) => {
                 this.activity_Msg.data = [];
                 this.activity_Msg.data = response;
                 this.loading = false;
@@ -154,7 +154,7 @@ export default {
             this.addActivityDialog = true;
         },
         addActivityDialogSubmit(arg) {
-            this.$res.postData(this, '/Activitypoints/add_activity/', {
+            this.$res.postData(this, '/Taskconfig/add_activity/', {
                 ActivityID: arg[0].ActivityID,
                 PointID: arg[0].PointID,
                 Describe: arg[0].Describe,
@@ -163,7 +163,7 @@ export default {
             }).then((response) => {
                 if (response.code == 0) {
                     this.loading = true;
-                    this.$res.postData(this, '/Activitypoints/get_activity_list/').then((res) => {
+                    this.$res.postData(this, '/Taskconfig/get_activity_list/').then((res) => {
                         this.activity_Msg.data = [];
                         this.activity_Msg.data = res;
                         this.loading = false;
@@ -186,10 +186,10 @@ export default {
             this.addTaskDialog = true;
         },
         addTaskDialogSubmit(arg) {
-            this.$res.postData(this, '/Activitypoints/add_task/', arg[0]).then((response) => {
+            this.$res.postData(this, '/Taskconfig/add_task/', arg[0]).then((response) => {
                 if (response.code == 0) {
                     this.loading = true;
-                    this.$res.postData(this, '/Activitypoints/get_task_list/').then((res) => {
+                    this.$res.postData(this, '/Taskconfig/get_task_list/').then((res) => {
                         this.task_Msg.data = [];
                         this.task_Msg.data = res;
                         this.loading = false;
@@ -208,10 +208,10 @@ export default {
             this.addTaskDialogName = 'submitEvent';
         },
         editTaskDialogSubmit(arg) {
-            this.$res.postData(this, '/Activitypoints/edit_task/', arg[0]).then((response) => {
+            this.$res.postData(this, '/Taskconfig/edit_task/', arg[0]).then((response) => {
                 if (response.code == 0) {
                     this.loading = true;
-                    this.$res.postData(this, '/Activitypoints/get_task_list/').then((res) => {
+                    this.$res.postData(this, '/Taskconfig/get_task_list/').then((res) => {
                         this.task_Msg.data = [];
                         this.task_Msg.data = res;
                         this.loading = false;
@@ -240,7 +240,7 @@ export default {
         /* 任务类型 */
         if (!window.taskType) {
             let task_list = new Promise((resolve, reject) => {
-                _self.$res.getSingleData(_self, '/Activitypoints/point_task_type_id/').then((response) => {
+                _self.$res.getSingleData(_self, '/Taskconfig/point_task_type_id/').then((response) => {
                     if (response) {
                         resolve(response);
                     } else {
@@ -282,7 +282,7 @@ export default {
         /* 活动类型 */
         if (!window.activityType) {
             let activity_list = new Promise((resolve, reject) => {
-                _self.$res.getSingleData(_self, '/Activitypoints/activity_pz/').then((response) => {
+                _self.$res.getSingleData(_self, '/Taskconfig/activity_pz/').then((response) => {
                     if (response) {
                         resolve(response);
                     } else {
@@ -323,13 +323,13 @@ export default {
         }
 
         /* 活动列表 - 查询 */
-        this.$res.postData(this, '/Activitypoints/get_activity_list/').then((response) => {
+        this.$res.postData(this, '/Taskconfig/get_activity_list/').then((response) => {
             this.activity_Msg.data = [];
             this.activity_Msg.data = response;
             this.$message.success('查询成功');
         });
         /* 任务列表 - 查询 */
-        this.$res.postData(this, '/Activitypoints/get_task_list/').then((response) => {
+        this.$res.postData(this, '/Taskconfig/get_task_list/').then((response) => {
             this.task_Msg.data = [];
             this.task_Msg.data = response;
             this.$message.success('查询成功');

@@ -1,4 +1,5 @@
-import { bigNumberFormatter, transToTime2, NullityFormatter } from '@/libs/dataColumnFormatter'
+import { transToTime2, NullityFormatter } from '@/libs/dataColumnFormatter'
+
 export function intAccountTable() {
     return {
         columns: [{

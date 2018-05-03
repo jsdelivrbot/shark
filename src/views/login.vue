@@ -10,7 +10,7 @@
             <div class="container-box">
                 <div class="content-wrap">
                     <h1 id="site-name">
-                        <a href="javascript:;">{{serverName2}}</a>
+                        <a href="javascript:;">{{serverName2}} 鲨鱼互动 管理平台</a>
                     </h1>
                     <el-form :model="loginForm" ref="loginForm" label-width="80px" class="demo-dynamic">
                         <el-form-item class="no-star" prop="username" label="用户名" :rules="{  required: true, message: '请输入用户名', trigger: 'blur' }">
@@ -51,7 +51,7 @@ export default {
     data() {
         return {
             serverName: '鲨鱼互动',
-            serverName2: '鲨鱼互动 管理平台',
+            serverName2: (location.hostname == 'cms.oa.sharkfaith.com' ? '本地服' : (location.hostname == 'cms.oa.pokerhope.com' || '183.60.191.123' ? '开发服' : '模拟服')),
             loginForm: {
                 username: '',
                 password: '',

@@ -141,11 +141,12 @@ export function unbindForm() {
         "inline": true,
         "formEle": [{
             "label": "理由",
-            "placeholder": "请填写解绑理由",
+            "placeholder": "请填写理由",
             "type": "text",
             "name": "extra",
             "span": 18,
             "offset": 3,
+            "rules": { "required": true, "message": "请填写理由", "trigger": "blur" }
         }]
     }
 }

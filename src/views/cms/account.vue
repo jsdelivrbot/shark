@@ -151,7 +151,7 @@
                 switch (arg[1]) {
                     case 'query':
                         this.loading = true;
-                        this.$res.getSingleData(this, '/Backend/get_account/').then((response) => {
+                        this.$res.getSingleData(this, '/Cmsoa/get_account/').then((response) => {
                             this.account_Msg.data = [];
                             this.account_Msg.data = response;
                             this.$message.success('查询成功');
@@ -177,8 +177,8 @@
                             let param = {
                                 Username: arg[1].Username
                             };
-                            this.$res.postData(this, '/Backend/account_del/', param).then((response) => {
-                                this.$res.getSingleData(this, '/Backend/get_account/').then((response) => {
+                            this.$res.postData(this, '/Cmsoa/account_del/', param).then((response) => {
+                                this.$res.getSingleData(this, '/Cmsoa/get_account/').then((response) => {
                                     this.account_Msg.data = [];
                                     this.account_Msg.data = response;
                                     this.$message.success('成功删除');
@@ -203,11 +203,11 @@
                             Nullity: arg[0].Nullity - 0,
                             IsAssist: arg[0].IsAssist - 0,
                         };
-                        this.$res.postData(this, '/Backend/new_account/', param).then((response) => {
+                        this.$res.postData(this, '/Cmsoa/new_account/', param).then((response) => {
                             if (response.code === -11005) {
                                 this.$message.error(response.msg);
                             } else {
-                                this.$res.getSingleData(this, '/Backend/get_account/').then((response) => {
+                                this.$res.getSingleData(this, '/Cmsoa/get_account/').then((response) => {
                                     this.account_Msg.data = [];
                                     this.account_Msg.data = response;
                                     this.$message.success('新建帐号成功');
@@ -227,9 +227,9 @@
                     RoleID: arg[0].RoleID - 0,
                     accountName: arg[0].accountName,
                 };
-                this.$res.postData(this, '/Backend/account_edit/', param).then((response) => {
+                this.$res.postData(this, '/Cmsoa/account_edit/', param).then((response) => {
                     this.accountEditDialog = false;
-                    this.$res.getSingleData(this, '/Backend/get_account/').then((response) => {
+                    this.$res.getSingleData(this, '/Cmsoa/get_account/').then((response) => {
                         this.account_Msg.data = [];
                         this.account_Msg.data = response;
                         this.$message.success('编辑成功');
@@ -239,7 +239,7 @@
             /* 角色管理 */
             role_submit(arg) {
                 this.loading = true;
-                this.$res.getSingleData(this, '/Backend/get_role/').then((response) => {
+                this.$res.getSingleData(this, '/Cmsoa/get_role/').then((response) => {
                     this.role_Msg.data = [];
                     this.role_Msg.data = response;
                     this.loading = false;
@@ -267,8 +267,8 @@
                             for (const key in param) {
                                 paramForm.append(key, param[key]);
                             }
-                            this.$res.postData(this, '/Backend/delete_role/', paramForm).then((response) => {
-                                this.$res.getSingleData(this, '/Backend/get_role/').then((response) => {
+                            this.$res.postData(this, '/Cmsoa/delete_role/', paramForm).then((response) => {
+                                this.$res.getSingleData(this, '/Cmsoa/get_role/').then((response) => {
                                     this.role_Msg.data = [];
                                     this.role_Msg.data = response;
                                     this.$message.success('已删除角色');
@@ -293,11 +293,11 @@
                 for (const key in param) {
                     paramForm.append(key, param[key]);
                 }
-                _self.$res.postData(_self, '/Backend/add_role/', paramForm).then((response) => {
+                _self.$res.postData(_self, '/Cmsoa/add_role/', paramForm).then((response) => {
                     if (response.code === -11005) {
                         _self.$message.error(response.msg);
                     } else {
-                        _self.$res.getSingleData(_self, '/Backend/get_role/').then((response) => {
+                        _self.$res.getSingleData(_self, '/Cmsoa/get_role/').then((response) => {
                             _self.role_Msg.data = [];
                             _self.role_Msg.data = response;
                             _self.$message.success('新增角色成功');
@@ -318,8 +318,8 @@
                 for (const key in param) {
                     paramForm.append(key, param[key]);
                 }
-                _self.$res.postData(_self, '/Backend/change_role/', paramForm).then((response) => {
-                    _self.$res.getSingleData(_self, '/Backend/get_role/').then((response) => {
+                _self.$res.postData(_self, '/Cmsoa/change_role/', paramForm).then((response) => {
+                    _self.$res.getSingleData(_self, '/Cmsoa/get_role/').then((response) => {
                         _self.role_Msg.data = [];
                         _self.role_Msg.data = response;
                         _self.$message.success('编辑角色成功');
@@ -335,7 +335,7 @@
             //权限管理 -- 查询
             permit_submit(arg) {
                 let _self = this;
-                _self.$res.getSingleData(_self, '/Permit/get_cms_permissions/').then((response) => {
+                _self.$res.getSingleData(_self, '/Cmsoa/get_cms_permissions/').then((response) => {
                     _self.permit_Msg.data = [];
                     _self.permit_Msg.data = response;
                     _self.$message.success('查询成功');
@@ -367,9 +367,9 @@
             submitCreatePermit(arg) {
                 let _self = this;
                 let param = _self.$res.deepClone(arg[0]);
-                _self.$res.postData(_self, '/Permit/add_permission', param).then((response) => {
+                _self.$res.postData(_self, '/Cmsoa/add_permission', param).then((response) => {
                     if (response.code == 0) {
-                        _self.$res.getSingleData(_self, '/Permit/get_cms_permissions/').then((response) => {
+                        _self.$res.getSingleData(_self, '/Cmsoa/get_cms_permissions/').then((response) => {
                             _self.permit_Msg.data = [];
                             _self.permit_Msg.data = response;
                             _self.$message.success('新增权限成功');
@@ -385,9 +385,9 @@
             submitCreatePermit2(arg) {
                 let _self = this;
                 let param = _self.$res.deepClone(arg[0]);
-                _self.$res.postData(_self, '/Permit/change_permission/', param).then((response) => {
+                _self.$res.postData(_self, '/Cmsoa/change_permission/', param).then((response) => {
                     if (response.code == 0) {
-                        _self.$res.getSingleData(_self, '/Permit/get_cms_permissions/').then((response) => {
+                        _self.$res.getSingleData(_self, '/Cmsoa/get_cms_permissions/').then((response) => {
                             _self.permit_Msg.data = [];
                             _self.permit_Msg.data = response;
                             _self.$message.success('编辑权限成功');
@@ -415,7 +415,7 @@
             let baseAccountEditConfig = accountEditForm();
             if (!window.account_info) {
                 let account_list = new Promise((resolve, reject) => {
-                    _self.$res.getSingleData(_self, '/Backend/get_role/').then((response) => {
+                    _self.$res.getSingleData(_self, '/Cmsoa/get_role/').then((response) => {
                         if (response) {
                             resolve(response);
                         } else {
@@ -452,7 +452,7 @@
             this.role_Msg = roleTable();
             this.createRoleDialogConfig = roleDialogForm();
             this.createRoleFormConfig2 = createRoleForm2();
-            this.$res.getSingleData(this, '/Backend/get_role/').then((response) => {
+            this.$res.getSingleData(this, '/Cmsoa/get_role/').then((response) => {
                 window.role_list = response;
             });
             //获取权限列表
@@ -460,7 +460,7 @@
             let baseRoleFormConfig_id2 = createRoleForm2();
             if (!window.permit_list) {
                 let permitList = new Promise((resolve, reject) => {
-                    _self.$res.getSingleData(_self, '/Permit/get_cms_permissions/').then((response) => {
+                    _self.$res.getSingleData(_self, '/Cmsoa/get_cms_permissions/').then((response) => {
                         if (response) {
                             resolve(response);
                         } else {
@@ -500,17 +500,17 @@
                 _self.createRoleFormConfig2 = _self.$res.deepClone(baseRoleFormConfig_id2);
             }
             /* 账号管理  - 查询 */
-            this.$res.getSingleData(this, '/Backend/get_account/').then((response) => {
+            this.$res.getSingleData(this, '/Cmsoa/get_account/').then((response) => {
                 this.account_Msg.data = [];
                 this.account_Msg.data = response;
             });
             /* 角色管理 - 查询 */
-            this.$res.getSingleData(this, '/Backend/get_role/').then((response) => {
+            this.$res.getSingleData(this, '/Cmsoa/get_role/').then((response) => {
                 this.role_Msg.data = [];
                 this.role_Msg.data = response;
             });
             /* 权限管理 - 查询 */
-            this.$res.getSingleData(this, '/Permit/get_cms_permissions/').then((response) => {
+            this.$res.getSingleData(this, '/Cmsoa/get_cms_permissions/').then((response) => {
                 this.permit_Msg.data = [];
                 this.permit_Msg.data = response;
             });

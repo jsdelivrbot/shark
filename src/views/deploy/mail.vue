@@ -89,7 +89,7 @@
                 //发送邮件接口操作
                 let param = _self.$res.deepClone(arg[0]);
                 param.attachment = JSON.stringify(_self.createAttrAndItem);
-                _self.$res.postData(_self, '/Manu/send_mail/', param).then((response) => {
+                _self.$res.postData(_self, '/Mail/send_mail/', param).then((response) => {
                     if (response.code == 0) {
                         _self.$message.success('邮件发送成功');
                     } else {
@@ -109,7 +109,7 @@
             },
             /* 邮件列表 */
             queryMailFormData(arg) {
-                this.$res.postData(this, '/Manu/get_mail_list/', arg[0]).then((response) => {
+                this.$res.postData(this, '/Mail/query_mail_list/', arg[0]).then((response) => {
                     this.tableMsg.data = [];
                     this.tableMsg.data = response;
                     this.$message.success('查询成功');
@@ -130,7 +130,7 @@
         computed: {},
         created() {
             /* 邮件列表 */
-            this.$res.postData(this, '/Manu/get_mail_list/', {
+            this.$res.postData(this, '/Mail/query_mail_list/', {
                 send_start_time: this.mailListHtml.send_start_time,
                 send_end_time: this.mailListHtml.send_end_time,
                 IsAll: '1',

@@ -1,5 +1,5 @@
 //引入数据处理方法
-import { bigNumberFormatter, transToTime,roomInfoFormatter } from '@/libs/dataColumnFormatter'
+import { bigNumberFormatter, transToTime, roomInfoFormatter } from '@/libs/dataColumnFormatter'
 
 export function lookcardSingleTable() {
     return {
@@ -31,18 +31,10 @@ export function lookcardSingleTable() {
             sortable: true,
             formatter: transToTime
         }, {
-            title: '局数',
-            name: 'DrawID',
-            sortable: true,
-        }, {
             title: '房间',
             name: 'ServerID',
             sortable: true,
             formatter: roomInfoFormatter
-        }, {
-            title: '桌子号码',
-            name: 'TableID',
-            sortable: true,
         }, {
             title: '真人在线',
             name: 'UserCount',

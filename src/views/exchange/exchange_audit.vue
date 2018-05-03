@@ -33,6 +33,14 @@
                 <el-button type="primary" @click="editSubmitName">确 定</el-button>
             </div>
         </el-dialog>
+
+        <el-dialog title="话费充值处理备注"  width="30%" :visible.sync="orderDialog">
+            <ele-form :config="orderDialogConfig" v-on:receive="orderDialogSubmit" :eventname="orderSubmitEvent" :defaultdata="orderDialogHtml"></ele-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="orderDialog = false">取 消</el-button>
+                <el-button type="primary" @click="OrderSubmitName">确 定</el-button>
+            </div>
+        </el-dialog>
     </div>
 </template>
 
@@ -43,12 +51,13 @@
     } from '@/libs/tableSearch'
     import {
         danhaoDialogForm,
-        editDialogForm
-    } from '@/form/config/exchange_order'
+        editDialogForm,
+        orderDialogForm
+    } from '@/form/config/exchange_audit'
     import {
         exchangeOrderTable,
         xiangqingDialogTable
-    } from '@/table/config/exchange_order'
+    } from '@/table/config/exchange_audit'
     export default {
         name: 'exchange_audit',
         /* 组件内自行使用的数据可以在data内渲染 */
@@ -57,6 +66,11 @@
                 htmlArg: {},
                 loading: false,
                 order_Msg: exchangeOrderTable(),
+                /* 话费处理备注弹窗 */
+                orderDialog: false,
+                orderDialogConfig: orderDialogForm(),
+                orderSubmitEvent: false,
+                orderDialogHtml: {},
                 /* 详情 */
                 xiangqingDialog: false,
                 xiangqingDialog_Msg: xiangqingDialogTable(),
@@ -77,18 +91,20 @@
         mounted() {},
         /* 需要事件调用的方法放在methods内 */
         methods: {
+            // 查询
             btnExchangeAudit() {
                 this.loading = true;
-                this.$res.postData(this, '/Cash/shenhe_order/').then((response) => {
+                this.$res.postData(this, '/Exchange/query_audit_list/').then((response) => {
                     this.order_Msg.data = response.map((val) => {
                         let res = val;
                         val.OrderStatus == '4' && val.itemType == '2' && (res['充 值' + '_show'] = true);
                         val.OrderStatus == '0' && (res['审 核' + '_show'] = true);
                         val.OrderStatus == '4' && val.itemType == '3' && (res['单 号' + '_show'] = true);
                         val.OrderStatus == '2' && val.itemType == '3' && (res['编 辑' + '_show'] = true);
-                        this.loading = false;
                         return res;
                     });
+                    this.loading = false;
+                    this.$message.success('查询成功');
                 });
             },
             orderMessage(text) {
@@ -118,7 +134,102 @@
                         this.editDialog = true;
                         this.editDialogHtml = arg[1];
                         break;
+                        /* 充值 */
+                    case 'handle':
+                        this.orderDialog = true;
+                        this.orderDialogHtml = arg[1];
                 }
+            },
+            orderDialogSubmit(arg) {
+                this.orderSubmitEvent = false;
+                /* 直充 */
+                let CompanyID = '1491';
+                let InterfacePwd = 'umbe5j';
+                let Mobile = arg[0].MobilePhone;
+                let Amount = '100';
+                let OrderID = arg[0].OrderNum;
+                let OrderSource = 1;
+                let Key = hex_md5(CompanyID + InterfacePwd + Mobile + Amount + OrderID + '9js8ky');
+                this.$res.postData(this, '/Changty/http_get/', {
+                    url: 'http://wr.800617.com:6001/submit.aspx' + '?CompanyID=' + CompanyID + '&InterfacePwd=' + InterfacePwd + '&Mobile=' + Mobile + '&Amount=' + Amount + '&OrderID=' + OrderID + '&OrderSource=' + OrderSource + '&Key=' + Key
+                }).then((response) => {
+                    switch (response.code) {
+                        case '0000':
+                            // 充值成功
+                            this.orderDialog = false;
+                            this.$res.postData(this, '/Exchange/query_audit_list/').then((response) => {
+                                this.order_Msg.data = response.map((val) => {
+                                    let res = val;
+                                    val.OrderStatus == '4' && val.itemType == '2' && (res['充 值' + '_show'] = true);
+                                    val.OrderStatus == '0' && (res['审 核' + '_show'] = true);
+                                    val.OrderStatus == '4' && val.itemType == '3' && (res['单 号' + '_show'] = true);
+                                    val.OrderStatus == '2' && val.itemType == '3' && (res['编 辑' + '_show'] = true);
+                                    return res;
+                                });
+                            });
+                            this.$message.success(response.msg);
+                            break;
+                        case '1001':
+                            // 参数不完整
+                            this.$message.error(response.msg);
+                            break;
+                        case '1002':
+                            // 手机号不正确
+                            this.$message.error(response.msg);
+                            break;
+                        case '1003':
+                            // 金额不正确
+                            this.$message.error(response.msg);
+                            break;
+                        case '1004':
+                            // 账户不存在
+                            this.$message.error(response.msg);
+                            break;
+                        case '1005':
+                            // 密码不正确
+                            this.$message.error(response.msg);
+                            break;
+                        case '1006':
+                            // IP鉴权失败
+                            this.$message.error(response.msg);
+                            break;
+                        case '1007':
+                            // md5 key验证不正确
+                            this.$message.error(response.msg);
+                            break;
+                        case '2001':
+                            // 账户已暂停
+                            this.$message.error(response.msg);
+                            break;
+                        case '2002':
+                            // 账户余额异常
+                            this.$message.error(response.msg);
+                            break;
+                        case '2003':
+                            // 联通智能网号码（运营商要求，该号码只支持20、30、50、100、300元五个面值）
+                            this.$message.error(response.msg);
+                            break;
+                        case '2004':
+                            // 订单号重复
+                            this.$message.error(response.msg);
+                            break;
+                        case '2005':
+                            // 余额不足
+                            this.$message.error(response.msg);
+                            break;
+                        case '2006':
+                            // 该产品未开通
+                            this.$message.error(response.msg);
+                            break;
+                        case '9999':
+                            // 系统错误
+                            this.$message.error(response.msg);
+                            break;
+                    }
+                });
+            },
+            OrderSubmitName() {
+                this.orderSubmitEvent = 'submitEvent';
             },
             /* 审核不通过 */
             not_examine() {
@@ -127,13 +238,12 @@
                     cancelButtonText: '取 消',
                     type: 'warning'
                 }).then(() => {
-                    this.$res.postData(this, '/Cash/examine/', {
+                    this.$res.postData(this, '/Exchange/examine/', {
                         examine: 0,
                         order_id: this.htmlArg.OrderID
                     }).then((response) => {
                         this.shenheDialog = false;
-                        this.$message.error('审核不通过');
-                        this.$res.getSingleData(this, '/Cash/get_order_list/').then((response) => {
+                        this.$res.postData(this, '/Exchange/query_audit_list/').then((response) => {
                             this.order_Msg.data = response.map((val) => {
                                 let res = val;
                                 val.OrderStatus == '4' && val.itemType == '2' && (res['充 值' + '_show'] = true);
@@ -143,6 +253,7 @@
                                 return res;
                             });
                         });
+                        this.$message.error('审核不通过');
                     });
                 }).catch(() => {
                     this.shenheDialog = false;
@@ -156,13 +267,12 @@
                     cancelButtonText: '取 消',
                     type: 'warning'
                 }).then(() => {
-                    this.$res.postData(this, '/Cash/examine/', {
+                    this.$res.postData(this, '/Exchange/examine/', {
                         examine: 1,
                         order_id: this.htmlArg.OrderID
                     }).then((response) => {
                         this.shenheDialog = false;
-                        this.$message.success('通过审核');
-                        this.$res.getSingleData(this, '/Cash/get_order_list/').then((response) => {
+                        this.$res.postData(this, '/Exchange/query_audit_list/').then((response) => {
                             this.order_Msg.data = response.map((val) => {
                                 let res = val;
                                 val.OrderStatus == '4' && val.itemType == '2' && (res['充 值' + '_show'] = true);
@@ -172,6 +282,7 @@
                                 return res;
                             });
                         });
+                        this.$message.success('通过审核');
                     });
                 }).catch(() => {
                     this.shenheDialog = false;
@@ -185,11 +296,10 @@
                     KuaiDiNumber: arg[0].KuaiDiNumber,
                     KuaiDiName: arg[0].KuaiDiName
                 };
-                this.$res.postData(this, '/Cash/update_examine_info/', param).then((response) => {
+                this.$res.postData(this, '/Exchange/update_examine_info/', param).then((response) => {
                     this.danhaoDialog = false;
                     this.danhaoDialogEvent = false;
-                    this.$message.success('设置成功');
-                    this.$res.postData(this, '/Cash/get_order_list/').then((response) => {
+                    this.$res.postData(this, '/Exchange/query_audit_list/').then((response) => {
                         this.order_Msg.data = response.map((val) => {
                             let res = val;
                             val.OrderStatus == '4' && val.itemType == '2' && (res['充 值' + '_show'] = true);
@@ -199,6 +309,7 @@
                             return res;
                         });
                     });
+                    this.$message.success('设置成功');
                 });
             },
             danhaoSubmitName() {
@@ -211,8 +322,8 @@
                     KuaiDiNumber: arg[0].KuaiDiNumber,
                     KuaiDiName: arg[0].KuaiDiName
                 };
-                this.$res.postData(this, '/Cash/edit_examine_info/', param).then((response) => {
-                    this.$res.postData(this, '/Cash/get_order_list/').then((response) => {
+                this.$res.postData(this, '/Exchange/edit_examine_info/', param).then((response) => {
+                    this.$res.postData(this, '/Exchange/query_audit_list/').then((response) => {
                         this.order_Msg.data = response.map((val) => {
                             let res = val;
                             val.OrderStatus == '4' && val.itemType == '2' && (res['充 值' + '_show'] = true);
@@ -263,5 +374,3 @@
         }
     }
 </script>
-
-

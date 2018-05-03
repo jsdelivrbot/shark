@@ -37,7 +37,7 @@
         /* 需要事件调用的方法放在methods内 */
         methods: {
             buyItem_submit(arg) {
-                this.$res.postData(this, '/Pay/buy_item_record/', arg[0]).then((response) => {
+                this.$res.postData(this, '/Buyitem/buy_item_record/', arg[0]).then((response) => {
                     let data = [],
                         item_data = [],
                         item_dict = {};
@@ -83,7 +83,7 @@
         /* 计算属性放于computed内 */
         computed: {},
         created() {
-            this.$res.postData(this, '/Pay/buy_item_record/', {
+            this.$res.postData(this, '/Buyitem/buy_item_record/', {
                 query_start_time: this.itemHtml.query_start_time,
                 query_end_time: this.itemHtml.query_end_time,
             }).then((response) => {

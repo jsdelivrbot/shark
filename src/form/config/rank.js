@@ -11,9 +11,9 @@ export function gameGoldForm() {
         "formEle": [{
             "label": "选择时间",
             "placeholder": "请选择开始时间和结束时间",
-            "type": "timeRange",
+            "type": "dateRange",
             "name": "query",
-            "span": 8
+            "span": 6
         }]
     }
 }

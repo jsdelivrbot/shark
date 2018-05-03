@@ -1,6 +1,6 @@
 <template>
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
-        <el-menu-item index="1" style="font-size: 24px">{{serverName2}} CMS管理系统</el-menu-item>
+        <el-menu-item index="1" style="font-size: 24px">{{serverName}} CMS管理系统</el-menu-item>
         <el-menu-item index="3">
             未处理的留言反馈<span style="margin: 0 6px; color: #ff6700;">{{feedback}}</span>条<span style="margin: 0 6px;">
         </el-menu-item>
@@ -28,8 +28,7 @@
                 defaultHtml: {},
                 feedback: '',
                 is_feedback: '',
-                serverName: location.hostname == 'product-cms-sharkfaith.com' ? '生产服' : '开发服',
-                serverName2: '鲨鱼互动'
+                serverName: (location.hostname == 'cms.oa.sharkfaith.com' ? '本地服' : (location.hostname == 'cms.oa.pokerhope.com' || '183.60.191.123' ? '开发服' : '模拟服'))
             };
         },
         methods: {
@@ -92,21 +91,21 @@
             this.headerDialogConfig = modityPassForm();
             /* 未处理留言反馈条数 */
             let _self = this;
-            _self.$res.postData(_self, '/Manu/get_feedback/', {
+            _self.$res.postData(_self, '/Kefu/get_feedback/', {
                 deal: 0
             }).then((response) => {
                 this.feedback = response.length;
             });
             /* 玩家昵称 */
-            this.$res.getSingleData(this, '/Aashare/user_info/').then((response) => {
+            this.$res.getSingleData(this, '/Cmsbase/user_info/').then((response) => {
                 window.userInfo = response;
             });
             /* 在线人数统计 */
-            this.$res.getSingleData(this, '/Aashare/room_info').then((response) => {
+            this.$res.getSingleData(this, '/Cmsbase/room_info').then((response) => {
                 window.roomInfo = response;
             });
             /* 所属角色 */
-            this.$res.getSingleData(this, '/Backend/get_role/').then((response) => {
+            this.$res.getSingleData(this, '/Cmsoa/get_role/').then((response) => {
                 window.role_list = response;
             });
         }
@@ -120,4 +119,8 @@
         background: #495060;
         border-radius: 0;
     }
+    .el-select-dropdown,
+        .el-picker-panel {
+            z-index: 99999 !important;
+        }
 </style>

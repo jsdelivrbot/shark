@@ -29,7 +29,7 @@
         </div>
         <!-- 落地页管理 -->
         <el-dialog title="新增落地页模板" width='30%' :visible.sync="createLdyFormDialog">
-            <ele-form :config="createLdyFormConfig" :eventname="submitCreateLdyEventName" v-on:receive="submitCreateLdy" :defaultdata="{'tp_url': 'http://product.sharkfaith.com'}">
+            <ele-form :config="createLdyFormConfig" :eventname="submitCreateLdyEventName" v-on:receive="submitCreateLdy" :defaultdata="{'tp_url': 'http://cms.oa.pokerhope.com:6600'}">
             </ele-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="createLdyFormDialog = false">取 消</el-button>
@@ -104,7 +104,7 @@
         methods: {
             /* 落地页管理 */
             ldy_query() {
-                this.$res.getSingleData(this, '/Channelapi/get_ldy_template/').then((response) => {
+                this.$res.getSingleData(this, '/Channel/get_ldy_template/').then((response) => {
                     this.ldyMsg.data = [];
                     this.ldyMsg.data = response;
                     this.$message.success('查询成功');
@@ -157,9 +157,9 @@
                 }
             },
             submitCreateLdy(arg) {
-                this.$res.postData(this, '/Channelapi/add_ldy_template/', arg[0]).then((response) => {
+                this.$res.postData(this, '/Channel/add_ldy_template/', arg[0]).then((response) => {
                     if (response.code == 0) {
-                        this.$res.getSingleData(this, '/Channelapi/get_ldy_template/').then((response) => {
+                        this.$res.getSingleData(this, '/Channel/get_ldy_template/').then((response) => {
                             this.ldyMsg.data = [];
                             this.ldyMsg.data = response;
                             this.$message.success('新增成功');
@@ -174,9 +174,9 @@
                 this.submitCreateLdyEventName = 'submit';
             },
             submitEditLdy(arg) {
-                this.$res.postData(this, '/Channelapi/edit_ldy_template/', arg[0]).then((response) => {
+                this.$res.postData(this, '/Channel/edit_ldy_template/', arg[0]).then((response) => {
                     if (response.code == 0) {
-                        this.$res.getSingleData(this, '/Channelapi/get_ldy_template/').then((response) => {
+                        this.$res.getSingleData(this, '/Channel/get_ldy_template/').then((response) => {
                             this.ldyMsg.data = [];
                             this.ldyMsg.data = response;
                             this.$message.success('编辑成功');
@@ -192,10 +192,10 @@
             },
             /* 渠道管理 */
             channel_query() {
-                this.$res.getSingleData(this, '/Channelapi/get_channel/').then((response) => {
+                this.$res.getSingleData(this, '/Channel/get_channel/').then((response) => {
                     this.channelMsg.data = response.map((data) => {
-                        let url = 'http://product.sharkfaith.com/ldy/';
-                        let download_url = 'http://product.sharkfaith.com/ldy/';
+                        let url = 'http://cms.oa.pokerhope.com:6600/ldy/';
+                        let download_url = 'http://cms.oa.pokerhope.com:6600/ldy/';
                         data.ldy_url = data.tp_id ? (url + data.tp_id) + '/index.html?channel_id=' + data.channel_id + '&masid=' + data.masid : '';
                         data.ldy_download_url = download_url + 'ldyApk/android/' + data.tp_id + '.apk';
                         return data;
@@ -210,7 +210,7 @@
                 this.editChannelDefault = arg[1];
             },
             submitCreateChannel(arg) {
-                this.$res.postData(this, '/Channelapi/add_channel/', arg[0]).then((response) => {
+                this.$res.postData(this, '/Channel/add_channel/', arg[0]).then((response) => {
                     if (response.code == 0) {
                         this.$message.success('新增成功');
                         this.channel_query();
@@ -238,7 +238,7 @@
         computed: {},
         created() {
             /* 落地页管理  - 查询 */
-            this.$res.getSingleData(this, '/Channelapi/get_ldy_template/').then((response) => {
+            this.$res.getSingleData(this, '/Channel/get_ldy_template/').then((response) => {
                 this.ldyMsg.data = [];
                 this.ldyMsg.data = response;
                 this.$message.success('查询成功');
@@ -253,10 +253,10 @@
                 });
             });
             /* 渠道管理 - 查询 */
-            this.$res.getSingleData(this, '/Channelapi/get_channel/').then((response) => {
+            this.$res.getSingleData(this, '/Channel/get_channel/').then((response) => {
                 this.channelMsg.data = response.map((data) => {
-                    let url = 'http://product.sharkfaith.com/ldy/';
-                    let download_url = 'http://product.sharkfaith.com/ldy/';
+                    let url = 'http://cms.oa.pokerhope.com:6600/ldy/';
+                    let download_url = 'http://cms.oa.pokerhope.com:6600/ldy/';
                     data.ldy_url = data.tp_id ? (url + data.tp_id) + '/index.html?channel_id=' + data.channel_id + '&masid=' + data.masid : '';
                     data.ldy_download_url = download_url + 'ldyApk/android/' + data.tp_id + '.apk';
                     return data;

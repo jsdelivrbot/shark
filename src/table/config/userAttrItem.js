@@ -1,5 +1,6 @@
 //引入数据处理方法
 import { itemTypeFormatter, resourceFormatter } from '@/libs/dataColumnFormatter'
+
 export function attrTable() {
     return {
         columns: [{

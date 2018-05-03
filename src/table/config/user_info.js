@@ -1,5 +1,5 @@
-import { transToTime, itemTypeFormatter, bigNumberFormatter, bankTranstFormatter, transtPlaceFormatter } from '@/libs/dataColumnFormatter'
-import { transToTime2, payStatusFormatter, payPlatformFormatter, orderStatusFormatter } from '@/libs/dataColumnFormatter'
+import { transToTime, itemTypeFormatter, bigNumberFormatter, bankTranstFormatter, transtPlaceFormatter, transToTime2, payStatusFormatter, payPlatformFormatter, orderStatusFormatter } from '@/libs/dataColumnFormatter'
+
 export function bagInfoTable() {
     return {
         //分页

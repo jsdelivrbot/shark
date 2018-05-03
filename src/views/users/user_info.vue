@@ -127,7 +127,7 @@ import {
     bankForm,
     bankChangeForm,
     unbindForm
-} from '@/form/config/user_data'
+} from '@/form/config/user_info'
 import {
     bagInfoTable,
     buyItemTable,
@@ -135,11 +135,11 @@ import {
     bankTable,
     rechargeTable,
     exchangeTable
-} from '@/table/config/user_data'
+} from '@/table/config/user_info'
 import userAttrItem from '@/components/libs/userAttrItem'
 // import brnn from '@/views/personal_data/brnn';
 export default {
-    name: 'user_data',
+    name: 'user_info',
     /* 组件内自行使用的数据可以在data内渲染 */
     data() {
         return {
@@ -239,7 +239,7 @@ export default {
             }
         },
         getUserInfo() {
-            this.$res.postData(this, '/User/get_user_info/', {
+            this.$res.postData(this, '/Userinfo/get_user_info/', {
                 open_user_id: this.open_user_id
             }).then((response) => {
                 if (response.code == -10005) {
@@ -261,7 +261,7 @@ export default {
         },
         /* 增减资源 */
         doResChange(arg) {
-            this.$res.postData(this, '/User/add_user_resource/', {
+            this.$res.postData(this, '/Userinfo/add_user_resource/', {
                 open_user_id: this.open_user_id,
                 type: arg.type,
                 res_and_item: this.editAttrAndItem
@@ -277,7 +277,7 @@ export default {
         },
         /* 增减银行资源 */
         doBankChange(arg) {
-            this.$res.postData(this, '/User/add_user_bank_resource/', {
+            this.$res.postData(this, '/Userinfo/add_user_bank_resource/', {
                 open_user_id: this.open_user_id,
                 type: arg.type,
                 amount: arg.amount,
@@ -294,7 +294,7 @@ export default {
         },
         /* 解绑手机号 */
         doUnbindPhone(arg) {
-            this.$res.postData(this, '/User/unbind_phone/', {
+            this.$res.postData(this, '/Userinfo/unbind_phone/', {
                 open_user_id: this.open_user_id
             }).then((response) => {
                 this.dialog.visible = false;
@@ -308,7 +308,7 @@ export default {
         },
         /* 解绑微信 */
         doUnbindWx(arg) {
-            this.$res.postData(this, '/User/unbind_wechat/', {
+            this.$res.postData(this, '/Userinfo/unbind_wechat/', {
                 open_user_id: this.open_user_id
             }).then((response) => {
                 this.dialog.visible = false;
@@ -322,8 +322,11 @@ export default {
         },
         /* 封号 */
         doFreeze(arg) {
-            this.$res.postData(this, '/User/user_freeze/', {
-                open_user_id: this.open_user_id
+            console.log(arg);
+            this.$res.postData(this, '/Userinfo/user_freeze/', {
+                open_user_id: this.open_user_id,
+                reason: arg.extra,
+                operator: localStorage.getItem('Username')
             }).then((response) => {
                 this.dialog.visible = false;
                 if (response.code == 0) {
@@ -336,8 +339,10 @@ export default {
         },
         /* 解封 */
         doUnfreeze(arg) {
-            this.$res.postData(this, '/User/user_unfreeze/', {
-                open_user_id: this.open_user_id
+            this.$res.postData(this, '/Userinfo/user_unfreeze/', {
+                open_user_id: this.open_user_id,
+                reason: arg.extra,
+                operator: localStorage.getItem('Username')
             }).then((response) => {
                 this.dialog.visible = false;
                 if (response.code == 0) {
@@ -366,7 +371,7 @@ export default {
                 open_user_id: this.open_user_id,
                 TradeType: arg[0].TradeType
             };
-            this.$res.postData(this, '/User/bank_record/', param).then((response) => {
+            this.$res.postData(this, '/Userinfo/bank_record/', param).then((response) => {
                 this.bankMsg.data = [];
                 this.bankMsg.data = response;
             });
@@ -374,7 +379,7 @@ export default {
         /* 充值记录 */
         recharge_btn() {
             this.rechargeLoading = true;
-            this.$res.postData(this, '/User/query_user_recharge/', {
+            this.$res.postData(this, '/Userinfo/query_user_recharge/', {
                 open_user_id: this.open_user_id
             }).then((response) => {
                 this.rechargeMsg.data = [];
@@ -386,7 +391,7 @@ export default {
         /* 兑换记录 */
         exchange_btn() {
             this.exchangeLoading = true;
-            this.$res.postData(this, '/User/query_user_exchange/', {
+            this.$res.postData(this, '/Userinfo/query_user_exchange/', {
                 open_user_id: this.open_user_id
             }).then((response) => {
                 this.exchangeMsg.data = [];

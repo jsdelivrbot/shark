@@ -34,6 +34,11 @@ export function registerChart() {
         year: '%Y'
       }
     },
+    yAxis: {
+      title: {
+        text: '数值'
+      }
+    },
     legend: {
       enabled: true
     },

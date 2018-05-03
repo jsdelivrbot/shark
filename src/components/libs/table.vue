@@ -17,7 +17,7 @@
             <el-table-column v-for="col in tableConfigData.columns" :key="col.name" :prop="col.name" :label="col.title" :width="col.width" :min-width="col.minWidth" :fixed="col.fixed" :sortable="col.sortable" :formatter="col.formatter" :align="col.align">
                 <template scope="scope">
                     <div v-if="col.template && col.template.btns">
-                        <el-button v-for="btn in col.template.btns" size="small" :key="btn.name" :type="btn.type" v-if="!btn.if||scope.row[btn.name+'_'+'show']" @click="outPutRow(scope.$index, scope.row,btn.funcName,scope)">{{btn.name}}</el-button>
+                        <el-button v-for="btn in col.template.btns" size="small" :disabled="btn.disabled" :key="btn.name" :type="btn.type" v-if="!btn.if||scope.row[btn.name+'_'+'show']" @click="outPutRow(scope.$index, scope.row,btn.funcName,scope)">{{btn.name}}</el-button>
                     </div>
                     <div v-if="col.template&&col.template.user_link">
                         <a :href="pathname+'#/users/user_info?userid='+scope.row[col.name]" target="_blank" :style="{'color':'#20A0FF'}">{{scope.row[col.name]}}</a>
@@ -29,7 +29,7 @@
                 <el-table-column v-for="sub_col in col.sub" :key="sub_col.name" :prop="sub_col.name" :label="sub_col.title" :width="sub_col.width" :sortable="sub_col.sortable" :fixed="sub_col.fixed" :formatter="sub_col.formatter">
                     <template scope="scope">
                         <div v-if="sub_col.template && sub_col.template.btns">
-                            <el-button v-for="btn in sub_col.template.btns" size="small" :key="btn.name" :type="btn.type" v-if="!btn.if||scope.row[btn.name+'_'+'show']" @click="outPutRow(scope.$index, scope.row,btn.funcName,scope)">{{btn.name}}</el-button>
+                            <el-button v-for="btn in sub_col.template.btns" size="small" :disabled="btn.disabled" :key="btn.name" :type="btn.type" v-if="!btn.if||scope.row[btn.name+'_'+'show']" @click="outPutRow(scope.$index, scope.row,btn.funcName,scope)">{{btn.name}}</el-button>
                         </div>
                         <div v-if="sub_col.template&&sub_col.template.user_link">
                             <a :href="pathname+'#/users/user_info?userid='+scope.row[col.name]" target="_blank" :style="{'color':'#20A0FF'}">{{scope.row[col.name]}}</a>
@@ -70,7 +70,8 @@ export default {
         },
         //搜索方法
         handleIconClick() {
-            this.$emit('message', this.inputSearch);
+            this.searchData();
+            // this.$emit('message', this.inputSearch);
         },
         //数据行按钮方法
         outPutRow() {
@@ -129,26 +130,27 @@ export default {
     computed: {
         //数据渲染方法
         tableData: function() {
-            if (!this.parentMessage || !this.parentMessage.data) {
-                return [];
-            }
-            let returnData = [];
-            this.parentMessage.data.map(function(val, i) {
-                if (!val.noMatch) {
-                    returnData.push(val);
-                }
-            });
-            let _self = this;
-            if (this.parentMessage.pagination && !this.parentMessage.serverPagination) {
-                returnData = returnData.filter((val, i) => {
-                    if (i < (_self.pageSize * _self.currentPage) && i >= (_self.pageSize * (_self.currentPage - 1))) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                });
-            }
-            return returnData;
+            return this.searchData();
+            // if (!this.parentMessage || !this.parentMessage.data) {
+            //     return [];
+            // }
+            // let returnData = [];
+            // this.parentMessage.data.map(function(val, i) {
+            //     if (!val.noMatch) {
+            //         returnData.push(val);
+            //     }
+            // });
+            // let _self = this;
+            // if (this.parentMessage.pagination && !this.parentMessage.serverPagination) {
+            //     returnData = returnData.filter((val, i) => {
+            //         if (i < (_self.pageSize * _self.currentPage) && i >= (_self.pageSize * (_self.currentPage - 1))) {
+            //             return true;
+            //         } else {
+            //             return false;
+            //         }
+            //     });
+            // }
+            // return returnData;
         },
         tableConfigData: function() {
             // console.log(this.parentMessage.columns);

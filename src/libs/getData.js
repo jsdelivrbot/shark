@@ -4,7 +4,7 @@
 export function getSingleData(self, url, option) {
     return self.$http.get(url, option).then((response) => {
         let data = response.body;
-        if (data.result === 'success' || data.code === 0 || data.code === 1) {
+        if (data.code === 0) {
             let res = Object.prototype.toString.call(data.data).match(/Array/) ? data.data : data.data;
             return res;
         } else {
@@ -20,7 +20,7 @@ export function getSingleData(self, url, option) {
 export function getJsonpData(self, url, option) {
     return self.$http.jsonp(url, option).then((response) => {
         let data = response.body;
-        if (data.result === 'success' || data.code === 0) {
+        if (data.code === 0) {
             return data.data ? data.data : data;
         } else {
             console.warn(data.data);
@@ -36,7 +36,7 @@ export function getJsonpData(self, url, option) {
 export function postData(self, url, body, option) {
     return self.$http.post(url, body, option).then((response) => {
         let data = response.body;
-        if (data.result === 'success' || data.code === 0) {
+        if (data.code === 0) {
             return data.data ? data.data : data;
         } else {
             console.warn(data.data);
@@ -52,7 +52,7 @@ export function postData(self, url, body, option) {
 export function putData(self, url, body, option) {
     return self.$http.put(url, body, option).then((response) => {
         let data = response.body;
-        if (data.result === 'success' || data.code === 0) {
+        if (data.code === 0) {
             return data.data ? data.data : data;
         } else {
             console.warn(data.data);
@@ -68,7 +68,7 @@ export function putData(self, url, body, option) {
 export function deleteData(self, url, option) {
     return self.$http.delete(url, option).then((response) => {
         let data = response.body;
-        if (data.result === 'success' || data.code === 0) {
+        if (data.code === 0) {
             return data.data ? data.data : data;
         } else {
             console.warn(data.data);
@@ -94,7 +94,7 @@ export function loginData(self, url, body, option) {
     localStorage.removeItem('user_permit');
     return self.$http.post(url, body, option).then((response) => {
         let data = response.body;
-        if (data.result === 'success' || data.code === 0) {
+        if (data.code === 0) {
             localStorage.setItem('user_permit', JSON.stringify(data.data));
             return 'success';
         } else {

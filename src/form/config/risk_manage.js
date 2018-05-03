@@ -1,24 +1,24 @@
-export function phoneBlackForm() {
-    return {
-        "inline": true,
-        "btnSpan": 18,
-        "btns": [{
-            "name": "query",
-            "title": "查 询",
-            "valid": false
-        }, {
-            "name": "separate",
-            "title": "根据手机号解绑",
-            "valid": false,
-            "type": "success"
-        }, {
-            "name": "pull",
-            "title": "增加手机号黑名单",
-            "valid": false,
-            "type": "danger"
-        }],
-    }
-}
+// export function phoneBlackForm() {
+//     return {
+//         "inline": true,
+//         "btnSpan": 18,
+//         "btns": [{
+//             "name": "query",
+//             "title": "查 询",
+//             "valid": false
+//         }, {
+//             "name": "separate",
+//             "title": "根据手机号解绑",
+//             "valid": false,
+//             "type": "success"
+//         }, {
+//             "name": "pull",
+//             "title": "增加手机号黑名单",
+//             "valid": false,
+//             "type": "danger"
+//         }],
+//     }
+// }
 
 //根据手机号解绑黑名单弹窗
 export function phoneBlackDialogForm() {
@@ -71,21 +71,21 @@ export function freezeForm() {
     }
 }
 
-export function nicknameForm() {
-    return {
-        "inline": true,
-        "btnSpan": 12,
-        "btns": [{
-            "name": "query",
-            "title": "查 询",
-            "valid": false
-        }],
-        "formEle": [{
-            "label": "昵 称",
-            "placeholder": "请输入昵称，可部分输入",
-            "type": "text",
-            "name": "nickname",
-            "span": 6
-        }]
-    }
-}
+// export function nicknameForm() {
+//     return {
+//         "inline": true,
+//         "btnSpan": 12,
+//         "btns": [{
+//             "name": "query",
+//             "title": "查 询",
+//             "valid": false
+//         }],
+//         "formEle": [{
+//             "label": "昵 称",
+//             "placeholder": "请输入昵称，可部分输入",
+//             "type": "text",
+//             "name": "nickname",
+//             "span": 6
+//         }]
+//     }
+// }

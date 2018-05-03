@@ -23,7 +23,7 @@ export default {
             channel_config: channleAnalyzeForm(),
             channel_Msg: channelAnalyzeTable(),
             defaultHtml: {
-                date_start_time: parseInt(((new Date().getTime() + (3600 * 8 * 1000) - (new Date().getTime() + (3600 * 8 * 1000)) % (3600 * 24 * 1000)) / 1000 - (3600 * 8)) - 3600 * 24 * 6),
+                date_start_time: parseInt(((new Date().getTime() + (3600 * 8 * 1000) - (new Date().getTime() + (3600 * 8 * 1000)) % (3600 * 24 * 1000)) / 1000 - (3600 * 8)) - 3600 * 24 * 29),
                 date_end_time: parseInt(((new Date().getTime() + (3600 * 8 * 1000) - (new Date().getTime() + (3600 * 8 * 1000)) % (3600 * 24 * 1000)) / 1000 - (3600 * 8)) + 3600 * 24 - 1)
             }
         }
@@ -35,7 +35,7 @@ export default {
         /* 查询 */
         channel_submit(arg) {
             this.loading = true;
-            this.$res.postData(this, '/Ldy/get_visit_download_info/', arg[0]).then((response) => {
+            this.$res.postData(this, '/Channel/get_visit_download_info/', arg[0]).then((response) => {
                 let data = [],
                     ldy_data = [],
                     ldy_dict = {};
@@ -79,7 +79,7 @@ export default {
         let baseChannleConfig = channleAnalyzeForm();
         if (!window.channle_info) {
             let channel_list = new Promise((resolve, reject) => {
-                _self.$res.getSingleData(_self, '/Channelapi/get_channel/').then((response) => {
+                _self.$res.getSingleData(_self, '/Channel/get_channel/').then((response) => {
                     if (response) {
                         resolve(response);
                     } else {
@@ -111,7 +111,7 @@ export default {
 
         /* 自动查询 */
         _self.loading = true;
-        _self.$res.postData(_self, '/Ldy/get_visit_download_info/', {
+        _self.$res.postData(_self, '/Channel/get_visit_download_info/', {
             date_start_time: _self.defaultHtml.date_start_time,
             date_end_time: _self.defaultHtml.date_end_time
         }).then((response) => {

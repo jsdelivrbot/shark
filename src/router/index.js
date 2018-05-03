@@ -6,18 +6,19 @@ import login from '@/views/login'
 /* 最新版 start */
 // 我的桌面
 import index from "@/views/index"; /* 我的桌面 */
-// 游戏总览 gobal
-import overview from "@/views/gobal/overview"; /* 游戏总览 */
-import real_time from "@/views/gobal/real_time"; /* 实时数据 */
+// 游戏总览 global
+import summary from "@/views/global/summary"; /* 日报汇总 */
+import real_time from "@/views/global/real_time"; /* 实时数据 */
 // 数据分析 analyse
 import user_analysis from "@/views/analyse/user_analysis"; /* 用户分析 */
 import look_cards from "@/views/analyse/look_cards"; /* 看牌抢庄 */
 import mini_game from "@/views/analyse/mini_game"; /* 小游戏 */
 import rank from "@/views/analyse/rank"; /* 排行榜 */
 import pay_analysis from "@/views/analyse/pay_analysis"; /* 付费分析 */
+import miniactivity from '@/views/analyse/miniactivity'; /* 任务分析 */
+import buried_point from "@/views/analyse/buried_point"; /* 埋点数据 */
+import product_consume from "@/views/analyse/product_consume"; /* 产出消耗 */
 import buy_item from "@/views/analyse/buy_item"; /* 道具购买分析 */
-import timing from "@/views/analyse/timing"; /* 定时奖励 */
-import buried_point from "@/views/analyse/buried_point"; /* 定时奖励 */
 // 用户管理 users
 import user_info from "@/views/users/user_info"; /* 用户信息 */
 import risk_manage from "@/views/users/risk_manage"; /* 封禁管理 */
@@ -32,8 +33,11 @@ import payment_order from "@/views/pay/payment_order"; /* 支付订单 */
 // 兑换管理 exchange
 import exchange_audit from "@/views/exchange/exchange_audit"; /* 兑换审核 */
 import exchange_record from "@/views/exchange/exchange_record"; /* 兑换记录 */
+import kami from "@/views/exchange/kami"; /* 卡密 */
 // 客服工具
 import feedback from "@/views/kefu/feedback"; /* 问题反馈 */
+import report from "@/views/kefu/report"; /* 举报管理 */
+import realname from "@/views/kefu/realname"; /* 实名认证 */
 // 鹰眼系统 hawkeye
 import eye from "@/views/hawkeye/eye";
 // 游戏配置 deploy
@@ -68,11 +72,11 @@ export default new Router({
         name: 'index',
         component: index
     }, {
-        path: '/gobal/overview',
-        name: 'overview',
-        component: overview
+        path: '/global/summary',
+        name: 'summary',
+        component: summary
     }, {
-        path: '/gobal/real_time',
+        path: '/global/real_time',
         name: 'real_time',
         component: real_time
     }, {
@@ -96,13 +100,17 @@ export default new Router({
         name: 'pay_analysis',
         component: pay_analysis
     }, {
+        path: '/analyse/miniactivity',
+        name: 'miniactivity',
+        component: miniactivity
+    }, {
+        path: '/analyse/product_consume',
+        name: 'product_consume',
+        component: product_consume
+    }, {
         path: '/analyse/buy_item',
         name: 'buy_item',
         component: buy_item
-    }, {
-        path: '/analyse/timing',
-        name: 'timing',
-        component: timing
     }, {
         path: '/analyse/buried_point',
         name: 'buried_point',
@@ -147,6 +155,10 @@ export default new Router({
         path: '/exchange/exchange_record',
         name: 'exchange_record',
         component: exchange_record
+    }, {
+        path: '/exchange/kami',
+        name: 'kami',
+        component: kami
     }, {
         path: '/hawkeye/eye',
         name: 'eye',
@@ -199,6 +211,14 @@ export default new Router({
         path: '/kefu/feedback',
         name: 'feedback',
         component: feedback
+    }, {
+        path: '/kefu/report',
+        name: 'report',
+        component: report
+    }, {
+        path: '/kefu/realname',
+        name: 'realname',
+        component: realname
     }, {
         path: '/cms/account',
         name: 'account',

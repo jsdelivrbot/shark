@@ -1,4 +1,5 @@
 import { bigNumberFormatter, transToTime } from '@/libs/dataColumnFormatter'
+
 export function gameGoldTable() {
     return {
         //导出按钮

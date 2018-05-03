@@ -19,7 +19,7 @@
             <el-table-column v-for="col in tableConfigData.columns" :key="col.name" :prop="col.name" :label="col.title" :sortable="col.sortable" :formatter="col.formatter" :width="col.width" :align="col.align" :fixed="col.fixed">
                 <template scope="scope">
                     <div v-if="col.template">
-                        <el-button v-for="btn in col.template.btns" :size="small" :key="btn.name" :type="btn.type" @click="outPutRow(scope.$index, scope.row, btn.funcName)">{{btn.name}}</el-button>
+                        <el-button v-for="btn in col.template.btns" :size="small" :disabled="btn.disabled" :key="btn.name" :type="btn.type" @click="outPutRow(scope.$index, scope.row, btn.funcName)">{{btn.name}}</el-button>
                     </div>
                     <div v-if="col.template&&col.template.user_link">
                         <a :href="pathname+'#/users/user_info?userid='+scope.row[col.name]" target="_blank" :style="{'color':'#20A0FF'}">{{scope.row[col.name]}}</a>
@@ -31,7 +31,7 @@
                 <el-table-column v-for="sub_col in col.sub" :key="sub_col.name" :prop="sub_col.name" :label="sub_col.title" :sortable="sub_col.sortable" :formatter="sub_col.formatter" :width="sub_col.width" :align="sub_col.align" :fixed="sub_col.fixed">
                     <template scope="scope">
                         <div v-if="sub_col.template">
-                            <el-button v-for="btn in sub_col.template.btns" size="small" :key="btn.name" :type="btn.type" @click="outPutRow(scope.$index, scope.row,btn.funcName)">{{btn.name}}</el-button>
+                            <el-button v-for="btn in sub_col.template.btns" size="small" :disabled="btn.disabled" :key="btn.name" :type="btn.type" @click="outPutRow(scope.$index, scope.row,btn.funcName)">{{btn.name}}</el-button>
                         </div>
                         <div v-if="sub_col.template&&sub_col.template.user_link">
                             <a :href="pathname+'#/users/user_info?userid='+scope.row[sub_col.name]" target="_blank" style="color:#20A0FF;">{{scope.row[sub_col.name]}}</a>

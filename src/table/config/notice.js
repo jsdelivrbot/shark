@@ -1,4 +1,5 @@
 import { transToTime, noticeChanjingFormatter, noticeShowPlaceFormatter, noticeGameIDFormatter, noticeServerIDFormatter } from '@/libs/dataColumnFormatter'
+
 export function noticeTable() {
     return {
         //导出按钮

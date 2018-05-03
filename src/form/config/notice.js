@@ -52,15 +52,44 @@ export function noticeForm() {
             "label": "渠道",
             "placeholder": "请选择发送的渠道",
             "type": "select",
-            "options": [],
+            "options": [{
+                value: 10001,
+                label: '自渠道'
+            }, {
+                value: 10002,
+                label: '应用宝'
+            }, {
+                value: 10003,
+                label: '新浪微博'
+            }, {
+                value: 10004,
+                label: '网易新闻'
+            }, {
+                value: 10005,
+                label: '讯飞'
+            }],
             "name": "channel_id",
+            'multiple': true,
             "span": 6
         }, {
             "label": "帐号类型",
             "placeholder": "请选择帐号类型",
             "type": "select",
-            "options": [],
+            "options": [{
+                value: 1,
+                label: '微信帐号'
+            }, {
+                value: 2,
+                label: 'QQ帐号'
+            }, {
+                value: 3,
+                label: '手机账号'
+            }, {
+                value: 4,
+                label: '游客账号'
+            }],
             "name": "account_id",
+            'multiple': true,
             "span": 6
         }, {
             "label": "玩家ID",

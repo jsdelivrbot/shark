@@ -723,3 +723,74 @@ export function bigNumberMoneyFormatter(cellValue) {
     let num = ((cellValue || 0) / 100).toFixed(2);
     return num ? (num + '').replace(/\d(?=(\d{3})+(\.\d{1,2})?$)/g, ($1) => { return $1 + ',' }) : 0;
 }
+
+export function pushTypeFormatter(row, columns, result) {
+    let res = '';
+    switch (result) {
+        case 0:
+            res = '定时任务';
+            break;
+        case 1:
+            res = '临时通知';
+            break;
+    }
+    return res;
+}
+
+export function pushStatusFormatter(row, columns, result) {
+    let res = '';
+    switch (result) {
+        case 0:
+            res = '推送成功';
+            break;
+        case 1:
+            res = '推送失败';
+            break;
+    }
+    return res;
+}
+
+export function pushPlatformFormatter(row, columns, result) {
+    let res = '';
+    switch (result) {
+        case 'all':
+            res = 'IOS、Android';
+            break;
+        case 'ios':
+            res = 'IOS';
+            break;
+        case 'android':
+            res = 'android';
+
+    }
+    return res;
+}
+
+export function isRealNameCnFormatter(row, columns, result) {
+    let res = '';
+    switch (result) {
+        case 0: 
+            res = '未成年';
+            break;
+        case 1:
+            res = '成年';
+            break;
+    }
+    return res;
+}
+
+export function realNameStateFormatter(row, columns, result) {
+    let res = '';
+    switch (result) {
+        case 0:
+            res = '未验证';
+            break;
+        case 1:
+            res = '信息真实';
+            break;
+        case 2:
+            res = '信息虚假';
+            break;
+    }
+    return res;
+}

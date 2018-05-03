@@ -1,4 +1,5 @@
 import { transToTime2, payStatusFormatter, payPlatformFormatter } from '@/libs/dataColumnFormatter'
+
 export function payRecordTable() {
     return {
         //导出按钮

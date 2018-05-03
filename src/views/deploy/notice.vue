@@ -91,7 +91,7 @@
                 }, {
                     value: 'gold',
                     label: '金币'
-                }, { 
+                }, {
                     value: 'zuan',
                     label: '钻石'
                 }],
@@ -133,7 +133,7 @@
                 let _self = this;
                 let showPlace = this.editorHtml[0].showPlace;
                 if (showPlace == 0) {
-                    _self.$res.postData(_self, '/Manu/push_notification/', {
+                    _self.$res.postData(_self, '/Notice/push_notification/', {
                         jumpID: this.editorHtml[0].jumpID, //前往场景
                         showPlace: this.editorHtml[0].showPlace, //显示场合
                         gameKindID: '', //选择游戏
@@ -159,7 +159,7 @@
                         }
                     });
                 } else if (showPlace == 1) {
-                    _self.$res.postData(_self, '/Manu/push_notification/', {
+                    _self.$res.postData(_self, '/Notice/push_notification/', {
                         jumpID: this.editorHtml[0].jumpID,
                         showPlace: this.editorHtml[0].showPlace,
                         gameKindID: JSON.stringify(this.editorHtml[0].gameKindID),
@@ -185,7 +185,7 @@
                         }
                     });
                 } else if (showPlace == 2) {
-                    _self.$res.postData(_self, '/Manu/push_notification/', {
+                    _self.$res.postData(_self, '/Notice/push_notification/', {
                         jumpID: this.editorHtml[0].jumpID,
                         showPlace: this.editorHtml[0].showPlace,
                         gameKindID: JSON.stringify(this.editorHtml[0].gameKindID),
@@ -215,7 +215,7 @@
             /* 走马灯列表 */
             //查询
             notice_list_submit(arg) {
-                this.$res.postData(this, '/Manu/get_notice_list/', arg[0]).then((response) => {
+                this.$res.postData(this, '/Notice/query_notice_list/', arg[0]).then((response) => {
                     this.notice_msg.data = [];
                     this.notice_msg.data = response;
                     this.$message.success('查询成功');
@@ -238,7 +238,7 @@
             let baseNoticeConfig = noticeForm();
             if (!window.changjing) {
                 let changjing_list = new Promise((resolve, reject) => {
-                    _self.$res.getSingleData(_self, '/Manu/init_notice/').then((response) => {
+                    _self.$res.getSingleData(_self, '/Notice/init_notice/').then((response) => {
                         if (response) {
                             resolve(response);
                         } else {
@@ -286,7 +286,7 @@
                 _self.notice_config = _self.$res.deepClone(baseNoticeConfig);
             }
             /* 走马灯列表 - 查询 */
-            this.$res.postData(this, '/Manu/get_notice_list/', {
+            this.$res.postData(this, '/Notice/query_notice_list/', {
                 query_start_time: this.noticeListHtml.query_start_time,
                 query_end_time: this.noticeListHtml.query_end_time
             }).then((response) => {

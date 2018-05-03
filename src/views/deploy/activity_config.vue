@@ -219,7 +219,7 @@
         methods: {
             query_activity() {
                 this.temp1loading = true;
-                this.$res.postData(this, '/Activity/query_activity/').then((response) => {
+                this.$res.postData(this, '/Activityconfig/query_activity/').then((response) => {
                     this.temp1_Msg.data = [];
                     this.temp1_Msg.data = response;
                     this.temp1loading = false;
@@ -228,7 +228,7 @@
             },
             query_bannerAct() {
                 this.temp2loading = true;
-                this.$res.postData(this, '/Activity/query_banner_chain/').then((response) => {
+                this.$res.postData(this, '/Activityconfig/query_banner_chain/').then((response) => {
                     this.bannerAct_Msg.data = [];
                     this.bannerAct_Msg.data = response;
                     this.temp2loading = false;
@@ -270,7 +270,7 @@
                     TabType: this.editorHtml[0].TabType,
                     TempID: 1
                 };
-                this.$res.postData(this, '/Activity/add_activity/', param).then((response) => {
+                this.$res.postData(this, '/Activityconfig/add_activity/', param).then((response) => {
                     this.temp_1_dialog = false;
                     this.temp_1_dialog_event = false;
                     if (response.code == 0) {
@@ -315,7 +315,7 @@
                     TabType: this.temp2Html[0].TabType,
                     TempID: 2
                 };
-                this.$res.postData(this, '/Activity/add_activity/', param).then((response) => {
+                this.$res.postData(this, '/Activityconfig/add_activity/', param).then((response) => {
                     this.temp_2_dialog = false;
                     this.temp_2_dialog_event = false;
                     if (response.code == 0) {
@@ -334,20 +334,21 @@
             },
             task_2_dialog_submit(arg) {
                 let param = {
-                    ActivityID: arg[0].ActivityID,
-                    TaskID: arg[0].TaskID,
-                    SortID: arg[0].SortID,
-                    TaskDesc: arg[0].TaskDesc,
-                    TaskNum: arg[0].TaskNum,
-                    FrontTask: arg[0].FrontTask,
-                    Jump: arg[0].Jump,
-                    res_and_item: JSON.stringify(this.editAttrAndItem),
-                    Recharge: arg[0].Recharge,
-                    DayLimitCount: arg[0].DayLimitCount,
-                    WeekLimitCount: arg[0].WeekLimitCount,
-                    TotalLimitCount: arg[0].TotalLimitCount
+                    ActivityID: arg[0].ActivityID, //活动ID
+                    TaskID: arg[0].TaskID,//任务ID
+                    SortID: arg[0].SortID,//排序
+                    TaskDesc: arg[0].TaskDesc,//任务说明
+                    TaskType: arg[0].TaskType, //任务类型
+                    TaskNum: arg[0].TaskNum,//任务数量
+                    FrontTask: arg[0].FrontTask,//任务编号
+                    Jump: arg[0].Jump,//按钮跳转
+                    res_and_item: JSON.stringify(this.editAttrAndItem),//物品
+                    Recharge: arg[0].Recharge,//充值额度
+                    DayLimitCount: arg[0].DayLimitCount,//日次数
+                    WeekLimitCount: arg[0].WeekLimitCount,//周次数
+                    TotalLimitCount: arg[0].TotalLimitCount,//总次数
                 };
-                this.$res.postData(this, '/Activity/add_banner_chain/', param).then((response) => {
+                this.$res.postData(this, '/Activityconfig/add_banner_chain/', param).then((response) => {
                     this.task_2_dialog = false;
                     this.task_2_dialog_event = false;
                     if (response.code == 0) {
@@ -395,7 +396,7 @@
                     TabType: this.temp3Html[0].TabType,
                     TempID: 3
                 };
-                this.$res.postData(this, '/Activity/add_activity/', param).then((response) => {
+                this.$res.postData(this, '/Activityconfig/add_activity/', param).then((response) => {
                     this.temp_3_dialog = false;
                     this.temp_3_dialog_event = false;
                     if (response.code == 0) {
@@ -442,7 +443,7 @@
                     TabType: this.notice1Html[0].TabType,
                     TempID: 4
                 };
-                this.$res.postData(this, '/Activity/add_notice/', param).then((response) => {
+                this.$res.postData(this, '/Activityconfig/add_notice/', param).then((response) => {
                     this.temp_4_notice_1_dialog = false;
                     this.temp_4_notice_dialog_event = false;
                     if (response.code == 0) {
@@ -489,7 +490,7 @@
                     TabType: this.notice2Html[0].TabType,
                     TempID: 5
                 };
-                this.$res.postData(this, '/Activity/add_notice/', param).then((response) => {
+                this.$res.postData(this, '/Activityconfig/add_notice/', param).then((response) => {
                     this.temp_4_notice_2_dialog = false;
                     this.temp_4_notice2_dialog_event = false;
                     if (response.code == 0) {
@@ -536,7 +537,7 @@
                     TabType: this.notice3Html[0].TabType,
                     TempID: 6
                 };
-                this.$res.postData(this, '/Activity/add_notice/', param).then((response) => {
+                this.$res.postData(this, '/Activityconfig/add_notice/', param).then((response) => {
                     this.temp_4_notice_3_dialog = false;
                     this.temp_4_notice3_dialog_event = false;
                     if (response.code == 0) {
@@ -552,7 +553,7 @@
             /* 查询 公告列表 */
             query_notice_btn() {
                 this.noticeloading = true;
-                this.$res.postData(this, '/Activity/query_notice/').then((response) => {
+                this.$res.postData(this, '/Activityconfig/query_notice/').then((response) => {
                     this.notice_Msg.data = [];
                     this.notice_Msg.data = response;
                     this.noticeloading = false;
@@ -578,7 +579,7 @@
             /* 任务类型 */
             if (!window.taskType) {
                 let task_list = new Promise((resolve, reject) => {
-                    _self.$res.getSingleData(_self, '/Activitypoints/point_task_type_id/').then((response) => {
+                    _self.$res.getSingleData(_self, '/Activityconfig/query_taskChain_list/').then((response) => {
                         if (response) {
                             resolve(response);
                         } else {
@@ -599,8 +600,8 @@
                 response.map((val, i) => {
                     if (i >= 0) {
                         baseActivityTaskConfig.formEle[6].options.push({
-                            value: val.PointTaskTypeID,
-                            label: val.TaskDescribe + '-' + val.PointTaskTypeID
+                            value: val.TaskChainTypeID,
+                            label: val.TaskChainDesc + '-' + val.TaskChainTypeID
                         });
                     }
                 });
@@ -609,5 +610,3 @@
         }
     }
 </script>
-
-

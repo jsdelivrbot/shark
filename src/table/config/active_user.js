@@ -1,7 +1,4 @@
-import {
-  transToTime,
-  bigNumberFormatter
-} from '@/libs/dataColumnFormatter'
+import { transToTime, bigNumberFormatter } from '@/libs/dataColumnFormatter'
 export function serveyTable() {
   return {
     //导出按钮

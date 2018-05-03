@@ -23,10 +23,10 @@ import {
 import {
     lookcardSingleFrom,
     lookcardQxForm
-} from '@/form/config/look_card'
+} from '@/form/config/look_cards'
 import {
     lookcardSingleTable
-} from '@/table/config/look_card'
+} from '@/table/config/look_cards'
 import {
     lookcardChart
 } from '@/chart/config/lookcardChart'
@@ -61,7 +61,7 @@ export default {
         /* 曲线图 */
         lookcard_qx_submit(arg) {
             let _self = this;
-            _self.$res.postData(_self, '/Gamedata/lookCard_single/', {
+            _self.$res.postData(_self, '/Lookcards/lookCard_single/', {
                 KindID: 10004,
                 query_start_time: arg[0].query_start_time,
                 query_end_time: arg[0].query_end_time
@@ -102,7 +102,7 @@ export default {
         lookcard_single_submit(arg) {
             let _self = this;
             _self.loading = true;
-            _self.$res.postData(_self, '/Gamedata/lookCard_single/', {
+            _self.$res.postData(_self, '/Lookcards/lookCard_single/', {
                 KindID: 10004,
                 query_start_time: arg[0].query_start_time,
                 query_end_time: arg[0].query_end_time
@@ -125,7 +125,7 @@ export default {
     created() {
         /* 单局记录 */
         let _self = this;
-        _self.$res.postData(_self, '/Gamedata/lookCard_single/', {
+        _self.$res.postData(_self, '/Lookcards/lookCard_single/', {
             KindID: 10004,
             query_start_time: _self.defaultTime.query_start_time,
             query_end_time: _self.defaultTime.query_end_time
@@ -135,7 +135,7 @@ export default {
         });
 
         /* 曲线图 */
-        _self.$res.postData(_self, '/Gamedata/lookCard_single/', {
+        _self.$res.postData(_self, '/Lookcards/lookCard_single/', {
             KindID: 10004,
             query_start_time: _self.qxdefaultHtml.query_start_time,
             query_end_time: _self.qxdefaultHtml.query_end_time
@@ -171,6 +171,39 @@ export default {
                 visible: true
             }];
         });
+        /* 获取游戏房间 */
+        let baseqxConfig = lookcardQxForm();
+        if (!window.roomInfo) {
+            let roominfo_list = new Promise((resolve, reject) => {
+                _self.$res.getSingleData(_self, '/Cmsbase/room_info/').then((response) => {
+                    if (response) {
+                        resolve(response);
+                    } else {
+                        reject('error');
+                    }
+                });
+            });
+            roominfo_list.then((response) => {
+                window.roomInfo = response;
+                fillRoomList(response);
+            }, () => {
+                _self.$message.error('获取游戏房间列表失败');
+            });
+        } else {
+            fillRoomList(window.roomInfo);
+        }
+
+        function fillRoomList(response) {
+            response.map((k, v) => {
+                if (v >= 0) {
+                    baseqxConfig.formEle[1].options.push({
+                        value: k.ServerID,
+                        label: k.ServerName + '-' + k.ServerID
+                    });
+                }
+            });
+            _self.lookcard_qx_config = _self.$res.deepClone(baseqxConfig);
+        }
     }
 }
 

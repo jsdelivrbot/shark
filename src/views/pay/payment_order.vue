@@ -3,7 +3,7 @@
         <h1 class="h1-title">支付订单</h1>
         <div class="cms-content">
             <ele-form :config="pay_record_config" v-on:receive="pay_record_submit" :defaultdata="payHtml"></ele-form>
-            <table-option :parent-message="pay_record_Msg" v-loading="loading" element-loading-text="拼命加载中"></table-option>
+            <table-option :parent-message="pay_record_Msg" v-on:message="payMessage" v-loading="loading" element-loading-text="拼命加载中"></table-option>
         </div>
     </div>
 </template>
@@ -14,12 +14,12 @@
     } from '@/libs/tableSearch'
     import {
         payRecordForm,
-    } from '@/form/config/pay_record'
+    } from '@/form/config/payment_order'
     import {
         payRecordTable,
-    } from '@/table/config/pay_record'
+    } from '@/table/config/payment_order'
     export default {
-        name: 'user_data',
+        name: 'payment_order',
         /* 组件内自行使用的数据可以在data内渲染 */
         data() {
             return {
@@ -29,6 +29,7 @@
                 payHtml: {
                     query_start_time: parseInt(((new Date().getTime() + (3600 * 8 * 1000) - (new Date().getTime() + (3600 * 8 * 1000)) % (3600 * 24 * 1000)) / 1000 - (3600 * 8)) - 3600 * 24 * 29),
                     query_end_time: parseInt(((new Date().getTime() + (3600 * 8 * 1000) - (new Date().getTime() + (3600 * 8 * 1000)) % (3600 * 24 * 1000)) / 1000 - (3600 * 8)) + 3600 * 24 - 1),
+                    orderstatus: 1
                 }
             }
         },
@@ -38,12 +39,15 @@
         methods: {
             pay_record_submit(arg) {
                 this.loading = true;
-                this.$res.postData(this, '/Pay/pay_record/', arg[0]).then((response) => {
+                this.$res.postData(this, '/Paymentorder/query_pay_order/', arg[0]).then((response) => {
                     this.pay_record_Msg.data = [];
                     this.pay_record_Msg.data = response;
                     this.loading = false;
                     this.$message.success('查询成功');
                 });
+            },
+            payMessage(text) {
+                this.pay_record_Msg.data = tableSearch(text, this.pay_record_Msg.data);
             }
         },
         /* 引入组件放在components */
@@ -51,7 +55,8 @@
         /* 计算属性放于computed内 */
         computed: {},
         created() {
-            this.$res.postData(this, '/Pay/pay_record/', {
+            this.$res.postData(this, '/Paymentorder/query_pay_order/', {
+                orderstatus: this.payHtml.orderstatus,
                 query_start_time: this.payHtml.query_start_time,
                 query_end_time: this.payHtml.query_end_time
             }).then((response) => {

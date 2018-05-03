@@ -1,5 +1,5 @@
 //引入数据处理方法
-import { bigNumberFormatter, transToTime,roomInfoFormatter } from '@/libs/dataColumnFormatter'
+import { bigNumberFormatter, transToTime, roomInfoFormatter } from '@/libs/dataColumnFormatter'
 
 //单局记录
 export function brnnSingleTable() {
@@ -64,50 +64,6 @@ export function brnnSingleTable() {
             name: 'Revenue',
             sortable: true,
             formatter: bigNumberFormatter
-        }],
-        data: []
-    }
-}
-
-/* 个人游戏场数据 */
-export function personalBrnnSingleTable() {
-    return {
-        columns: [{
-            title: '用户ID',
-            name: 'UserID'
-        }, {
-            title: '房间ID',
-            name: 'ServerID'
-        }, {
-            title: '时间',
-            name: 'LeaveTime'
-        }, {
-            title: '盈亏',
-            name: 'Score'
-        }, {
-            title: '税收',
-            name: 'Revenue'
-        }, {
-            title: '胜局',
-            name: 'WinCount'
-        }, {
-            title: '输局',
-            name: 'LostCount'
-        }, {
-            title: '和局',
-            name: 'DrawCount'
-        }, {
-            title: '逃跑',
-            name: 'FleeCount'
-        }, {
-            title: '钻石',
-            name: 'UserMedal'
-        }, {
-            title: '游戏时间(秒)',
-            name: 'PlayTimeCount'
-        }, {
-            title: '在线时间(秒)',
-            name: 'OnLineTimeCount'
         }],
         data: []
     }

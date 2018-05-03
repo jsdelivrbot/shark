@@ -53,7 +53,7 @@
             feedback_submit(arg) {
                 let _self = this;
                 _self.regArg = arg[0];
-                _self.$res.postData(_self, '/Manu/feedback/', arg[0]).then((response) => {
+                _self.$res.postData(_self, '/Kefu/feedback/', arg[0]).then((response) => {
                     _self.feedback_Msg.data = response.reverse().map((val) => {
                         let res = val;
                         val.IsProcessed === '0' && (res['回复' + '_show'] = true);
@@ -85,11 +85,11 @@
                         break;
                     case 'reply':
                         let _self = this;
-                        _self.$res.postData(_self, '/Manu/feedback_handle/', arg[0]).then((response) => {
+                        _self.$res.postData(_self, '/Kefu/feedback_handle/', arg[0]).then((response) => {
                             _self.$message.success('回复成功');
                             _self.handleDialog = false;
                             /* 重新查询 */
-                            _self.$res.postData(_self, '/Manu/feedback/', _self.regArg).then((response) => {
+                            _self.$res.postData(_self, '/Kefu/feedback/', _self.regArg).then((response) => {
                                 _self.feedback_Msg.data = response.reverse().map((val) => {
                                     let res = val;
                                     val.IsProcessed === '0' && (res['回复' + '_show'] = true);
@@ -130,7 +130,7 @@
             };
             /* 查询 */
             let _self = this;
-            _self.$res.postData(_self, '/Manu/feedback/', {
+            _self.$res.postData(_self, '/Kefu/feedback/', {
                 IsProcessed: '0',
             }).then((response) => {
                 _self.feedback_Msg.data = response.reverse().map((val) => {

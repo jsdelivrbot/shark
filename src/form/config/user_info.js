@@ -59,14 +59,15 @@ export function doResChangeDialogForm() {
             "options": [
                 { "value": "minus", "label": "减少" },
                 { "value": "add", "label": "增加" },
-            ]
+            ],
+            "rules": [{ "required": true, "message": "请选择增或减", "trigger": "change" }]
         }, {
             "label": "备注",
             "placeholder": "请填写备注",
             "type": "text",
             "name": "extra",
             "span": 12,
-            "rules": [{ "requried": true, "message": "请填写备注", "trigger": "blur" }]
+            "rules": [{ "required": true, "message": "请填写备注", "trigger": "blur" }]
         }]
     }
 }
@@ -131,7 +132,8 @@ export function bankChangeForm() {
             "placeholder": "请填写填写备注",
             "type": "text",
             "name": "extra",
-            "span": 24
+            "span": 24,
+            "rules": [{ "required": true, "message": "请填写备注", "trigger": "blur" }]
         }]
     }
 }

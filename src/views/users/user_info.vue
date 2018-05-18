@@ -8,16 +8,16 @@
                     <el-col :span="4">用户头像：<span>{{user_data.FaceID}}</span></el-col>
                     <el-col :span="4">用户ID：<span>{{user_data.UserID}}</span></el-col>
                     <el-col :span="4">昵称：<span>{{user_data.NickName}}</span></el-col>
-                    <el-col :span="4">手机绑定：<span>{{user_data.InsureMobile}}</span></el-col>
-                    <el-col :span="4">微信绑定：<span></span></el-col>
-                    <el-col :span="4">冻结时间：<span>{{user_data.NullityOverDate | transToTime}}</span></el-col>
+                    <el-col :span="4">性别：<span>{{user_data.Gender}}</span></el-col>
+                    <el-col :span="4">手机绑定：<span v-if="user_data.RegisterMobile == ''">未绑定</span><span v-if="user_data.RegisterMobile !== ''">{{user_data.RegisterMobile}}</span></el-col>
+                    <el-col :span="4">微信绑定：<span>未绑定</span></el-col>
                 </el-row>
                 <el-row>
                     <el-col :span="4">手机型号：<span></span></el-col>
                     <el-col :span="4">创建时间：<span>{{user_data.RegisterDate | transToTime}}</span></el-col>
                     <el-col :span="4">创建IP：<span>{{user_data.RegisterIP}}</span></el-col>
                     <el-col :span="4">创建MAC：<span></span></el-col>
-                    <el-col :span="4">创建手机：<span>{{user_data.RegisterMobile}}</span></el-col>
+                    <el-col :span="4">创建手机：<span v-if="user_data.RegisterMobile == ''">未绑定</span><span v-if="user_data.RegisterMobile !== ''">{{user_data.RegisterMobile}}</span></el-col>
                     <el-col :span="4">创建机器：<span>{{user_data.RegisterMachine}}</span></el-col>
                 </el-row>
                 <el-row>
@@ -31,10 +31,25 @@
                 <el-row>
                     <el-col :span="4">身上金币：<span>{{user_data.Score | bigNumberFormatter}}</span></el-col>
                     <el-col :span="4">银行金币：<span>{{user_data.InsureScore | bigNumberFormatter}}</span></el-col>
-                    <el-col :span="4">玩家等级：<span>{{user_data.Experience}} / {{user_data.GrowLevelID}} 级</span></el-col>
+                    <el-col :span="4">钻石：<span>{{user_data.Diamonds | bigNumberFormatter}}</span></el-col>
+                    <el-col :span="4">玩家经验 / 等级：<span>{{user_data.Experience}} / {{user_data.GrowLevelID}} 级</span></el-col>
                     <el-col :span="4">VIP等级：<span>{{user_data.MemberOrder}} 级</span></el-col>
+                    <el-col :span="4">冻结时间：<span v-if="user_data.NullityOverDate == false">未冻结</span><span v-if="user_data.NullityOverDate !== false">{{user_data.NullityOverDate | transToTime}}</span></el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="4">实名认证：<span>{{user_data.ExamineState}}</span></el-col>
+                    <el-col :span="4">拥有积分：<span>{{user_data.PointNum | bigNumberFormatter}}</span></el-col>
                     <el-col :span="4">兑换总次数：<span>{{user_data.ExchangeAmount}}</span></el-col>
+                    <el-col :span="4">兑换总额：<span>{{user_data.totalRMB}}</span></el-col>
                     <el-col :span="4">充值总额：<span>{{user_data.PayAmount}}</span></el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="4">累计登录：<span>{{user_data.GameLogonTimes}} 次</span></el-col>
+                    <el-col :span="4">连续登录：<span>{{user_data.continueLogonNum}} 天</span></el-col>
+                    <el-col :span="4">累计赢金：<span>{{user_data.totalScore | bigNumberFormatter}}</span></el-col>
+                    <el-col :span="4">单局最大赢金：<span>{{user_data.singleScore | bigNumberFormatter}}</span></el-col>
+                    <el-col :span="4">累计牌局数：<span>{{user_data.totalCount}}</span></el-col>
+                    <el-col :span="4">胜率：<span>{{user_data.winPro}}</span></el-col>
                 </el-row>
             </div>
             <el-collapse v-model="userPackage" style="margin-top: 10px;">
@@ -193,6 +208,7 @@ export default {
             this.open_user_id = user_id;
             this.userinfoHtml.open_user_id = user_id;
             this.getUserInfo();
+            this.getUserBunkoinfo();
         }
     },
     /* 需要事件调用的方法放在methods内 */
@@ -203,6 +219,7 @@ export default {
                 case 'query':
                     //查询
                     this.getUserInfo();
+                    this.getUserBunkoinfo();
                     break;
                 case 'res':
                     //增减资源
@@ -254,6 +271,17 @@ export default {
                 }
             });
         },
+        getUserBunkoinfo() {
+            this.$res.postData(this, '/Userinfo/query_user_playground', {
+                open_user_id: this.open_user_id
+            }).then((response) => {
+                this.lookcard_game = '看牌抢庄' + ' ' + '（今日盈亏：' + response.bunko_1 + '）';
+                this.brnn_game = '百人场' + ' ' + '（今日盈亏：' + response.bunko_2 + '）';
+                this.ffl_game = '刮刮乐' + ' ' + '（今日盈亏：' + response.bunko_3 + '）';
+                this.xjssc_game = '时时彩' + ' ' + '（今日盈亏：' + response.bunko_4 + '）';
+                this.ppl_game = '拼拼乐' + ' ' + '（今日盈亏：' + response.bunko_5 + '）';
+            });
+        },
         buyItem_recieveRow(arg) {
             this.buyItemDialog = true;
             this.buyItemDialogMsg.data = [];
@@ -264,7 +292,10 @@ export default {
             this.$res.postData(this, '/Userinfo/add_user_resource/', {
                 open_user_id: this.open_user_id,
                 type: arg.type,
-                res_and_item: this.editAttrAndItem
+                res_and_item: this.editAttrAndItem,
+                remarks: arg.extra,
+                bodybank: 'body',
+                operator: localStorage.getItem('Username'),
             }).then((response) => {
                 this.dialog.visible = false;
                 if (response.code == 0) {
@@ -281,7 +312,9 @@ export default {
                 open_user_id: this.open_user_id,
                 type: arg.type,
                 amount: arg.amount,
-                extra: arg.extra
+                extra: arg.extra,
+                bodybank: 'bank',
+                operator: localStorage.getItem('Username'),
             }).then((response) => {
                 this.dialog.visible = false;
                 if (response.code == 0) {
@@ -410,12 +443,12 @@ export default {
     computed: {},
     filters: {
         bigNumberFormatter: bigNumberFormatter,
-        transToTime: transToTime
+        transToTime: transToTime,
     },
     created() {
         //道具表
         if (!window.item_info) {
-            this.$res.getSingleData(this, '/Shop/query_shop_prop/').then((response) => {
+            this.$res.getSingleData(this, '/Shop/query_win_item_info/').then((response) => {
                 if (response) {
                     window.item_info = response;
                 }

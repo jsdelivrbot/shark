@@ -25,18 +25,20 @@ export function createChannelForm() {
         "inline": true,
         "formEle": [{
             "label": "渠道名",
-            "placeholder": "请输入模板名",
-            "type": "text",
-            "name": "channel_name",
+            "placeholder": "请选择渠道名",
+            "type": "select",
+            "name": "channel_id",
+            "options": [],
             "span": 24,
-            "rules": [{ required: true, message: '请输入模板名' }]
+            "rules": [{ required: true, message: '请选择渠道名', trigger: "change" }]
         }, {
             "label": "落地页",
             "placeholder": "请选择落地页模板",
             "type": "select",
             "name": "tp_id",
             "span": 24,
-            "options": []
+            "options": [],
+            "rules": [{ required: true, message: '请选择落地页模板', trigger: "change" }]
         }]
     }
 }

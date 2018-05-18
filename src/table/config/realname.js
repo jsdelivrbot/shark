@@ -18,9 +18,8 @@ export function realnameTable() {
       template: { 'user_link': true }
     }, {
       title: '玩家昵称',
-      name: 'UserID',
+      name: 'NickName',
       sortable: true,
-      formatter: userInfoFormatter
     }, {
       title: '身份证号',
       name: 'IDCard',

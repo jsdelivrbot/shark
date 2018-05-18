@@ -3,64 +3,23 @@
         <h1 class="h1-title">实时数据</h1>
         <div class="cms-content">
             <el-tabs type="border-card">
-                <el-tab-pane label="用户汇总">
-                    <el-button type="success" plain @click.native="summary_btn">刷 新</el-button>
+                <el-tab-pane label="数据概况">
+                    <el-button type="success" plain @click.native="realtime_btn">刷 新</el-button>
                     <br/>
                     <br/>
-                    <el-form ref="form" :inline="true" label-width="120px" :model="formInline" class="demo-form-inline">
-                        <div class="col" style="display: inline-block; vertical-align: top; width: 20%; margin-bottom: 40px;">
-                            <span class="desc">总注册人数</span>
-                            <span style="color: #ff6700; margin-left: 20px;">{{summary_data.TotalRegister}}</span>
-                        </div>
-                        <div class="col" style="display: inline-block; vertical-align: top; width: 20%; margin-bottom: 40px;">
-                            <span class="desc">今日新增总数</span>
-                            <span style="color: #ff6700; margin-left: 20px;">{{summary_data.TodayRegister}}</span>
-                        </div>
-                        <div class="col" style="display: inline-block; vertical-align: top; width: 20%; margin-bottom: 40px;">
-                            <span class="desc">今日活跃总数</span>
-                            <span style="color: #ff6700; margin-left: 20px;">{{summary_data.TodayActive}}</span>
-                        </div>
-                        <div class="col" style="display: inline-block; vertical-align: top; width: 20%; margin-bottom: 40px;">
-                            <span class="desc">总充值额</span>
-                            <span style="color: #ff6700; margin-left: 20px;">{{summary_data.TotalRecharge}}</span>
-                        </div>
-                        <div class="col" style="display: inline-block; vertical-align: top; width: 20%; margin-bottom: 40px;">
-                            <span class="desc">总充值人数</span>
-                            <span style="color: #ff6700; margin-left: 20px;">{{summary_data.TotalPayNum}}</span>
-                        </div>
-                        <div class="col" style="display: inline-block; vertical-align: top; width: 20%; margin-bottom: 40px;">
-                            <span class="desc">总付费率</span>
-                            <span style="color: #ff6700; margin-left: 20px;">{{summary_data.TotalRate}}</span>
-                        </div>
-                        <div class="col" style="display: inline-block; vertical-align: top; width: 20%; margin-bottom: 40px;">
-                            <span class="desc">今日充值额</span>
-                            <span style="color: #ff6700; margin-left: 20px;">{{summary_data.TodayRec}}</span>
-                        </div>
-                        <div class="col" style="display: inline-block; vertical-align: top; width: 20%; margin-bottom: 40px;">
-                            <span class="desc">今日充值人数</span>
-                            <span style="color: #ff6700; margin-left: 20px;">{{summary_data.TodayChiz}}</span>
-                        </div>
-                        <div class="col" style="display: inline-block; vertical-align: top; width: 20%; margin-bottom: 40px;">
-                            <span class="desc">今日付费率</span>
-                            <span style="color: #ff6700; margin-left: 20px;">{{summary_data.TodayRate}}</span>
-                        </div>
-                        <div class="col" style="display: inline-block; vertical-align: top; width: 20%; margin-bottom: 40px;">
-                            <span class="desc">总兑现积分</span>
-                            <span style="color: #ff6700; margin-left: 20px;">{{summary_data.TotalExchange}}</span>
-                        </div>
-                        <div class="col" style="display: inline-block; vertical-align: top; width: 20%; margin-bottom: 40px;">
-                            <span class="desc">总兑现人数</span>
-                            <span style="color: #ff6700; margin-left: 20px;">{{summary_data.TotalExcNum}}</span>
-                        </div>
-                        <div class="col" style="display: inline-block; vertical-align: top; width: 20%; margin-bottom: 40px;">
-                            <span class="desc">今日兑现积分</span>
-                            <span style="color: #ff6700; margin-left: 20px;">{{summary_data.TodayExc}}</span>
-                        </div>
-                        <div class="col" style="display: inline-block; vertical-align: top; width: 20%; margin-bottom: 40px;">
-                            <span class="desc">今日兑现人数</span>
-                            <span style="color: #ff6700; margin-left: 20px;">{{summary_data.TodayDuih}}</span>
-                        </div>
-                    </el-form>
+                    <table-option :parent-message="realtime_Msg" v-loading="realtimeloading" element-loading-text="拼命加载中"></table-option>
+
+                    <br/>
+                    <el-collapse v-model="realtimeName">
+                        <el-collapse-item title="用户汇总" name="11">
+                            <el-button type="success" plain @click.native="summary_btn">刷 新</el-button>
+                            <table-option :parent-message="summary_Msg" v-loading="summaryloading" element-loading-text="拼命加载中"></table-option>
+                        </el-collapse-item>
+                        <el-collapse-item title="历史概况" name="10">
+                            <ele-form :config="history_survey_config" v-on:receive="history_survey_submit" :defaultdata="historySurveyHtml"></ele-form>
+                            <table-option :parent-message="history_Msg" v-loading="historyloading" element-loading-text="拼命加载中"></table-option>
+                        </el-collapse-item>
+                    </el-collapse>
                 </el-tab-pane>
                 <el-tab-pane label="注册统计">
                     <el-collapse v-model="activeName">
@@ -101,12 +60,16 @@ import {
     tableSearch
 } from '@/libs/tableSearch'
 import {
+    historySurveyForm,
     regQxForm,
     registerUserForm,
     roomUserForm,
     goldDisForm
 } from '@/form/config/real_time'
 import {
+    realtimeTable,
+    summaryTable,
+    historySurveyTable,
     registerUserTable,
     roomUserTable,
     goldCoinTable,
@@ -123,12 +86,23 @@ export default {
     /* 组件内自行使用的数据可以在data内渲染 */
     data() {
         return {
-            /* 用户汇总 */
-            formInline: {},
-            summary_data: {},
-            activeName: '0',
+            /* 数据概况 */
+            activeName: ['0'],
             loading: false,
             loading2: false,
+            realtime_Msg: realtimeTable(),
+            realtimeloading: false,
+            realtimeName: [''],
+            // 用户汇总
+            summary_Msg: summaryTable(),
+            // 历史概括
+            history_survey_config: historySurveyForm(),
+            historySurveyHtml: {
+                query_start_time: parseInt(((new Date().getTime() + (3600 * 8 * 1000) - (new Date().getTime() + (3600 * 8 * 1000)) % (3600 * 24 * 1000)) / 1000 - (3600 * 8)) - 3600 * 24 * 29),
+                query_end_time: parseInt(((new Date().getTime() + (3600 * 8 * 1000) - (new Date().getTime() + (3600 * 8 * 1000)) % (3600 * 24 * 1000)) / 1000 - (3600 * 8)) + 3600 * 24 - 1),
+            },
+            history_Msg: historySurveyTable(),
+            historyloading: false,
             /* 注册统计 */
             reg_qx_config: regQxForm(),
             chartD: registerChart(),
@@ -169,12 +143,33 @@ export default {
     mounted() {},
     /* 需要事件调用的方法放在methods内 */
     methods: {
-        /* 用户汇总 */
-        summary_btn() {
-            this.$res.postData(this, '/Realtime/query_user_summary/').then((response) => {
-                this.summary_data = response;
+        /* 实时数据 */
+        realtime_btn() {
+            this.$res.postData(this, '/Realtime/query_realtime_info/').then((response) => {
+                this.realtime_Msg.data = [];
+                this.realtime_Msg.data = response;
                 this.$message.success('刷新成功');
             });
+        },
+        // 用户汇总
+        summary_btn() {
+            this.summaryloading = true;
+            this.$res.postData(this, '/Realtime/query_user_summary/').then((response) => {
+                this.summary_Msg.data = [];
+                this.summary_Msg.data = response;
+                this.summaryloading = false;
+                this.$message.success('刷新成功');
+            });
+        },
+        // 历史概况数据
+        history_survey_submit(arg) {
+            this.historyloading = true;
+            this.$res.postData(this, '/Realtime/query_history_info/', arg[0]).then((res) => {
+                this.history_Msg.data = [];
+                this.history_Msg.data = res.reverse();
+                this.historyloading = false;
+                this.$message.success('查询成功');
+            })
         },
         /* 注册统计 */
         register_submit(arg) {
@@ -271,9 +266,23 @@ export default {
     computed: {},
     created() {
         let _self = this;
+        /* 实时数据 */
+        _self.$res.postData(_self, '/Realtime/query_realtime_info/').then((response) => {
+            _self.realtime_Msg.data = [];
+            _self.realtime_Msg.data = response;
+        });
         /* 用户汇总 */
         _self.$res.postData(_self, '/Realtime/query_user_summary/').then((response) => {
-            _self.summary_data = response;
+            _self.summary_Msg.data = [];
+            _self.summary_Msg.data = response;
+        });
+        /* 历史概况 */
+        _self.$res.postData(_self, '/Realtime/query_history_info/', {
+            query_start_time: _self.historySurveyHtml.query_start_time,
+            query_end_time: _self.historySurveyHtml.query_end_time
+        }).then((response) => {
+            _self.history_Msg.data = [];
+            _self.history_Msg.data = response.reverse();
         });
         /* 注册统计 - 曲线图 */
         _self.$res.postData(_self, '/Realtime/get_system_stream_info/', {

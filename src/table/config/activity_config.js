@@ -7,15 +7,18 @@ export function tempTable() {
         columns: [{
             title: '模板ID',
             name: 'TempID',
-            sortable: true
+            sortable: true,
+            width: '120',
         }, {
             title: '活动ID',
             name: 'ActivityID',
-            sortable: true
+            sortable: true,
+            width: '120',
         }, {
             title: '活动名',
             name: 'ActivityName',
-            sortable: true
+            sortable: true,
+            width: '160',
         }, {
             title: '分类',
             name: 'Classify',
@@ -23,67 +26,98 @@ export function tempTable() {
         }, {
             title: '排序',
             name: 'SortID',
-            sortable: true
+            sortable: true,
+            width: '120',
         }, {
             title: '背景',
             name: 'BgImage',
-            sortable: true
+            sortable: true,
+            width: '320',
         }, {
             title: '开始时间',
             name: 'StartTime',
             sortable: true,
-            formatter: transToTime2
+            formatter: transToTime2,
+            width: '120',
         }, {
             title: '结束时间',
             name: 'EndTime',
             sortable: true,
-            formatter: transToTime2
+            formatter: transToTime2,
+            width: '120',
         }, {
             title: '设备类型',
             name: 'DeviceType',
-            sortable: true
+            sortable: true,
+            width: '120',
         }, {
             title: '帐号类型',
             name: 'AccountType',
-            sortable: true
+            sortable: true,
+            width: '120',
         }, {
             title: '渠道',
             name: 'ChannelID',
-            sortable: true
+            sortable: true,
+            width: '120',
         }, {
             title: '充值额度',
             name: 'Recharge',
-            sortable: true
+            sortable: true,
+            width: '120',
         }, {
             title: '注册时间开始时间',
             name: 'RegisterDate1',
             sortable: true,
-            formatter: transToTime2
+            formatter: transToTime2,
+            width: '220',
         }, {
             title: '注册时间结束时间',
             name: 'RegisterDate2',
             sortable: true,
-            formatter: transToTime2
+            formatter: transToTime2,
+            width: '220',
         }, {
             title: '玩家ID',
             name: 'PlayerID',
-            sortable: true
+            sortable: true,
+            width: '120',
         }, {
             title: '配置图片',
             name: 'ImageUrl',
-            sortable: true
+            sortable: true,
+            width: '320',
         }, {
             title: '游戏内跳转页面',
             name: 'LocationUrl',
-            sortable: true
+            sortable: true,
+            width: '180',
         }, {
             title: 'web跳转链接',
             name: 'WebUrl',
-            sortable: true
+            sortable: true,
+            width: '320',
         }, {
             title: 'Banner图',
             name: 'Bannar',
-            sortable: true
+            sortable: true,
+            width: '320',
+        }, {
+            title: '操作',
+            name: 're',
+            fixed: 'right',
+            width: '160px',
+            template: {
+                btns: [{
+                    name: '编辑',
+                    funcName: 'edit',
+                    type: 'success'
+                }, {
+                    name: '删除',
+                    funcName: 'delete',
+                    type: 'danger'
+                }]
+            }
         }],
         data: []
     }
@@ -96,55 +130,85 @@ export function bannerActTable() {
         columns: [{
             title: '活动ID',
             name: 'ActivityID',
-            sortable: true
+            sortable: true,
+            fixed: 'left',
+            width: '120px'
         }, {
             title: '任务ID',
             name: 'TaskID',
-            sortable: true
+            sortable: true,
+            width: '120px'
         }, {
             title: '排序',
             name: 'SortID',
-            sortable: true
+            sortable: true,
+            width: '120px'
         }, {
             title: '任务说明',
             name: 'TaskDesc',
-            sortable: true
+            sortable: true,
+            width: '220px'
         }, {
             title: '任务类型',
             name: 'TaskType',
-            sortable: true
+            sortable: true,
+            width: '120px',
         }, {
             title: '任务局数',
             name: 'TaskNum',
-            sortable: true
+            sortable: true,
+            width: '120px'
         }, {
             title: '前置任务编号',
             name: 'FrontTask',
-            sortable: true
+            sortable: true,
+            width: '160px'
         }, {
             title: '奖励',
             name: 'Rewards',
-            sortable: true
+            sortable: true,
+            width: '160px'
         }, {
             title: '前往按钮跳转',
             name: 'Jump',
-            sortable: true
+            sortable: true,
+            width: '120px'
         }, {
             title: '累计充值额度可见区间',
             name: 'Recharge',
-            sortable: true
+            sortable: true,
+            width: '220px'
         }, {
             title: '每日限制次数',
             name: 'DayLimitCount',
-            sortable: true
+            sortable: true,
+            width: '160px'
         }, {
             title: '每周限制次数',
             name: 'WeekLimitCount',
-            sortable: true
+            sortable: true,
+            width: '160px'
         }, {
             title: '总限制次',
             name: 'TotalLimitCount',
-            sortable: true
+            sortable: true,
+            width: '160px'
+        }, {
+            title: '操作',
+            name: 're',
+            fixed: 'right',
+            width: '160px',
+            template: {
+                btns: [{
+                    name: '编辑',
+                    funcName: 'edit',
+                    type: 'success'
+                }, {
+                    name: '删除',
+                    funcName: 'delete',
+                    type: 'danger'
+                }]
+            }
         }],
         data: []
     }
@@ -157,87 +221,124 @@ export function noticeTable() {
         columns: [{
             title: '公告ID',
             name: 'NoticeID',
-            sortable: true
+            sortable: true,
+            width: '120px',
+            fixed: 'left'
         }, {
             title: '公告名',
             name: 'NoticeName',
-            sortable: true
+            sortable: true,
+            width: '160px',
         }, {
             title: '公告标题',
             name: 'Title',
-            sortable: true
+            sortable: true,
+            width: '160px',
         }, {
             title: '公告内容',
             name: 'Content',
-            sortable: true
+            sortable: true,
+            width: '320px',
         }, {
             title: '分类',
             name: 'Classify',
-            sortable: true
+            sortable: true,
+            width: '120px',
         }, {
             title: '排序',
             name: 'SortID',
-            sortable: true
+            sortable: true,
+            width: '120px',
         }, {
             title: '模板ID',
             name: 'TempID',
-            sortable: true
+            sortable: true,
+            width: '120px',
         }, {
             title: '背景图',
             name: 'BgImage',
-            sortable: true
+            sortable: true,
+            width: '220px',
         }, {
             title: '开始时间',
             name: 'StartTime',
             sortable: true,
-            formatter: transToTime2
+            formatter: transToTime2,
+            width: '120px',
         }, {
             title: '结束时间',
             name: 'EndTime',
             sortable: true,
-            formatter: transToTime2
+            formatter: transToTime2,
+            width: '120px',
         }, {
             title: '设备类型',
             name: 'DeviceType',
-            sortable: true
+            sortable: true,
+            width: '120px',
         }, {
             title: '帐号类型',
             name: 'AccountType',
-            sortable: true
+            sortable: true,
+            width: '120px',
         }, {
             title: '渠道',
             name: 'ChannelID',
-            sortable: true
+            sortable: true,
+            width: '120px',
         }, {
             title: '注册开始时间',
             name: 'RegisterDate1',
             sortable: true,
-            formatter: transToTime2
+            formatter: transToTime2,
+            width: '160px',
         }, {
             title: '注册结束时间',
             name: 'RegisterDate2',
             sortable: true,
-            formatter: transToTime2
+            formatter: transToTime2,
+            width: '160px',
         }, {
             title: '充值额度',
             name: 'Recharge',
-            sortable: true
+            sortable: true,
+            width: '120px',
         }, {
             title: '玩家ID',
             name: 'PlayerID',
-            sortable: true
+            sortable: true,
+            width: '120px',
         }, {
             title: '配置图片',
             name: 'ImageUrl',
-            sortable: true
+            sortable: true,
+            width: '320px',
         }, {
             title: '游戏内跳转页面',
             name: 'LocationUrl',
-            sortable: true
+            sortable: true,
+            width: '120px',
         }, {
             title: 'web跳转链接',
             name: 'WebUrl',
-            sortable: true
+            sortable: true,
+            width: '320px',
+        }, {
+            title: '操作',
+            name: 're',
+            fixed: 'right',
+            width: '160px',
+            template: {
+                btns: [{
+                    name: '编辑',
+                    funcName: 'edit',
+                    type: 'success'
+                }, {
+                    name: '删除',
+                    funcName: 'delete',
+                    type: 'danger'
+                }]
+            }
         }],
         data: []
     }

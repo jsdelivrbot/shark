@@ -9,7 +9,7 @@
                             <el-form ref="form" :inline="true" label-width="80px">
                                 <el-col :span="10">
                                     <el-form-item label="Json表:">
-                                        <el-select v-model="tblName" filterable placeholder="输入可搜索" v-on:change="getSingleTbl">
+                                        <el-select v-model="tblName" filterable placeholder="输入可搜索" v-on:change="getSingleTbl" disabled>
                                             <el-option v-for="item in tblOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
                                         </el-select>
                                     </el-form-item>
@@ -23,8 +23,8 @@
                             </el-form>
                         </el-col>
                         <el-col :span="12">
-                            <el-form :model="form" action="/Upload/upload_json/" enctype="multipart/form-data" method="POST">
-                                <el-upload class="upload-demo" ref="uploadJson" action="/Upload/upload_json/" :multiple="true" :on-preview="handlePreview" :on-remove="handleRemove" :on-progress="uploadProgress" :on-success="uploadSuccess" :on-error="uploadError" :auto-upload="false"
+                            <el-form :model="form" action="/Upload/upload_excel/" enctype="multipart/form-data" method="POST">
+                                <el-upload class="upload-demo" ref="uploadJson" action="/Upload/upload_excel/" :multiple="true" :on-preview="handlePreview" :on-remove="handleRemove" :on-progress="uploadProgress" :on-success="uploadSuccess" :on-error="uploadError" :auto-upload="false"
                                     :before-upload="fileTypeCheck">
                                     <el-button slot="trigger" size="" type="primary">选取文件</el-button>
                                     <el-button size="" type="danger" @click="clearCsv">清空文件</el-button>
@@ -106,8 +106,8 @@
                     // this.$refs.uploadJson.clearFiles();
                     return false
                 }
-                if (!file.name.match(/\.(json)$/)) {
-                    this.$message.error('上传文件类型必须为json文件');
+                if (!file.name.match(/\.(xlsx)$/)) {
+                    this.$message.error('上传文件类型必须为excel表格');
                     // this.$refs.uploadJson.clearFiles();
                     return false;
                 }

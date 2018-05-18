@@ -241,7 +241,7 @@ export default {
             query_end_time: _self.newUserSurveyHtml.query_end_time
         }).then((response) => {
             _self.newUserSurvey_Msg.data = [];
-            _self.newUserSurvey_Msg.data = response;
+            _self.newUserSurvey_Msg.data = response.reverse();
         });
         /* 新增列表 */
         _self.$res.postData(_self, '/Useranalysis/query_create_account_info/', {

@@ -1,45 +1,49 @@
 <template>
-    <div id="container">
-        <h1 class="h1-title">任务分析</h1>
-        <div class="cms-content">
-            <el-collapse v-model="activeName">
-                <el-collapse-item title="7天大乐透" name="1">
-                    <!--功能按钮-->
-                    <ele-form :config="reward_7day_config" v-on:receive="reward_7day_submit" :defaultdata="{state: '1'}"></ele-form>
-                    <!--表格区域-->
-                    <el-row>
-                        <el-col :span="24">
-                            <table-option :parent-message="reward_7day_Msg" v-on:message="seven7Message" v-on:pagedata="sevenChangePage" v-loading="seven7loading" element-loading-text="拼命加载中"></table-option>
-                        </el-col>
-                    </el-row>
-                </el-collapse-item>
-                <el-collapse-item title="5步兑话费" name="2">
-                    <!--功能按钮-->
-                    <ele-form :config="five_step_config" v-on:receive="five_step_submit" :defaultdata="fiveHtml"></ele-form>
-                    <!--表格区域-->
-                    <el-row>
-                        <el-col :span="24">
-                            <table-option :parent-message="five_step_Msg" v-on:message="five5Message" v-on:pagedata="fiveChangePage" v-loading="fivesteploading" element-loading-text="拼命加载中"></table-option>
-                        </el-col>
-                    </el-row>
-                </el-collapse-item>
-                <el-collapse-item title="至尊月卡" name="3">
-                    <!--功能按钮-->
-                    <ele-form :config="moon_card_config" v-on:receive="moon_card_submit" :defaultdata="{state: '0'}"></ele-form>
-                    <!--表格区域-->
-                    <el-row>
-                        <el-col :span="24">
-                            <table-option :parent-message="moon_card_Msg" v-on:message="moomCardMessage" v-loading="monthcardsloading" element-loading-text="拼命加载中"></table-option>
-                        </el-col>
-                    </el-row>
-                </el-collapse-item>
-                <el-collapse-item title="定时奖励" name="4">
-                    <ele-form :config="time_config" v-on:receive="time_submit" :defaultdata="timingHtml"></ele-form>
-                    <table-option :parent-message="timing_Msg" v-on:message="timingMessage" v-loading="timeloading" element-loading-text="拼命加载中"></table-option>
-                </el-collapse-item>
-            </el-collapse>
-        </div>
+<div id="container">
+    <h1 class="h1-title">任务分析</h1>
+    <div class="cms-content">
+        <el-collapse v-model="activeName">
+            <el-collapse-item title="7天大乐透" name="1">
+                <!--功能按钮-->
+                <ele-form :config="reward_7day_config" v-on:receive="reward_7day_submit" :defaultdata="{state: '1'}"></ele-form>
+                <!--表格区域-->
+                <el-row>
+                    <el-col :span="24">
+                        <table-option :parent-message="reward_7day_Msg" v-on:message="seven7Message" v-on:pagedata="sevenChangePage" v-loading="seven7loading" element-loading-text="拼命加载中"></table-option>
+                    </el-col>
+                </el-row>
+            </el-collapse-item>
+            <el-collapse-item title="5步兑话费" name="2">
+                <!--功能按钮-->
+                <ele-form :config="five_step_config" v-on:receive="five_step_submit" :defaultdata="fiveHtml"></ele-form>
+                <!--表格区域-->
+                <el-row>
+                    <el-col :span="24">
+                        <table-option :parent-message="five_step_Msg" v-on:message="five5Message" v-on:pagedata="fiveChangePage" v-loading="fivesteploading" element-loading-text="拼命加载中"></table-option>
+                    </el-col>
+                </el-row>
+            </el-collapse-item>
+            <el-collapse-item title="至尊月卡" name="3">
+                <!--功能按钮-->
+                <ele-form :config="moon_card_config" v-on:receive="moon_card_submit" :defaultdata="{state: '0'}"></ele-form>
+                <!--表格区域-->
+                <el-row>
+                    <el-col :span="24">
+                        <table-option :parent-message="moon_card_Msg" v-on:message="moomCardMessage" v-loading="monthcardsloading" element-loading-text="拼命加载中"></table-option>
+                    </el-col>
+                </el-row>
+            </el-collapse-item>
+            <el-collapse-item title="定时奖励" name="4">
+                <ele-form :config="time_config" v-on:receive="time_submit" :defaultdata="timingHtml"></ele-form>
+                <table-option :parent-message="timing_Msg" v-on:message="timingMessage" v-loading="timeloading" element-loading-text="拼命加载中"></table-option>
+            </el-collapse-item>
+            <el-collapse-item title="首充礼包" name="5">
+                <ele-form :config="firstcharge_config" v-on:receive="firstcharge_submit" :defaultdata="firstchargeHtml"></ele-form>
+                <table-option :parent-message="firstcharge_Msg" v-on:message="firstchargeMessage" v-loading="firstchargeloading" element-loading-text="拼命加载中"></table-option>
+            </el-collapse-item>
+        </el-collapse>
     </div>
+</div>
 </template>
 <script>
 //引入表格搜索
@@ -50,20 +54,22 @@ import {
     reward7DayForm,
     fiveStepForm,
     moonCardForm,
-    timeForm
+    timeForm,
+    firstchargeForm
 } from '@/form/config/miniactivity'
 import {
     reward7DayTable,
     fiveStepTable,
     moonCardTable,
-    timeTable
+    timeTable,
+    firstchargeTable
 } from '@/table/config/miniactivity'
 export default {
     name: 'miniactivity',
     /* 组件内自行使用的数据可以在data内渲染 */
     data() {
         return {
-            activeName: ['4'],
+            activeName: [''],
             /* 7天大乐透 */
             seven7loading: false,
             reward_7day_config: reward7DayForm(),
@@ -87,6 +93,13 @@ export default {
             },
             timing_Msg: timeTable(),
             timeloading: false,
+            /* 首充礼包 */
+            firstcharge_config: firstchargeForm(),
+            firstchargeHtml: {
+                status: '1'
+            },
+            firstcharge_Msg: firstchargeTable(),
+            firstchargeloading: false,
         }
     },
     /* 需要元素渲染完调用的方法放在mounted内 */
@@ -153,6 +166,16 @@ export default {
         time_submit(arg) {
 
         },
+        /* 首充礼包 */
+        firstcharge_submit(arg) {
+            this.firstchargeloading = true;
+            this.$res.postData(this, '/Miniactivity/query_user_firstcharge_info/', arg[0]).then((response) => {
+                this.firstcharge_Msg.data = [];
+                this.firstcharge_Msg.data = response;
+                this.firstchargeloading = false;
+                this.$message.success('查询成功');
+            });
+        },
         /* 搜索 */
         seven7Message(text) {
             this.reward_7day_Msg.data = tableSearch(text, this.reward_7day_Msg.data);
@@ -166,6 +189,9 @@ export default {
         timingMessage(text) {
             this.timing_Msg.data = tableSearch(text, this.timing_Msg.data);
         },
+        firstchargeMessage(text) {
+            this.firstcharge_Msg.data = tableSearch(text, this.firstcharge_Msg.data);
+        }
     },
     /* 引入组件放在components */
     components: {},
@@ -191,7 +217,13 @@ export default {
             this.moon_card_Msg.data = [];
             this.moon_card_Msg.data = response;
         });
+        /* 首充礼包 */
+        this.$res.postData(this, '/Miniactivity/query_user_firstcharge_info/', {
+            status: this.firstchargeHtml.status,
+        }).then((response) => {
+            this.firstcharge_Msg.data = [];
+            this.firstcharge_Msg.data = response;
+        });
     }
 }
-
 </script>

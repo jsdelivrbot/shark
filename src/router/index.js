@@ -26,11 +26,13 @@ import blacklist from "@/views/users/blacklist"; /* 黑名单 */
 import int_account from "@/views/users/int_account"; /* 内部帐号 */
 // 渠道管理 channel
 import channel_analyze from "@/views/channel/channel_analyze"; /* 渠道分析 */
-import channel_data from "@/views/channel/channel_data"; /* 渠道数据 */
+import channel_master from "@/views/channel/channel_master"; /* 渠道商管理 */
 import channel_config from "@/views/channel/channel_config"; /* 渠道管理 */
 // 支付管理 pay
 import payment_order from "@/views/pay/payment_order"; /* 支付订单 */
+import pay_statistics from "@/views/pay/pay_statistics"; /* 充值统计 */
 // 兑换管理 exchange
+import numeric_table from "@/views/exchange/numeric_table"; /* 兑换系统数值表 */
 import exchange_audit from "@/views/exchange/exchange_audit"; /* 兑换审核 */
 import exchange_record from "@/views/exchange/exchange_record"; /* 兑换记录 */
 import kami from "@/views/exchange/kami"; /* 卡密 */
@@ -136,9 +138,9 @@ export default new Router({
         name: 'channel_analyze',
         component: channel_analyze
     }, {
-        path: '/channel/channel_data',
-        name: 'channel_data',
-        component: channel_data
+        path: '/channel/channel_master',
+        name: 'channel_master',
+        component: channel_master
     }, {
         path: '/channel/channel_config',
         name: 'channel_config',
@@ -147,6 +149,14 @@ export default new Router({
         path: '/pay/payment_order',
         name: 'payment_order',
         component: payment_order
+    }, {
+        path: '/pay/pay_statistics',
+        name: 'pay_statistics',
+        component: pay_statistics
+    }, {
+        path: '/exchange/numeric_table',
+        name: 'numeric_table',
+        component: numeric_table
     }, {
         path: '/exchange/exchange_audit',
         name: 'exchange_audit',

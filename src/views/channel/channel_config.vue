@@ -108,15 +108,15 @@
                     this.ldyMsg.data = [];
                     this.ldyMsg.data = response;
                     this.$message.success('查询成功');
-                    window.ldyTemplate = response;
-                    window.ldyTemplate.map((ldy) => {
-                        let obj = {
-                            value: ldy.tp_id,
-                            label: ldy.tp_name,
-                        };
-                        this.createChannelFormConfig.formEle[1].options.push(obj);
-                        this.editChannelFormConfig.formEle[1].options.push(obj);
-                    });
+                    // window.ldyTemplate = response;
+                    // window.ldyTemplate.map((ldy) => {
+                    //     let obj = {
+                    //         value: ldy.tp_id,
+                    //         label: ldy.tp_name,
+                    //     };
+                    //     this.createChannelFormConfig.formEle[1].options.push(obj);
+                    //     this.editChannelFormConfig.formEle[1].options.push(obj);
+                    // });
                 });
             },
             ldy_create() {
@@ -197,7 +197,7 @@
                         let url = 'http://cms.oa.pokerhope.com:6600/ldy/';
                         let download_url = 'http://cms.oa.pokerhope.com:6600/ldy/';
                         data.ldy_url = data.tp_id ? (url + data.tp_id) + '/index.html?channel_id=' + data.channel_id + '&masid=' + data.masid : '';
-                        data.ldy_download_url = download_url + 'ldyApk/android/' + data.tp_id + '.apk';
+                        //data.ldy_download_url = download_url + 'ldyApk/android/' + data.tp_id + '.apk';
                         return data;
                     });
                 });
@@ -210,15 +210,19 @@
                 this.editChannelDefault = arg[1];
             },
             submitCreateChannel(arg) {
-                this.$res.postData(this, '/Channel/add_channel/', arg[0]).then((response) => {
+                this.submitCreateChannelEventName = false;
+                let params = {
+                    ChannleMasterID: arg[0].channel_id,
+                    tp_id: arg[0].tp_id
+                };
+                this.$res.postData(this, '/Channel/add_channel/', params).then((response) => {
                     if (response.code == 0) {
+                        this.createChannelFormDialog = false;
                         this.$message.success('新增成功');
                         this.channel_query();
                     }
                 });
                 //接口操作
-                this.createChannelFormDialog = false;
-                this.submitCreateChannelEventName = false;
             },
             submitCreateChannelEvent() {
                 this.submitCreateChannelEventName = 'submit';
@@ -237,6 +241,39 @@
         /* 计算属性放于computed内 */
         computed: {},
         created() {
+            /* 渠道商信息 */
+            let _self = this;
+            let baseChannelMasterConfig = createChannelForm();
+            if (!window.channle_master) {
+                let channle_master_list = new Promise((resolve, reject) => {
+                    _self.$res.getSingleData(_self, 'Channel/query_channel_master_info/').then((response) => {
+                        if (response) {
+                            resolve(response);
+                        } else {
+                            reject('error');
+                        }
+                    });
+                });
+                channle_master_list.then((response) => {
+                    window.channle_master = response;
+                    fillChannelMaster(response);
+                }, () => {
+                    _self.$message.error('获取渠道商失败');
+                });
+            } else {
+                fillChannelMaster(window.channle_master);
+            }
+            function fillChannelMaster(response) {
+                response.map((val, i) => {
+                    if (i >= 0) {
+                        baseChannelMasterConfig.formEle[0].options.push({
+                            value: val.ChannleMasterID,
+                            label: val.ChannleMasterName
+                        });
+                    }
+                });
+                _self.createChannelFormConfig = _self.$res.deepClone(baseChannelMasterConfig);
+            }
             /* 落地页管理  - 查询 */
             this.$res.getSingleData(this, '/Channel/get_ldy_template/').then((response) => {
                 this.ldyMsg.data = [];

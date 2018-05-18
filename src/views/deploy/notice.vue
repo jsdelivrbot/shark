@@ -144,8 +144,8 @@
                         message: html, //邮件内容
                         sendUserName: localStorage.getItem('Username'),//发送人
                         tag: this.biaoqianHtml, //标签
-                        channel: this.editorHtml[0].channel_id, //渠道
-                        accountType: this.editorHtml[0].account_id, //帐号类型
+                        channel: JSON.stringify(this.editorHtml[0].channel_id), //渠道
+                        accountType: JSON.stringify(this.editorHtml[0].account_id), //帐号类型
                         showID: this.editorHtml[0].UserID, //可见玩家ID
                         payArea: this.editorHtml[0].payArea, //充值区间
                         signTimeStart: this.editorHtml[0].query_start_time, //注册开始时间
@@ -170,8 +170,8 @@
                         message: html,
                         sendUserName: localStorage.getItem('Username'),
                         tag: this.biaoqianHtml, //标签
-                        channel: this.editorHtml[0].channel_id, //渠道
-                        accountType: this.editorHtml[0].account_id, //帐号类型
+                        channel: JSON.stringify(this.editorHtml[0].channel_id), //渠道
+                        accountType: JSON.this.editorHtml[0].account_id, //帐号类型
                         showID: this.editorHtml[0].UserID, //可见玩家ID
                         payArea: this.editorHtml[0].payArea, //充值区间
                         signTimeStart: this.editorHtml[0].query_start_time, //注册开始时间
@@ -196,8 +196,8 @@
                         message: html,
                         sendUserName: localStorage.getItem('Username'),
                         tag: this.biaoqianHtml, //标签
-                        channel: this.editorHtml[0].channel_id, //渠道
-                        accountType: this.editorHtml[0].account_id, //帐号类型
+                        channel: JSON.stringify(this.editorHtml[0].channel_id), //渠道
+                        accountType: JSON.stringify(this.editorHtml[0].account_id), //帐号类型
                         showID: this.editorHtml[0].UserID, //可见玩家ID
                         payArea: this.editorHtml[0].payArea, //充值区间
                         signTimeStart: this.editorHtml[0].query_start_time, //注册开始时间

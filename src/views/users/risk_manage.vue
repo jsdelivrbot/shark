@@ -53,10 +53,11 @@ export default {
     mounted() {},
     /* 需要事件调用的方法放在methods内 */
     methods: {
+        /* 移除黑名单 */
         userBlackRow(arg) {
             let _self = this;
             let discard_patam = {
-                InsureMobile: arg[1].InsureMobile,
+                UserID: arg[1].UserID,
                 Reason: arg[1].Reason || '帐号正常'
             };
             _self.$confirm('此操作将会移除黑名单，是否确认？', '温馨提示', {
@@ -64,7 +65,7 @@ export default {
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(() => {
-                _self.$res.postData(_self, '/Riskmanage/discard_black_phonenum/', discard_patam).then((res) => {
+                _self.$res.postData(_self, '/Riskmanage/remove_black_phone/', discard_patam).then((res) => {
                     _self.$res.postData(_self, '/Riskmanage/get_black_phonenum/').then((response) => {
                         this.freeze_Msg.data = [];
                         this.freeze_Msg.data = response;

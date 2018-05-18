@@ -1,23 +1,31 @@
-/*! 所有表格数据格式化函数在此定义，统一引入调用 */
+/* ! 所有表格数据格式化函数在此定义，统一引入调用 */
 
-/*! 保留两位小数 */
+/* ! 保留两位小数 */
 export function numberFixed2(row, column, cellValue) {
-    return isNaN(cellValue) ? '-' : cellValue.toFixed(2);
+    return isNaN(cellValue)
+        ? '-'
+        : cellValue.toFixed(2);
 }
 
-/*! 转换为百分数 */
+/* ! 转换为百分数 */
 export function numberPercent(row, column, cellValue) {
-    return isNaN(cellValue) ? '-' : (cellValue * 100).toFixed(2);
+    return isNaN(cellValue)
+        ? '-'
+        : (cellValue * 100).toFixed(2);
 }
 
-/*! unix时间戳转换为日期 */
+/* ! unix时间戳转换为日期 */
 export function transToDate(row, column, cellValue) {
-    return isNaN(cellValue) ? cellValue : convertIntToTime(cellValue).slice(0, 10);
+    return isNaN(cellValue)
+        ? cellValue
+        : convertIntToTime(cellValue).slice(0, 10);
 }
 
-/*! unix时间戳转换为准确时间 */
+/* ! unix时间戳转换为准确时间 */
 export function transToTime(row, column, cellValue) {
-    return isNaN(cellValue) ? cellValue : convertIntToTime(cellValue);
+    return isNaN(cellValue)
+        ? cellValue
+        : convertIntToTime(cellValue);
 }
 
 export function transToTime2(row, column, cellValue) {
@@ -28,7 +36,7 @@ export function transToTime2(row, column, cellValue) {
     }
 }
 
-/*! 时间戳转换某个时间格式 */
+/* ! 时间戳转换某个时间格式 */
 export function convertIntToTime(tm) {
     let _time = new Date(tm * 1000);
     return _time.getFullYear() + '-' + fillZero(_time.getMonth() + 1) + '-' + fillZero(_time.getDate()) + ' ' + fillZero(_time.getHours()) + ':' + fillZero(_time.getMinutes()) + ':' + fillZero(_time.getSeconds());
@@ -38,13 +46,13 @@ export function fillZero(val) {
     return (val - 0 + 100 + '').slice(1, 3);
 }
 
-/*! 时间转换方法2 */
+/* ! 时间转换方法2 */
 export function convertIntToTime2(params) {
     let _tm = new Date(params);
     return _tm.getFullYear() + '-' + fillZero(_tm.getMonth() + 1) + '-' + fillZero(_tm.getDate()) + ' ' + fillZero(_tm.getHours()) + ':' + fillZero(_tm.getMinutes()) + ':' + fillZero(_tm.getSeconds());
 }
 
-/*! 获取某个时间格式的时间戳  */
+/* ! 获取某个时间格式的时间戳 */
 export function timestamp(tm) {
     let stringTime = tm;
     let _timestamp = Date.parse(new Date(stringTime)) / 1000;
@@ -52,7 +60,9 @@ export function timestamp(tm) {
 }
 
 export function stateFormatter(row, column, cellValue) {
-    return cellValue ? '正常使用' : '暂停使用';
+    return cellValue
+        ? '正常使用'
+        : '暂停使用';
 }
 
 export function nameFormatter(row, column, cellValue) {
@@ -60,9 +70,11 @@ export function nameFormatter(row, column, cellValue) {
 }
 
 export function bigNumberFormatter(row, column, cellValue) {
-    return cellValue ? (cellValue + '').replace(/\d(?=(\d{3})+$)/g, ($1) => {
-        return $1 + ','
-    }) : 0;
+    return cellValue
+        ? (cellValue + '').replace(/\d(?=(\d{3})+$)/g, ($1) => {
+            return $1 + ','
+        })
+        : 0;
 }
 
 export function userStateFormatter(row, column, cellValue) {
@@ -75,7 +87,12 @@ export function convertNumToCard(row, columns, cards) {
     if (!cards) {
         return '';
     } else {
-        let special = { 1: 'A', 11: 'J', 12: 'Q', 13: 'K' };
+        let special = {
+            1: 'A',
+            11: 'J',
+            12: 'Q',
+            13: 'K'
+        };
         let color = ['黑', '红', '梅', '方'];
         for (let i = 0; i < cards.length; i++) {
             let num = cards[i] % 16,
@@ -86,7 +103,10 @@ export function convertNumToCard(row, columns, cards) {
             } else if (cards[i] == 95) {
                 result.push('小王')
             } else {
-                result.push(color[colorNum] + (special[num] ? special[num] : num));
+                result.push(color[colorNum] + (
+                    special[num]
+                    ? special[num]
+                    : num));
             }
         }
     }
@@ -235,7 +255,6 @@ export function roleNameFormatter(row, columns, result) {
     return res;
 }
 
-
 //银行记录 -- 交易类型
 export function bankTranstFormatter(row, columns, result) {
     let res = '';
@@ -266,7 +285,6 @@ export function transtPlaceFormatter(row, columns, result) {
     }
     return res;
 }
-
 
 //游戏类型
 export function gameTypeFormatter(row, columns, result) {
@@ -721,7 +739,11 @@ export function payPlatformFormatter(row, columns, result) {
 
 export function bigNumberMoneyFormatter(cellValue) {
     let num = ((cellValue || 0) / 100).toFixed(2);
-    return num ? (num + '').replace(/\d(?=(\d{3})+(\.\d{1,2})?$)/g, ($1) => { return $1 + ',' }) : 0;
+    return num
+        ? (num + '').replace(/\d(?=(\d{3})+(\.\d{1,2})?$)/g, ($1) => {
+            return $1 + ','
+        })
+        : 0;
 }
 
 export function pushTypeFormatter(row, columns, result) {
@@ -769,7 +791,7 @@ export function pushPlatformFormatter(row, columns, result) {
 export function isRealNameCnFormatter(row, columns, result) {
     let res = '';
     switch (result) {
-        case 0: 
+        case 0:
             res = '未成年';
             break;
         case 1:
@@ -790,6 +812,130 @@ export function realNameStateFormatter(row, columns, result) {
             break;
         case 2:
             res = '信息虚假';
+            break;
+    }
+    return res;
+}
+
+export function popupTypeFormatter(row, columns, result) {
+    let res = '';
+    switch (result) {
+        case 1:
+            res = '免责声明';
+            break;
+        case 2:
+            res = '系统公告';
+            break;
+        case 3:
+            res = '开启推送提示';
+            break;
+        case 4:
+            res = '实名认证';
+            break;
+        case 5:
+            res = '活动大弹窗';
+            break;
+        case 6:
+            res = '签到';
+            break;
+        case 7:
+            res = '活动';
+            break;
+        case 8:
+            res = '定时奖励';
+            break;
+    }
+    return res;
+}
+
+export function popupRateFormatter(row, columns, result) {
+    let res = '';
+    switch (result) {
+        case 1:
+            res = '仅首次启动APP弹出1次';
+            break;
+        case 2:
+            res = '每次登录';
+            break;
+        case 3:
+            res = '每日一次';
+            break;
+        case 4:
+            res = '每周一次';
+            break;
+    }
+    return res;
+}
+
+export function popupDeviceTypeformatter(row, columns, result) {
+    let res = '';
+    switch (result) {
+        case 0:
+            res = '全部';
+            break;
+        case 1:
+            res = 'Android';
+            break;
+        case 2:
+            res = 'ios';
+            break;
+    }
+    return res;
+}
+
+export function popupAccountTypeFormatter(row, columns, result) {
+    let res = [];
+    for (var i = 0; i < result.length; i++) {
+        if (result[i] == 1) {
+            res.push('微信帐号');
+        } else if (result[i] == 2) {
+            res.push('QQ帐号');
+        } else if (result[i] == 3) {
+            res.push('手机账号');
+        } else if (result[i] == 4) {
+            res.push('游客账号');
+        } else if (result[i] == 5) {
+            res.push('X渠道帐号');
+        }
+    }
+    return res;
+}
+
+export function fristchargeStatusFormatter(row, columns, result) {
+    let res = '';
+    switch (result) {
+        case 0:
+            res = '未领取';
+            break;
+        case 1:
+            res = '已领取';
+            break;
+
+    }
+    return res;
+}
+
+export function resourceTypeFormatter(row, columns, result) {
+    let res = '';
+    switch (result) {
+        case 'minus':
+            res = '减少资源';
+            break;
+        case 'add':
+            res = '增加资源';
+            break;
+    }
+    return res;
+}
+
+export function bodyBankTypeFormatter(row, columns, result) {
+    let res = '';
+    switch (result) {
+        case 'body':
+            res = '增减身上资源';
+            break;
+        case 'bank':
+            res = '增减银行资源';
             break;
     }
     return res;

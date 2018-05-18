@@ -15,6 +15,7 @@
                 <ele-time v-if="item.type == 'time'" :config="item" v-on:text="refreshInput" v-on:register="regComp" :default="data[item.name]"></ele-time>
                 <ele-time-range v-if="item.type == 'timeRange'" :config="item" v-on:text="refreshInputTimeRange" v-on:register="regComp" :default="[data[item.name+'_start_time'],data[item.name+'_end_time']]"></ele-time-range>
                 <ele-transfer v-if="item.type == 'transfer'" :config="item" :filterable="item.filterable" v-on:text="refreshSelect" v-on:register="regComp" :default="data[item.name]"></ele-transfer>
+                <ele-time-picker v-if="item.type=='timePicker'" :config="item" v-on:text="refreshInputTimeRange" v-on:register="regComp" :default="[data[item.name+'_start_time'],data[item.name+'_end_time']]"></ele-time-picker>
             </el-form-item>
         </el-col>
         <!--表单按钮-->
@@ -39,6 +40,7 @@
     import eleTime from '@/components/form/time'
     import eleTimeRange from '@/components/form/timeRange'
     import eleTransfer from '@/components/form/transfer'
+    import eleTimePicker from '@/components/form/timePicker'
     export default {
         data() {
             return {
@@ -62,8 +64,8 @@
             refreshInput() {
                 this.data[arguments[0]['key']] = arguments[0]['value'];
             },
-            refreshSelect(){
-                this.data[arguments[0]['key']]=arguments[0]['value'];
+            refreshSelect() {
+                this.data[arguments[0]['key']] = arguments[0]['value'];
                 this.$emit('change', [arguments[0]]);
             },
             regComp(item) {
@@ -91,7 +93,8 @@
             eleDateRange,
             eleTime,
             eleTimeRange,
-            eleTransfer
+            eleTransfer,
+            eleTimePicker
         },
         props: ['config', 'rule', 'eventname', 'defaultdata'],
         computed: {
@@ -146,8 +149,8 @@
     .el-select {
         width: 100%;
     }
-    .el-form--inline .form-btn{
-        padding-left:10px;
+    .el-form--inline .form-btn {
+        padding-left: 10px;
     }
     .form-btn {
         padding-left: 80px;

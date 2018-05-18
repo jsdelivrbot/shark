@@ -136,6 +136,19 @@ export default {
                 if: true,
             }]
         }
+
+        /* 查询 */
+        this.$res.postData(this, '/Realname2/query_realname_list/').then((response) => {
+            this.realname_Msg.data = [];
+            this.realname_Msg.data = response.map((val) => {
+                let res = val;
+                val.IsVerification == 0 && (res['通过' + '_show'] = true);
+                val.IsVerification == 0 && (res['不通过' + '_show'] = true);
+                val.IsVerification == 1 && (res['信息真实' + '_show'] = true);
+                val.IsVerification == 2 && (res['信息虚假' + '_show'] = true);
+                return res;
+            });
+        });
     }
 }
 

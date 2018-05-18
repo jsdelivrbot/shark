@@ -1,21 +1,19 @@
 <template>
-    <el-checkbox-group v-model="input" :disabled="configData.disabled" :readonly="configData.readonly" :default="defaultValue" @change="checkEvent">
-        <el-checkbox v-for="option in configData.options" :key="option.value" :label="option.value" :checked="option.checked" :disabled="option.disabled">{{option.label}}</el-checkbox>
-    </el-checkbox-group>
+    <el-time-picker v-model="input" align="right" type="timePicker" :placeholder="configData.placeholder" :disabled="configData.disabled" :readonly="configData.readonly" :default="defaultValue" :data="defaultValue" @change="inputEvent">
+    </el-time-picker>
 </template>
-
 <script>
     export default {
         data() {
             return {
-                input: []
+                input: '',
             }
         },
         methods: {
-            checkEvent() {
+            inputEvent() {
                 this.$emit('text', {
                     key: this.config.name,
-                    value: this.input
+                    value: Math.floor(this.input.getTime() / 1000)
                 });
             }
         },
@@ -27,9 +25,13 @@
             },
             defaultValue() {
                 if (this.default) {
-                    this.input = this.default[this.config.name]
+                    this.input = this.default * 1000
                 }
             }
+        },
+        mounted() {
+            this.$emit('register', this.$parent);
         }
     }
 </script>
+

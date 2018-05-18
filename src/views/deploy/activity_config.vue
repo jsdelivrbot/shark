@@ -9,25 +9,26 @@
                     <el-button type="success" @click.native="add_activity_2" plain>新建活动模板2</el-button>
                     <el-button type="warning" @click.native="add_task_2" plain>配置 Bannar + 任务链</el-button>
                     <el-button type="success" @click.native="add_activity_3" plain>新建活动模板3</el-button>
-                    <br />
-                    <br />
+                    <el-button type="success" @click.native="add_big_activity" plain>新建大活动弹窗</el-button>
+                    <br/>
+                    <br/>
                     <h1 class="h1-title">模板Table</h1>
                     <el-button type="primary" @click="query_activity" plain>查 询</el-button>
-                    <table-option :parent-message="temp1_Msg" v-loading="temp1loading" element-loading-text="拼命加载中"></table-option>
-                    <br />
-                    <br />
+                    <table-option :parent-message="temp1_Msg" v-on:outputrow="temp1_recieveRow" v-loading="temp1loading" element-loading-text="拼命加载中"></table-option>
+                    <br/>
+                    <br/>
                     <h1 class="h1-title">Bannar + 任务链 Table</h1>
                     <el-button type="primary" @click.native="query_bannerAct" plain>查 询</el-button>
-                    <table-option :parent-message="bannerAct_Msg" v-loading="temp2loading" element-loading-text="拼命加载中"></table-option>
+                    <table-option :parent-message="bannerAct_Msg" v-on:outputrow="banner_recieveRow" v-loading="temp2loading" element-loading-text="拼命加载中"></table-option>
                 </el-tab-pane>
                 <el-tab-pane label="公告界面">
                     <el-button type="success" @click.native="add_notice_1" plain>新建公告模板1</el-button>
                     <el-button type="success" @click.native="add_notice_2" plain>新建公告模板2</el-button>
                     <el-button type="success" @click.native="add_notice_3" plain>新建公告模板3</el-button>
                     <el-button type="primary" @click.native="query_notice_btn" plain>查 询</el-button>
-                    <br />
-                    <br />
-                    <table-option :parent-message="notice_Msg" v-loading="noticeloading" element-loading-text="拼命加载中"></table-option>
+                    <br/>
+                    <br/>
+                    <table-option :parent-message="notice_Msg" v-on:outputrow="notice_recieveRow" v-loading="noticeloading" element-loading-text="拼命加载中"></table-option>
                 </el-tab-pane>
             </el-tabs>
         </div>
@@ -59,6 +60,16 @@
             <div slot="footer" class="dialog-footer">
                 <el-button @click="temp_3_dialog = false">取 消</el-button>
                 <el-button type="primary" @click="temp_3_dialog_name">确 定</el-button>
+            </div>
+        </el-dialog>
+        <!-- 大活动弹窗 -->
+        <el-dialog title="新建大活动弹窗" width="98%" :visible.sync="big_activity_dialog">
+            <ele-form :config="big_activity_dialog_config" v-on:receive="big_activity_dialog_submit" :eventname="big_activity_dialog_event" :defaultdata="bigActivityDialogHtml"></ele-form>
+            <h1 class="h1-title">规则内容：</h1>
+            <editor7 v-on:editorcontent="bigActEditotContent" :bigActContent="bigActContent"></editor7>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="big_activity_dialog = false">取 消</el-button>
+                <el-button type="primary" @click="big_activity_dialog_name">确 定</el-button>
             </div>
         </el-dialog>
         <!-- 活动模板4 - 公告1 -->
@@ -94,13 +105,23 @@
         <!-- 活动模板2 配置 Banner + 任务链 -->
         <el-dialog title="配置 Banner + 任务链" width="90%" :visible.sync="task_2_dialog">
             <ele-form :config="task_2_dialog_config" v-on:receive="task_2_dialog_submit" :eventname="task_2_dialog_event"></ele-form>
-            <br />
+            <br/>
             <el-row>
                 <attr-and-item v-on:attrAndItem="refreshAttrAndItem"></attr-and-item>
             </el-row>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="task_2_dialog = false">取 消</el-button>
                 <el-button type="primary" @click="task_2_dialog_name">确 定</el-button>
+            </div>
+        </el-dialog>
+        <!-- 活动模板编辑 -->
+        <el-dialog title="活动模板编辑" width="98%" :visible.sync="editActivityTempDialog">
+            <ele-form :config="editActivityTempDialogConfig" v-on:receive="editActivityTempDialogsumbit" :eventname="editActivityTempDialogEvent" :defaultdata="editActivityTempDialogHtml"></ele-form>
+            <h1 class="h1-title">规则内容：</h1>
+            <editor v-on:editorcontent="getEditAcDialog" :geteditcontentdialog="geteditcontentdialog"></editor>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="editActivityTempDialog = false">取 消</el-button>
+                <el-button type="primary" @click="editActivityTempDialogName">确 定</el-button>
             </div>
         </el-dialog>
     </div>
@@ -114,7 +135,9 @@
         tempDialogForm4Notice1,
         tempDialogForm4Notice2,
         tempDialogForm4Notice3,
-        task2DialogForm
+        task2DialogForm,
+        bigActivityDialogForm,
+        editActivityTempDialogForm
     } from '@/form/config/activity_config'
     import {
         tempTable,
@@ -128,11 +151,20 @@
     import editor4 from '@/components/libs/notice1Editor'
     import editor5 from '@/components/libs/notice2Editor'
     import editor6 from '@/components/libs/notice3Editor'
+    import editor7 from '@/components/libs/bigActEditor'
+    import editAcDialog from '@/components/libs/editAcEdit'
     export default {
         name: 'activity_config',
         /* 组件内自行使用的数据可以在data内渲染 */
         data() {
             return {
+                /* 活动模板编辑 */
+                editActivityTempDialog: false,
+                editActivityTempDialogEvent: false,
+                editActivityTempDialogConfig: editActivityTempDialogForm(),
+                editActivityTempDialogHtml: {},
+                geteditcontentdialog: false,
+                editAcHtml: '',
                 /* 活动模板1 */
                 getcontext: false,
                 editorHtml: '',
@@ -174,6 +206,13 @@
                     DeviceType: 1,
                     AccountType: 1
                 },
+                /* 大活动弹窗 */
+                big_activity_dialog: false,
+                big_activity_dialog_config: bigActivityDialogForm(),
+                big_activity_dialog_event: false,
+                bigActivityDialogHtml: {},
+                bigActContent: false,
+                bigActHtml: '',
                 /* 活动模板4 */
                 mubanName: '',
                 notice_Msg: noticeTable(),
@@ -274,6 +313,10 @@
                     this.temp_1_dialog = false;
                     this.temp_1_dialog_event = false;
                     if (response.code == 0) {
+                        this.$res.postData(this, '/Activityconfig/query_activity/').then((response) => {
+                            this.temp1_Msg.data = [];
+                            this.temp1_Msg.data = response;
+                        });
                         this.$message.success(response.msg);
                     } else {
                         this.$message.error(response.msg);
@@ -283,13 +326,61 @@
             temp_1_dialog_name() {
                 this.temp_1_dialog_event = 'submitEvent';
             },
+            temp1_recieveRow(arg) {
+                switch (arg[2]) {
+                    case 'edit':
+                        console.log(arg[1]);
+                        this.$message.error('此功能暂时未实现');
+                        // this.editActivityTempDialog = true;
+                        // this.editActivityTempDialogHtml = arg[1];
+                        break;
+                    case 'delete':
+                        this.$confirm('此操作将会永久删除该活动，是否继续？', '温馨提示', {
+                            confirmButtonText: '确定',
+                            cancelButtonText: '取消',
+                            type: 'warning'
+                        }).then(() => {
+                            this.$res.postData(this, '/Activityconfig/del_activity_temp/', arg[1]).then((res) => {
+                                if (res.code == 0) {
+                                    this.$res.postData(this, '/Activityconfig/query_activity/').then((response) => {
+                                        this.temp1_Msg.data = [];
+                                        this.temp1_Msg.data = response;
+                                    });
+                                    this.$message.success(res.msg);
+                                } else {
+                                    this.$message.error(res.msg);
+                                }
+                            });
+                        }).catch(() => {
+                            this.$message({
+                                type: 'info',
+                                message: '已取消删除'
+                            });
+                        });
+                        break;
+                }
+            },
+            editActivityTempDialogName() {
+                this.editActivityTempDialogEvent = 'submitEvent';
+            },
+            editActivityTempDialogsumbit(arg) {
+                this.geteditcontentdialog = true;
+                this.editAcHtml = arg;
+                // console.log(arg[0]);
+                // this.editActivityTempDialogEvent = false;
+            },
+            getEditAcDialog(html) {
+                this.geteditcontentdialog = false;
+                console.log(html);
+                console.log(this.editAcHtml);
+            },
             /* 活动模板2 */
             add_activity_2() {
                 this.temp_2_dialog = true;
             },
             temp_2_dialog_submit(arg) {
-                this.gettemp2content = true,
-                    this.temp2Html = arg;
+                this.gettemp2content = true;
+                this.temp2Html = arg;
             },
             getTemp2EditorContent(html) {
                 this.gettemp2content = false;
@@ -319,6 +410,10 @@
                     this.temp_2_dialog = false;
                     this.temp_2_dialog_event = false;
                     if (response.code == 0) {
+                        this.$res.postData(this, '/Activityconfig/query_activity/').then((response) => {
+                            this.temp1_Msg.data = [];
+                            this.temp1_Msg.data = response;
+                        });
                         this.$message.success(response.msg);
                     } else {
                         this.$message.error(response.msg);
@@ -335,23 +430,27 @@
             task_2_dialog_submit(arg) {
                 let param = {
                     ActivityID: arg[0].ActivityID, //活动ID
-                    TaskID: arg[0].TaskID,//任务ID
-                    SortID: arg[0].SortID,//排序
-                    TaskDesc: arg[0].TaskDesc,//任务说明
+                    TaskID: arg[0].TaskID, //任务ID
+                    SortID: arg[0].SortID, //排序
+                    TaskDesc: arg[0].TaskDesc, //任务说明
                     TaskType: arg[0].TaskType, //任务类型
-                    TaskNum: arg[0].TaskNum,//任务数量
-                    FrontTask: arg[0].FrontTask,//任务编号
-                    Jump: arg[0].Jump,//按钮跳转
-                    res_and_item: JSON.stringify(this.editAttrAndItem),//物品
-                    Recharge: arg[0].Recharge,//充值额度
-                    DayLimitCount: arg[0].DayLimitCount,//日次数
-                    WeekLimitCount: arg[0].WeekLimitCount,//周次数
-                    TotalLimitCount: arg[0].TotalLimitCount,//总次数
+                    TaskNum: arg[0].TaskNum, //任务数量
+                    FrontTask: arg[0].FrontTask, //任务编号
+                    Jump: arg[0].Jump, //按钮跳转
+                    res_and_item: JSON.stringify(this.editAttrAndItem), //物品
+                    Recharge: arg[0].Recharge, //充值额度
+                    DayLimitCount: arg[0].DayLimitCount, //日次数
+                    WeekLimitCount: arg[0].WeekLimitCount, //周次数
+                    TotalLimitCount: arg[0].TotalLimitCount, //总次数
                 };
                 this.$res.postData(this, '/Activityconfig/add_banner_chain/', param).then((response) => {
                     this.task_2_dialog = false;
                     this.task_2_dialog_event = false;
                     if (response.code == 0) {
+                        this.$res.postData(this, '/Activityconfig/query_banner_chain/').then((response) => {
+                            this.bannerAct_Msg.data = [];
+                            this.bannerAct_Msg.data = response;
+                        });
                         this.$message.success(response.msg);
                     } else {
                         this.$message.error(response.msg);
@@ -369,8 +468,8 @@
                 this.temp_3_dialog = true;
             },
             temp_3_dialog_submit(arg) {
-                this.gettemp3content = true,
-                    this.temp3Html = arg;
+                this.gettemp3content = true;
+                this.temp3Html = arg;
             },
             getTemp3EditorContent(html) {
                 this.gettemp3content = false;
@@ -400,6 +499,10 @@
                     this.temp_3_dialog = false;
                     this.temp_3_dialog_event = false;
                     if (response.code == 0) {
+                        this.$res.postData(this, '/Activityconfig/query_activity/').then((response) => {
+                            this.temp1_Msg.data = [];
+                            this.temp1_Msg.data = response;
+                        });
                         this.$message.success(response.msg);
                     } else {
                         this.$message.error(response.msg);
@@ -408,6 +511,53 @@
             },
             temp_3_dialog_name() {
                 this.temp_3_dialog_event = 'submitEvent';
+            },
+            /* 新建大活动弹窗*/
+            add_big_activity() {
+                this.big_activity_dialog = true;
+            },
+            big_activity_dialog_submit(arg) {
+                this.bigActContent = true;
+                this.bigActHtml = arg;
+            },
+            bigActEditotContent(html) {
+                this.bigActContent = false;
+                console.log(html);
+                console.log(this.bigActHtml[0]);
+                this.big_activity_dialog_event = false;
+                let param = {
+                    ActivityID: this.bigActHtml[0].ActivityID,
+                    ActivityName: this.bigActHtml[0].ActivityName,
+                    SortID: this.bigActHtml[0].SortID,
+                    StartTime: this.bigActHtml[0].StartTime,
+                    EndTime: this.bigActHtml[0].EndTime,
+                    DeviceType: this.bigActHtml[0].DeviceType,
+                    AccountType: this.bigActHtml[0].AccountType,
+                    ChannelID: this.bigActHtml[0].ChannelID,
+                    Recharge: this.bigActHtml[0].Recharge,
+                    PlayerID: this.bigActHtml[0].PlayerID,
+                    ImageUrl: this.bigActHtml[0].ImageUrl,
+                    LocationUrl: this.bigActHtml[0].LocationUrl,
+                    WebUrl: this.bigActHtml[0].WebUrl,
+                    RuleBtn: this.bigActHtml[0].RuleBtn,
+                    BtnStyle: this.bigActHtml[0].BtnStyle,
+                    BtnWords: this.bigActHtml[0].BtnWords,
+                    RegisterDate1: this.bigActHtml[0].query_start_time,
+                    RegisterDate2: this.bigActHtml[0].query_end_time,
+                    Content: html,
+                    TempID: 7,
+                };
+                this.$res.postData(this, '/Activityconfig/add_activity/', param).then((response) => {
+                    if (response.code == 0) {
+                        this.big_activity_dialog = false;
+                        this.$message.success(response.msg);
+                    } else {
+                        this.$message.error(response.msg);
+                    }
+                });
+            },
+            big_activity_dialog_name() {
+                this.big_activity_dialog_event = 'submitEvent';
             },
             /* 活动模板4 -- 公告1 */
             add_notice_1() {
@@ -447,6 +597,10 @@
                     this.temp_4_notice_1_dialog = false;
                     this.temp_4_notice_dialog_event = false;
                     if (response.code == 0) {
+                        this.$res.postData(this, '/Activityconfig/query_notice/').then((response) => {
+                            this.notice_Msg.data = [];
+                            this.notice_Msg.data = response;
+                        });
                         this.$message.success(response.msg);
                     } else {
                         this.$message.error(response.msg);
@@ -494,6 +648,10 @@
                     this.temp_4_notice_2_dialog = false;
                     this.temp_4_notice2_dialog_event = false;
                     if (response.code == 0) {
+                        this.$res.postData(this, '/Activityconfig/query_notice/').then((response) => {
+                            this.notice_Msg.data = [];
+                            this.notice_Msg.data = response;
+                        });
                         this.$message.success(response.msg);
                     } else {
                         this.$message.error(response.msg);
@@ -541,6 +699,10 @@
                     this.temp_4_notice_3_dialog = false;
                     this.temp_4_notice3_dialog_event = false;
                     if (response.code == 0) {
+                        this.$res.postData(this, '/Activityconfig/query_notice/').then((response) => {
+                            this.notice_Msg.data = [];
+                            this.notice_Msg.data = response;
+                        });
                         this.$message.success(response.msg);
                     } else {
                         this.$message.error(response.msg);
@@ -560,6 +722,64 @@
                     this.$message.success('查询成功');
                 });
             },
+            banner_recieveRow(arg) {
+                switch (arg[2]) {
+                    case 'edit':
+                        console.log(arg[1]);
+                        this.$message.error('此功能暂时未实现');
+                        break;
+                    case 'delete':
+                        this.$confirm('此操作将会永久删除该任务链，是否继续？', '温馨提示', {
+                            confirmButtonText: '确定',
+                            cancelButtonText: '取消',
+                            type: 'warning'
+                        }).then(() => {
+                            this.$res.postData(this, '/Activityconfig/delete_banner_activity/', arg[1]).then((res) => {
+                                if (res.code == 0) {
+                                    this.$res.postData(this, '/Activityconfig/query_banner_chain/').then((response) => {
+                                        this.bannerAct_Msg.data = [];
+                                        this.bannerAct_Msg.data = response;
+                                    });
+                                    this.$message.success(res.msg);
+                                } else {
+                                    this.$message.error(res.msg);
+                                }
+                            });
+                        }).catch(() => {
+                            this.$message.error('已取消');
+                        });
+                        break;
+                }
+            },
+            notice_recieveRow(arg) {
+                switch (arg[2]) {
+                    case 'edit':
+                        console.log(arg[1]);
+                        this.$message.error('此功能暂时未实现');
+                        break;
+                    case 'delete':
+                        this.$confirm('此操作将会永久删除该公告，是否继续？', '温馨提示', {
+                            confirmButtonText: '确定',
+                            cancelButtonText: '取消',
+                            type: 'warning'
+                        }).then(() => {
+                            this.$res.postData(this, '/Activityconfig/delete_notice/', arg[1]).then((res) => {
+                                if (res.code == 0) {
+                                    this.$res.postData(this, '/Activityconfig/query_notice/').then((response) => {
+                                        this.notice_Msg.data = [];
+                                        this.notice_Msg.data = response;
+                                    });
+                                    this.$message.success(res.msg);
+                                } else {
+                                    this.$message.error(res.msg);
+                                }
+                            });
+                        }).catch(() => {
+                            this.$message.error('已取消');
+                        });
+                        break;
+                }
+            }
         },
         /* 引入组件放在components */
         components: {
@@ -569,14 +789,31 @@
             editor3,
             editor4,
             editor5,
-            editor6
+            editor6,
+            editor7,
+            editAcDialog
         },
         /* 计算属性放于computed内 */
         computed: {},
         created() {
+            /* 活动模板 */
+            this.$res.postData(this, '/Activityconfig/query_activity/').then((response) => {
+                this.temp1_Msg.data = [];
+                this.temp1_Msg.data = response;
+            });
+            /* Bannar + 任务链 Table */
+            this.$res.postData(this, '/Activityconfig/query_banner_chain/').then((response) => {
+                this.bannerAct_Msg.data = [];
+                this.bannerAct_Msg.data = response;
+            });
+            /* 公告 */
+            this.$res.postData(this, '/Activityconfig/query_notice/').then((response) => {
+                this.notice_Msg.data = [];
+                this.notice_Msg.data = response;
+            });
+            /* 任务类型 */
             let _self = this;
             let baseActivityTaskConfig = task2DialogForm();
-            /* 任务类型 */
             if (!window.taskType) {
                 let task_list = new Promise((resolve, reject) => {
                     _self.$res.getSingleData(_self, '/Activityconfig/query_taskChain_list/').then((response) => {

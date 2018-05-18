@@ -8,7 +8,7 @@ export function freezeTable() {
         pagination: true,
         columns: [{
             title: '手机号码',
-            name: 'InsureMobile',
+            name: 'RegisterMobile',
             sortable: true,
         }, {
             title: '用户ID',

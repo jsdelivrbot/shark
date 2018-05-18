@@ -3,11 +3,11 @@
         <h1 class="h1-title">离线推送（极光推送）</h1>
         <div class="cms-content">
             <ele-form :config="push_config" v-on:receive="push_submit" :defaultdata="pushDefaultHtml"></ele-form>
-            <br />
+            <br/>
             <el-row>
                 <el-col :span="20" :offset="20">
                     <el-button type="success" plain @click.native="pushBtn">查 询</el-button>
-                    <el-button type="success" plain @click.native="pushBtn2">定时推送</el-button>
+                    <el-button type="success" plain disabled @click.native="pushBtn2">定时推送</el-button>
                 </el-col>
             </el-row>
             <table-option :parent-message="push_Msg" v-loading="loading" element-loading-text="拼命加载中"></table-option>
@@ -64,7 +64,8 @@
             },
             pushBtn2() {
                 this.$res.postData(this, '/Jpush/server_timing_push/', {
-                    PushType: 1
+                    PushType: 6,
+                    content: '测试定时推送'
                 }).then((response) => {
                     if (response.code === 0) {
                         this.$message.success(response.msg);
@@ -78,7 +79,12 @@
         components: {},
         /* 计算属性放于computed内 */
         computed: {},
-        created() {}
+        created() {
+            this.$res.postData(this, '/Jpush/query_jpush_list/').then((response) => {
+                this.push_Msg.data = [];
+                this.push_Msg.data = response;
+            });
+        }
     }
 </script>
 

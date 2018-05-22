@@ -105,8 +105,8 @@ export function convertNumToCard(row, columns, cards) {
             } else {
                 result.push(color[colorNum] + (
                     special[num]
-                    ? special[num]
-                    : num));
+                        ? special[num]
+                        : num));
             }
         }
     }
@@ -167,6 +167,7 @@ export function convertNumToCardType(row, columns, cardType) {
 }
 
 /* 网狐棋牌CMS管理系统 */
+
 //反馈管理 -- 问题类型
 export function feedbackProblemTypeFormatter(row, columns, result) {
     let res = '';
@@ -180,6 +181,7 @@ export function feedbackProblemTypeFormatter(row, columns, result) {
     }
     return res;
 }
+
 //反馈管理 -- 游戏类型
 export function feedbackGameTypeFormatter(row, columns, result) {
     let res = '';
@@ -192,6 +194,7 @@ export function feedbackGameTypeFormatter(row, columns, result) {
     }
     return res;
 }
+
 //反馈管理 -- 回复人
 export function feedbackReverUserFormatter(row, columns, result) {
     let res = '';
@@ -204,6 +207,7 @@ export function feedbackReverUserFormatter(row, columns, result) {
     }
     return res;
 }
+
 //反馈管理 -- 显示状态
 export function feedbackShowStatusFormatter(row, columns, result) {
     let res = '';
@@ -214,6 +218,7 @@ export function feedbackShowStatusFormatter(row, columns, result) {
     }
     return res;
 }
+
 //反馈管理 -- 处理状态
 export function feedbackHandleStatusFormatter(row, columns, result) {
     let res = '';
@@ -936,6 +941,105 @@ export function bodyBankTypeFormatter(row, columns, result) {
             break;
         case 'bank':
             res = '增减银行资源';
+            break;
+    }
+    return res;
+}
+
+export function gameModuleFormatter(row, columns, result) {
+    let res = '';
+    switch (result) {
+        case 1:
+            res = '看牌抢庄'
+            break;
+        case 2:
+            res = '百人场'
+            break;
+        case 3:
+            res = '好友房'
+            break;
+        case 4:
+            res = '更多玩法'
+            break;
+        case 5:
+            res = '时时彩'
+            break;
+        case 6:
+            res = '拼拼乐'
+            break;
+        case 7:
+            res = '翻翻乐'
+            break;
+        case 8:
+            res = '贵宾房'
+            break;
+    }
+    return res;
+}
+
+export function vipLevelFormatter(row, columns, result) {
+    let res = '';
+    switch (result) {
+        case 1:
+            res = '非VIP';
+            break;
+        case 2:
+            res = 'VIP';
+            break;
+        case 3:
+            res = 'VIP1以上';
+            break;
+        case 4:
+            res = 'VIP2以上';
+            break;
+        case 5:
+            res = 'VIP3以上';
+            break;
+        case 6:
+            res = 'VIP4以上';
+            break;
+        case 7:
+            res = 'VIP5以上';
+            break;
+        case 8:
+            res = 'VIP6以上';
+            break;
+        case 9:
+            res = 'VIP7以上';
+            break;
+        case 10:
+            res = 'VIP8以上';
+            break;
+        case 11:
+            res = 'VIP9以上';
+            break;
+        case 12:
+            res = 'VIP10以上';
+            break;
+        case 13:
+            res = 'VIP11以上';
+            break;
+        case 14:
+            res = 'VIP12以上';
+            break;
+        case 15:
+            res = 'VIP13以上';
+            break;
+        case 16:
+            res = 'VIP14以上';
+            break;
+    }
+    return res;
+}
+
+export function shieldTypeFormatter(row, columns, result) {
+    let res = '';
+    switch (result) {
+        case 1:
+            res = '隐藏入口';
+            break;
+        case 2:
+            res = '敬请期待';
             break;
     }
     return res;

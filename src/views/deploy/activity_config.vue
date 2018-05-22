@@ -14,12 +14,14 @@
                     <br/>
                     <h1 class="h1-title">模板Table</h1>
                     <el-button type="primary" @click="query_activity" plain>查 询</el-button>
-                    <table-option :parent-message="temp1_Msg" v-on:outputrow="temp1_recieveRow" v-loading="temp1loading" element-loading-text="拼命加载中"></table-option>
+                    <table-option :parent-message="temp1_Msg" v-on:outputrow="temp1_recieveRow" v-loading="temp1loading"
+                                  element-loading-text="拼命加载中"></table-option>
                     <br/>
                     <br/>
                     <h1 class="h1-title">Bannar + 任务链 Table</h1>
                     <el-button type="primary" @click.native="query_bannerAct" plain>查 询</el-button>
-                    <table-option :parent-message="bannerAct_Msg" v-on:outputrow="banner_recieveRow" v-loading="temp2loading" element-loading-text="拼命加载中"></table-option>
+                    <table-option :parent-message="bannerAct_Msg" v-on:outputrow="banner_recieveRow"
+                                  v-loading="temp2loading" element-loading-text="拼命加载中"></table-option>
                 </el-tab-pane>
                 <el-tab-pane label="公告界面">
                     <el-button type="success" @click.native="add_notice_1" plain>新建公告模板1</el-button>
@@ -28,13 +30,15 @@
                     <el-button type="primary" @click.native="query_notice_btn" plain>查 询</el-button>
                     <br/>
                     <br/>
-                    <table-option :parent-message="notice_Msg" v-on:outputrow="notice_recieveRow" v-loading="noticeloading" element-loading-text="拼命加载中"></table-option>
+                    <table-option :parent-message="notice_Msg" v-on:outputrow="notice_recieveRow"
+                                  v-loading="noticeloading" element-loading-text="拼命加载中"></table-option>
                 </el-tab-pane>
             </el-tabs>
         </div>
         <!-- 活动模板1 -->
         <el-dialog title="新建活动模板1 -- 全宣传图" width="98%" :visible.sync="temp_1_dialog">
-            <ele-form :config="temp_1_dialog_config" v-on:receive="temp_1_dialog_submit" :eventname="temp_1_dialog_event" :defaultdata="temp1DialogHtml"></ele-form>
+            <ele-form :config="temp_1_dialog_config" v-on:receive="temp_1_dialog_submit"
+                      :eventname="temp_1_dialog_event" :defaultdata="temp1DialogHtml"></ele-form>
             <h1 class="h1-title">规则内容：</h1>
             <editor v-on:editorcontent="getEditorContent" :getcontext="getcontext"></editor>
             <div slot="footer" class="dialog-footer">
@@ -44,7 +48,8 @@
         </el-dialog>
         <!-- 活动模板2 -->
         <el-dialog title="新建活动模板2 -- Bannar+任务链" width="98%" :visible.sync="temp_2_dialog">
-            <ele-form :config="temp_2_dialog_config" v-on:receive="temp_2_dialog_submit" :eventname="temp_2_dialog_event" :defaultdata="temp2DialogHtml"></ele-form>
+            <ele-form :config="temp_2_dialog_config" v-on:receive="temp_2_dialog_submit"
+                      :eventname="temp_2_dialog_event" :defaultdata="temp2DialogHtml"></ele-form>
             <h1 class="h1-title">规则内容：</h1>
             <editor2 v-on:editorcontent="getTemp2EditorContent" :gettemp2content="gettemp2content"></editor2>
             <div slot="footer" class="dialog-footer">
@@ -54,7 +59,8 @@
         </el-dialog>
         <!-- 活动模板3 -->
         <el-dialog title="新建活动模板3 -- Bannar+功能区" width="98%" :visible.sync="temp_3_dialog">
-            <ele-form :config="temp_3_dialog_config" v-on:receive="temp_3_dialog_submit" :eventname="temp_3_dialog_event" :defaultdata="temp3DialogHtml"></ele-form>
+            <ele-form :config="temp_3_dialog_config" v-on:receive="temp_3_dialog_submit"
+                      :eventname="temp_3_dialog_event" :defaultdata="temp3DialogHtml"></ele-form>
             <h1 class="h1-title">规则内容：</h1>
             <editor3 v-on:editorcontent="getTemp3EditorContent" :gettemp3content="gettemp3content"></editor3>
             <div slot="footer" class="dialog-footer">
@@ -64,7 +70,8 @@
         </el-dialog>
         <!-- 大活动弹窗 -->
         <el-dialog title="新建大活动弹窗" width="98%" :visible.sync="big_activity_dialog">
-            <ele-form :config="big_activity_dialog_config" v-on:receive="big_activity_dialog_submit" :eventname="big_activity_dialog_event" :defaultdata="bigActivityDialogHtml"></ele-form>
+            <ele-form :config="big_activity_dialog_config" v-on:receive="big_activity_dialog_submit"
+                      :eventname="big_activity_dialog_event" :defaultdata="bigActivityDialogHtml"></ele-form>
             <h1 class="h1-title">规则内容：</h1>
             <editor7 v-on:editorcontent="bigActEditotContent" :bigActContent="bigActContent"></editor7>
             <div slot="footer" class="dialog-footer">
@@ -74,7 +81,8 @@
         </el-dialog>
         <!-- 活动模板4 - 公告1 -->
         <el-dialog title="新建公告模板1" width="98%" :visible.sync="temp_4_notice_1_dialog">
-            <ele-form :config="temp_4_notice_dialog_config" v-on:receive="temp_4_notice_dialog_submit" :eventname="temp_4_notice_dialog_event" :defaultdata="temp4NoticeDialogHtml"></ele-form>
+            <ele-form :config="temp_4_notice_dialog_config" v-on:receive="temp_4_notice_dialog_submit"
+                      :eventname="temp_4_notice_dialog_event" :defaultdata="temp4NoticeDialogHtml"></ele-form>
             <h1 class="h1-title">公告内容：</h1>
             <editor4 v-on:editorcontent="notice1EditorContent" :notice1content="notice1content"></editor4>
             <div slot="footer" class="dialog-footer">
@@ -84,7 +92,8 @@
         </el-dialog>
         <!-- 活动模板4 - 公告2 -->
         <el-dialog title="新建公告模板1" width="98%" :visible.sync="temp_4_notice_2_dialog">
-            <ele-form :config="temp_4_notice2_dialog_config" v-on:receive="temp_4_notice2_dialog_submit" :eventname="temp_4_notice2_dialog_event" :defaultdata="temp4NoticeDialogHtml1"></ele-form>
+            <ele-form :config="temp_4_notice2_dialog_config" v-on:receive="temp_4_notice2_dialog_submit"
+                      :eventname="temp_4_notice2_dialog_event" :defaultdata="temp4NoticeDialogHtml1"></ele-form>
             <h1 class="h1-title">公告内容：</h1>
             <editor5 v-on:editorcontent="notice2EditorContent" :notice2content="notice2content"></editor5>
             <div slot="footer" class="dialog-footer">
@@ -94,7 +103,8 @@
         </el-dialog>
         <!-- 活动模板4 - 公告3 -->
         <el-dialog title="新建公告模板1" width="98%" :visible.sync="temp_4_notice_3_dialog">
-            <ele-form :config="temp_4_notice3_dialog_config" v-on:receive="temp_4_notice3_dialog_submit" :eventname="temp_4_notice3_dialog_event" :defaultdata="temp4NoticeDialogHtml2"></ele-form>
+            <ele-form :config="temp_4_notice3_dialog_config" v-on:receive="temp_4_notice3_dialog_submit"
+                      :eventname="temp_4_notice3_dialog_event" :defaultdata="temp4NoticeDialogHtml2"></ele-form>
             <h1 class="h1-title">公告内容：</h1>
             <editor6 v-on:editorcontent="notice3EditorContent" :notice3content="notice3content"></editor6>
             <div slot="footer" class="dialog-footer">
@@ -104,7 +114,8 @@
         </el-dialog>
         <!-- 活动模板2 配置 Banner + 任务链 -->
         <el-dialog title="配置 Banner + 任务链" width="90%" :visible.sync="task_2_dialog">
-            <ele-form :config="task_2_dialog_config" v-on:receive="task_2_dialog_submit" :eventname="task_2_dialog_event"></ele-form>
+            <ele-form :config="task_2_dialog_config" v-on:receive="task_2_dialog_submit"
+                      :eventname="task_2_dialog_event"></ele-form>
             <br/>
             <el-row>
                 <attr-and-item v-on:attrAndItem="refreshAttrAndItem"></attr-and-item>
@@ -116,7 +127,8 @@
         </el-dialog>
         <!-- 活动模板编辑 -->
         <el-dialog title="活动模板编辑" width="98%" :visible.sync="editActivityTempDialog">
-            <ele-form :config="editActivityTempDialogConfig" v-on:receive="editActivityTempDialogsumbit" :eventname="editActivityTempDialogEvent" :defaultdata="editActivityTempDialogHtml"></ele-form>
+            <ele-form :config="editActivityTempDialogConfig" v-on:receive="editActivityTempDialogsumbit"
+                      :eventname="editActivityTempDialogEvent" :defaultdata="editActivityTempDialogHtml"></ele-form>
             <h1 class="h1-title">规则内容：</h1>
             <editor v-on:editorcontent="getEditAcDialog" :geteditcontentdialog="geteditcontentdialog"></editor>
             <div slot="footer" class="dialog-footer">
@@ -153,6 +165,7 @@
     import editor6 from '@/components/libs/notice3Editor'
     import editor7 from '@/components/libs/bigActEditor'
     import editAcDialog from '@/components/libs/editAcEdit'
+
     export default {
         name: 'activity_config',
         /* 组件内自行使用的数据可以在data内渲染 */
@@ -253,7 +266,8 @@
             }
         },
         /* 需要元素渲染完调用的方法放在mounted内 */
-        mounted() {},
+        mounted() {
+        },
         /* 需要事件调用的方法放在methods内 */
         methods: {
             query_activity() {
@@ -833,6 +847,7 @@
             } else {
                 fillTaskID(window.taskType);
             }
+
             function fillTaskID(response) {
                 response.map((val, i) => {
                     if (i >= 0) {

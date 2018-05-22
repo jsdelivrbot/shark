@@ -5,61 +5,106 @@ import login from '@/views/login'
 
 /* 最新版 start */
 // 我的桌面
-import index from "@/views/index"; /* 我的桌面 */
+import index from "@/views/index";
+/* 我的桌面 */
 // 游戏总览 global
-import summary from "@/views/global/summary"; /* 日报汇总 */
-import real_time from "@/views/global/real_time"; /* 实时数据 */
+import summary from "@/views/global/summary";
+/* 日报汇总 */
+import real_time from "@/views/global/real_time";
+/* 实时数据 */
 // 数据分析 analyse
-import user_analysis from "@/views/analyse/user_analysis"; /* 用户分析 */
-import look_cards from "@/views/analyse/look_cards"; /* 看牌抢庄 */
-import mini_game from "@/views/analyse/mini_game"; /* 小游戏 */
-import rank from "@/views/analyse/rank"; /* 排行榜 */
-import pay_analysis from "@/views/analyse/pay_analysis"; /* 付费分析 */
-import miniactivity from '@/views/analyse/miniactivity'; /* 任务分析 */
-import buried_point from "@/views/analyse/buried_point"; /* 埋点数据 */
-import product_consume from "@/views/analyse/product_consume"; /* 产出消耗 */
-import buy_item from "@/views/analyse/buy_item"; /* 道具购买分析 */
+import user_analysis from "@/views/analyse/user_analysis";
+/* 用户分析 */
+import look_cards from "@/views/analyse/look_cards";
+/* 看牌抢庄 */
+import mini_game from "@/views/analyse/mini_game";
+/* 小游戏 */
+import rank from "@/views/analyse/rank";
+/* 排行榜 */
+import pay_analysis from "@/views/analyse/pay_analysis";
+/* 付费分析 */
+import miniactivity from '@/views/analyse/miniactivity';
+/* 任务分析 */
+import buried_point from "@/views/analyse/buried_point";
+/* 埋点数据 */
+import product_consume from "@/views/analyse/product_consume";
+/* 产出消耗 */
+import buy_item from "@/views/analyse/buy_item";
+/* 道具购买分析 */
 // 用户管理 users
-import user_info from "@/views/users/user_info"; /* 用户信息 */
-import risk_manage from "@/views/users/risk_manage"; /* 封禁管理 */
-import blacklist from "@/views/users/blacklist"; /* 黑名单 */
-import int_account from "@/views/users/int_account"; /* 内部帐号 */
+import user_info from "@/views/users/user_info";
+/* 用户信息 */
+import risk_manage from "@/views/users/risk_manage";
+/* 封禁管理 */
+import blacklist from "@/views/users/blacklist";
+/* 黑名单 */
+import int_account from "@/views/users/int_account";
+/* 内部帐号 */
 // 渠道管理 channel
-import channel_analyze from "@/views/channel/channel_analyze"; /* 渠道分析 */
-import channel_master from "@/views/channel/channel_master"; /* 渠道商管理 */
-import channel_config from "@/views/channel/channel_config"; /* 渠道管理 */
+import channel_analyze from "@/views/channel/channel_analyze";
+/* 渠道分析 */
+import channel_master from "@/views/channel/channel_master";
+/* 渠道商管理 */
+import channel_config from "@/views/channel/channel_config";
+/* 渠道管理 */
 // 支付管理 pay
-import payment_order from "@/views/pay/payment_order"; /* 支付订单 */
-import pay_statistics from "@/views/pay/pay_statistics"; /* 充值统计 */
+import payment_order from "@/views/pay/payment_order";
+/* 支付订单 */
+import pay_statistics from "@/views/pay/pay_statistics";
+/* 充值统计 */
 // 兑换管理 exchange
-import numeric_table from "@/views/exchange/numeric_table"; /* 兑换系统数值表 */
-import exchange_audit from "@/views/exchange/exchange_audit"; /* 兑换审核 */
-import exchange_record from "@/views/exchange/exchange_record"; /* 兑换记录 */
-import kami from "@/views/exchange/kami"; /* 卡密 */
+import numeric_table from "@/views/exchange/numeric_table";
+/* 兑换系统数值表 */
+import exchange_audit from "@/views/exchange/exchange_audit";
+/* 兑换审核 */
+import exchange_record from "@/views/exchange/exchange_record";
+/* 兑换记录 */
+import kami from "@/views/exchange/kami";
+/* 卡密 */
 // 客服工具
-import feedback from "@/views/kefu/feedback"; /* 问题反馈 */
-import report from "@/views/kefu/report"; /* 举报管理 */
-import realname from "@/views/kefu/realname"; /* 实名认证 */
+import notice from "@/views/kefu/notice";
+/* 走马灯配置 */
+import mail from "@/views/kefu/mail";
+/* 系统邮件 */
+import feedback from "@/views/kefu/feedback";
+/* 问题反馈 */
+import report from "@/views/kefu/report";
+/* 举报管理 */
+import realname from "@/views/kefu/realname";
+/* 实名认证 */
 // 鹰眼系统 hawkeye
 import eye from "@/views/hawkeye/eye";
 // 游戏配置 deploy
-import json_push from "@/views/deploy/json_push"; /* 系统配置 */
-import push from '@/views/deploy/push'; /* 离线推送 */
-import robot from '@/views/deploy/robot'; /* AI配置 */
-import match_config from "@/views/deploy/match_config"; /* 比赛配置 */
-import lookCards_config from "@/views/deploy/lookCards_config"; /* 看牌抢庄配置 */
-import task_config from "@/views/deploy/task_config"; /* 任务配置 */
-import activity_config from "@/views/deploy/activity_config"; /* 活动配置 */
-import popup_config from "@/views/deploy/popup_config"; /* 弹窗配置 */
-import indulge from '@/views/deploy/indulge'; /* 防沉迷系统 */
-import shop_config from "@/views/deploy/shop_config"; /* 商城订单配置 */
-import notice from "@/views/deploy/notice"; /* 走马灯配置 */
-import mail from "@/views/deploy/mail"; /* 系统邮件 */
+import json_push from "@/views/deploy/json_push";
+/* 系统配置 */
+import push from '@/views/deploy/push';
+/* 离线推送 */
+import robot from '@/views/deploy/robot';
+/* AI配置 */
+import match_config from "@/views/deploy/match_config";
+/* 比赛配置 */
+import lookCards_config from "@/views/deploy/lookCards_config";
+/* 看牌抢庄配置 */
+import task_config from "@/views/deploy/task_config";
+/* 任务配置 */
+import activity_config from "@/views/deploy/activity_config";
+/* 活动配置 */
+import popup_config from "@/views/deploy/popup_config";
+/* 弹窗配置 */
+import indulge from '@/views/deploy/indulge';
+/* 防沉迷系统 */
+import shop_config from "@/views/deploy/shop_config";
+/* 商城订单配置 */
+import shield from "@/views/deploy/shield";
+/* 游戏屏蔽 */
 
 // 后台管理 cms
-import account from "@/views/cms/account"; /* 权限/账号管理 */
-import loger from "@/views/cms/loger"; /* 操作日志 */
-import team from "@/views/cms/team"; /* 团队原则 */
+import account from "@/views/cms/account";
+/* 权限/账号管理 */
+import loger from "@/views/cms/loger";
+/* 操作日志 */
+import team from "@/views/cms/team";
+/* 团队原则 */
 
 Vue.use(Router)
 Vue.use(VueResource)
@@ -210,11 +255,15 @@ export default new Router({
         name: 'shop_config',
         component: shop_config
     }, {
-        path: '/deploy/notice',
+        path: '/deploy/shield',
+        name: 'shield',
+        component: shield
+    }, {
+        path: '/kefu/notice',
         name: 'notice',
         component: notice
     }, {
-        path: '/deploy/mail',
+        path: '/kefu/mail',
         name: 'mail',
         component: mail
     }, {

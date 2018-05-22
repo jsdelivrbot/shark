@@ -189,6 +189,18 @@ export function permits() {
         permit: true,
         permit_id: 42,
         sub: [{
+            title: '走马灯',
+            name: 'notice',
+            to: '/kefu/notice',
+            permit: true,
+            permit_id: 32
+        }, {
+            title: '系统邮件',
+            name: 'mail',
+            to: '/kefu/mail',
+            permit: true,
+            permit_id: 33
+        }, {
             title: '问题反馈',
             name: 'feedback',
             to: '/kefu/feedback',
@@ -283,17 +295,11 @@ export function permits() {
             permit: true,
             permit_id: 31
         }, {
-            title: '走马灯',
-            name: 'notice',
-            to: '/deploy/notice',
+            title: '游戏屏蔽',
+            name: 'shield',
+            to: '/deploy/shield',
             permit: true,
-            permit_id: 32
-        }, {
-            title: '系统邮件',
-            name: 'mail',
-            to: '/deploy/mail',
-            permit: true,
-            permit_id: 33
+            permit_id: 56
         }]
     }, {
         title: '后台管理',

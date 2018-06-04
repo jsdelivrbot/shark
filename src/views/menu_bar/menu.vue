@@ -79,6 +79,7 @@
                 if (tabs.length === 1) {
                     return false;
                 }
+                console.log(tabs.length);
                 let url = '';
                 if (activeName === targetName) {
                     tabs.forEach((tab, index) => {

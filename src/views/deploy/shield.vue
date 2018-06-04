@@ -126,6 +126,7 @@
             editShielDialogName() {
                 this.editShielDialogEvent = 'submitEvent';
             },
+            /* 编辑 */
             editShielDialogSubmit(arg) {
                 this.editShielDialogEvent = false;
                 let params = {

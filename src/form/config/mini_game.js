@@ -10,9 +10,9 @@ export function miniConForm() {
         "formEle": [{
             "label": "选择时间",
             "placeholder": "请选择查询时间",
-            "type": "timeRange",
+            "type": "dateRange",
             "name": "query",
-            "span": 7,
+            "span": 6,
         }, {
             "label": "选择游戏",
             "placeholder": "请选择游戏",
@@ -49,9 +49,9 @@ export function brnnSingleForm() {
         "formEle": [{
             "label": "选择时间",
             "placeholder": "请选择查询时间",
-            "type": "timeRange",
+            "type": "dateRange",
             "name": "query",
-            "span": 8,
+            "span": 6,
         }]
     }
 }
@@ -69,9 +69,9 @@ export function xjsscSingleForm() {
         "formEle": [{
             "label": "选择时间",
             "placeholder": "请选择查询时间",
-            "type": "timeRange",
+            "type": "dateRange",
             "name": "query",
-            "span": 8,
+            "span": 6,
         }]
     }
 }
@@ -89,9 +89,9 @@ export function pplSingleForm() {
         "formEle": [{
             "label": "选择时间",
             "placeholder": "请选择查询时间",
-            "type": "timeRange",
+            "type": "dateRange",
             "name": "query",
-            "span": 8,
+            "span": 6,
         }]
     }
 }
@@ -108,9 +108,9 @@ export function fflSingleForm() {
         "formEle": [{
             "label": "选择时间",
             "placeholder": "请选择查询时间",
-            "type": "timeRange",
+            "type": "dateRange",
             "name": "query",
-            "span": 8,
+            "span": 6,
         }]
     }
 }

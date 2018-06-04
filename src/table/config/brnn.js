@@ -1,5 +1,5 @@
 //引入数据处理方法
-import { bigNumberFormatter, transToTime, roomInfoFormatter } from '@/libs/dataColumnFormatter'
+import {bigNumberFormatter, transToTime, roomInfoFormatter} from '@/libs/dataColumnFormatter'
 
 //单局记录
 export function brnnSingleTable() {
@@ -63,6 +63,43 @@ export function brnnSingleTable() {
             title: '税收',
             name: 'Revenue',
             sortable: true,
+            formatter: bigNumberFormatter
+        }],
+        data: []
+    }
+}
+
+export function brnnTable() {
+    return {
+        //分页
+        pagination: true,
+        columns: [{
+            title: '时间',
+            name: 'InsertTime',
+            formatter: transToTime
+        }, {
+            title: '玩家ID',
+            name: 'UserID',
+            template: {'user_link': true},
+        }, {
+            title: '玩家盈亏',
+            name: 'Score',
+            formatter: bigNumberFormatter
+        }, {
+            title: '庄家盈亏',
+            name: 'Waste',
+            formatter: bigNumberFormatter
+        }, {
+            title: '真人数量',
+            name: 'UserCount',
+            formatter: bigNumberFormatter
+        }, {
+            title: 'AI数量',
+            name: 'AndroidCount',
+            formatter: bigNumberFormatter
+        }, {
+            title: '税收',
+            name: 'Revenue',
             formatter: bigNumberFormatter
         }],
         data: []

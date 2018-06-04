@@ -1,22 +1,22 @@
 //曲线
-// export function brnnQxForm() {
-//     return {
-//         "inline": true,
-//         "btnSpan": 6,
-//         "btns": [{
-//             "name": "query",
-//             "title": "查 询",
-//             "valid": false
-//         }],
-//         "formEle": [{
-//             "label": "选择时间",
-//             "placeholder": "请选择查询时间",
-//             "type": "timeRange",
-//             "name": "query",
-//             "span": 6,
-//         }]
-//     }
-// }
+export function brnnQxForm() {
+    return {
+        "inline": true,
+        "btnSpan": 6,
+        "btns": [{
+            "name": "query",
+            "title": "查 询",
+            "valid": false
+        }],
+        "formEle": [{
+            "label": "选择时间",
+            "placeholder": "请选择查询时间",
+            "type": "dateRange",
+            "name": "query",
+            "span": 6,
+        }]
+    }
+}
 
 //单局记录
 export function brnnSingleForm() {
@@ -32,6 +32,25 @@ export function brnnSingleForm() {
             "label": "选择时间",
             "placeholder": "请选择查询时间",
             "type": "timeRange",
+            "name": "query",
+            "span": 6,
+        }]
+    }
+}
+
+export function brnnForm() {
+    return {
+        "inline": true,
+        "btnSpan": 6,
+        "btns": [{
+            "name": "query",
+            "title": "查 询",
+            "valid": false
+        }],
+        "formEle": [{
+            "label": "选择时间",
+            "placeholder": "请选择查询时间",
+            "type": "dateRange",
             "name": "query",
             "span": 6,
         }]

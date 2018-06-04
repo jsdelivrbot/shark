@@ -1,4 +1,15 @@
-import { transToTime, itemTypeFormatter, bigNumberFormatter, bankTranstFormatter, transtPlaceFormatter, transToTime2, payStatusFormatter, payPlatformFormatter, orderStatusFormatter } from '@/libs/dataColumnFormatter'
+import {
+    transToTime,
+    itemTypeFormatter,
+    bigNumberFormatter,
+    bankTranstFormatter,
+    transtPlaceFormatter,
+    transToTime2,
+    payStatusFormatter,
+    payPlatformFormatter,
+    orderStatusFormatter,
+    gameTypeFormatter
+} from '@/libs/dataColumnFormatter'
 
 export function bagInfoTable() {
     return {
@@ -209,7 +220,7 @@ export function rechargeTable() {
             title: '用户ID',
             name: 'UserID',
             sortable: true,
-            template: { 'user_link': true }
+            template: {'user_link': true}
         }, {
             title: '昵称',
             name: 'UserName',
@@ -240,7 +251,7 @@ export function exchangeTable() {
             name: 'UserID',
             sortable: true,
             width: '120px',
-            template: { 'user_link': true }
+            template: {'user_link': true}
         }, {
             title: '商品名称',
             name: 'itemName',
@@ -303,6 +314,96 @@ export function exchangeTable() {
             name: 'KuaiDiName',
             sortable: true,
             width: '200px'
+        }],
+        data: []
+    }
+}
+
+export function goldRecordTable() {
+    return {
+        pagination: true,
+        columns: [{
+            title: '日期',
+            name: 'InsertTime',
+            sortable: true,
+            formatter: transToTime2
+        }, {
+            title: '玩家ID',
+            name: 'UserID',
+            sortable: true,
+            template: {'user_link': true}
+        }, {
+            title: '昵称',
+            name: 'NickName',
+            sortable: true
+        }, {
+            title: '金币变化',
+            name: 'Score',
+            sortable: true,
+            formatter: bigNumberFormatter
+        }, {
+            title: '来源',
+            name: 'Source',
+            formatter: gameTypeFormatter
+        }],
+        data: []
+    }
+}
+
+export function diamondProductTable() {
+    return {
+        pagination: true,
+        columns: [{
+            title: '产出时间',
+            name: 'CollectDate',
+            formatter: transToTime2
+        }, {
+            title: '玩家ID',
+            name: 'UserID',
+            template: {'user_link': true}
+        }, {
+            title: '昵称',
+            name: 'NickName'
+        }, {
+            title: '产出钻石',
+            name: 'AddDiamond'
+        }, {
+            title: '总钻石',
+            name: 'CurrDiamond'
+        }, {
+            title: '产出途径',
+            name: 'Reason'
+        }],
+        data: []
+    }
+}
+
+export function diamondConsumeTable() {
+    return {
+        pagination: true,
+        columns: [{
+            title: '消耗时间',
+            name: 'CollectDate',
+            formatter: transToTime2
+        }, {
+            title: '玩家ID',
+            name: 'UserID',
+            template: {'user_link': true}
+        }, {
+            title: '昵称',
+            name: 'NickName'
+        }, {
+            title: '道具名称',
+            name: 'PropertyName'
+        }, {
+            title: '道具数量',
+            name: 'PropertyCount'
+        }, {
+            title: '消耗钻石',
+            name: 'BuyUserMedal'
+        }, {
+            title: 'IP地址',
+            name: 'ClinetIP'
         }],
         data: []
     }

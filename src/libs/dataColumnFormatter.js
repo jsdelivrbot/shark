@@ -166,7 +166,7 @@ export function convertNumToCardType(row, columns, cardType) {
     return JSON.stringify(result);
 }
 
-/* 网狐棋牌CMS管理系统 */
+/* 鲨鱼游戏CMS管理系统 */
 
 //反馈管理 -- 问题类型
 export function feedbackProblemTypeFormatter(row, columns, result) {
@@ -300,6 +300,15 @@ export function gameTypeFormatter(row, columns, result) {
             break;
         case '10005':
             res = '百人场';
+            break;
+        case '10006':
+            res = '翻翻乐';
+            break;
+        case '10007':
+            res = '时时彩';
+            break;
+        case '10008':
+            res = '拼拼乐';
             break;
     }
     return res;
@@ -950,28 +959,40 @@ export function gameModuleFormatter(row, columns, result) {
     let res = '';
     switch (result) {
         case 1:
-            res = '看牌抢庄'
+            res = '看牌抢庄';
             break;
         case 2:
-            res = '百人场'
+            res = '百人场';
             break;
         case 3:
-            res = '好友房'
+            res = '好友房';
             break;
         case 4:
-            res = '更多玩法'
+            res = '更多玩法';
             break;
         case 5:
-            res = '时时彩'
+            res = '时时彩';
             break;
         case 6:
-            res = '拼拼乐'
+            res = '拼拼乐';
             break;
         case 7:
-            res = '翻翻乐'
+            res = '翻翻乐';
             break;
         case 8:
-            res = '贵宾房'
+            res = '贵宾房';
+            break;
+        case 9:
+            res = '比赛场';
+            break;
+        case 10:
+            res = '月卡';
+            break;
+        case 11:
+            res = '兑换商城';
+            break;
+        case 12:
+            res = '五步兑话费';
             break;
     }
     return res;
@@ -1040,6 +1061,22 @@ export function shieldTypeFormatter(row, columns, result) {
             break;
         case 2:
             res = '敬请期待';
+            break;
+    }
+    return res;
+}
+
+export function avatarExamine(row, columns, result) {
+    let res = '';
+    switch (result) {
+        case 0:
+            res = '待审核';
+            break;
+        case 1:
+            res = '审核通过';
+            break;
+        case 2:
+            res = '审核不通过';
             break;
     }
     return res;

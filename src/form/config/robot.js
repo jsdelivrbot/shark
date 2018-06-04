@@ -36,7 +36,7 @@ export function robotForm() {
                 label: '主动陪打',
                 // checked: true
             }, {
-                value: 3,
+                value: 4,
                 label: '被动陪打',
                 // checked: true
             }],

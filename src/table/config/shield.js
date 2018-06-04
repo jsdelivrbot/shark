@@ -9,24 +9,8 @@ import {
 
 export function shieldTable() {
     return {
-        //导出按钮
-        export: false,
-        //搜索内容
-        search: false,
-        //生成索引
-        index: false,
-        //行选择框
-        select: false,
         //分页
         pagination: true,
-        //是否为服务器分页
-        serverPagination: false,
-        //默认排序
-        defaultSort: {
-            // prop: 'TotalGold',
-            // order: 'descending'
-        },
-        //表头配置
         columns: [{
             title: '游戏模块',
             name: 'GameModule',
@@ -120,7 +104,7 @@ export function shieldTable() {
             formatter: transToTime2
         }, {
             title: '操作',
-            name: 're',
+            name: '',
             fixed: 'right',
             width: '160px',
             template: {

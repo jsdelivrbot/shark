@@ -105,7 +105,7 @@
             let _self = this;
             if (!window.ITEM_DICT) {
                 let request = new Promise((resolve, reject) => {
-                    _self.$res.getSingleData(_self, '/Shop/query_shop_prop/', ).then((response) => {
+                    _self.$res.getSingleData(_self, '/Shop/query_oa_item_prop/', ).then((response) => {
                         if (response) {
                             resolve(response);
                         } else {

@@ -1,4 +1,4 @@
-import { bigNumberFormatter } from '@/libs/dataColumnFormatter'
+import {bigNumberFormatter, roomInfoFormatter} from '@/libs/dataColumnFormatter'
 
 export function robotTable() {
     return {
@@ -11,7 +11,7 @@ export function robotTable() {
         //行选择框
         select: false,
         //分页
-        pagination: false,
+        pagination: true,
         //是否为服务器分页
         serverPagination: false,
         //默认排序
@@ -24,7 +24,8 @@ export function robotTable() {
             title: '房间',
             name: 'ServerID',
             fixed: 'left',
-            width: '160px'
+            width: '160px',
+            formatter: roomInfoFormatter
         }, {
             title: '服务类型',
             name: 'ServiceMode',

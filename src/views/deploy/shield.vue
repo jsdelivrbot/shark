@@ -4,7 +4,7 @@
         <div class="cms-content">
             <el-collapse v-model="activeName">
                 <el-collapse-item title="新增屏蔽" name="0">
-                    <ele-form :config="shield_config" v-on:receive="shield_submit"></ele-form>
+                    <ele-form :config="shield_config" v-on:receive="shield_submit" :defaultdata="shieldHtml"></ele-form>
                 </el-collapse-item>
                 <el-collapse-item title="屏蔽列表" name="1">
                     <el-button type="success" plain @click.native="query_btn">查 询</el-button>
@@ -42,6 +42,9 @@
                 activeName: ['0'],
                 shield_config: shieldForm(),
                 shield_list_msg: shieldTable(),
+                shieldHtml: {
+                    CumnlativeLen: -1,
+                },
                 /* 编辑 */
                 editShielDialog: false,
                 editShielDialogConfig: editShieldDialogForm(),

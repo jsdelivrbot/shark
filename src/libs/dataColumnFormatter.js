@@ -899,17 +899,21 @@ export function popupDeviceTypeformatter(row, columns, result) {
 
 export function popupAccountTypeFormatter(row, columns, result) {
     let res = [];
-    for (var i = 0; i < result.length; i++) {
-        if (result[i] == 1) {
-            res.push('微信帐号');
-        } else if (result[i] == 2) {
-            res.push('QQ帐号');
-        } else if (result[i] == 3) {
-            res.push('手机账号');
-        } else if (result[i] == 4) {
-            res.push('游客账号');
-        } else if (result[i] == 5) {
-            res.push('X渠道帐号');
+    if (result == '' || result == null || result == undefined) {
+        res = [];
+    } else {
+        for (var i = 0; i < result.length; i++) {
+            if (result[i] == 1) {
+                res.push('微信帐号');
+            } else if (result[i] == 2) {
+                res.push('QQ帐号');
+            } else if (result[i] == 3) {
+                res.push('手机账号');
+            } else if (result[i] == 4) {
+                res.push('游客账号');
+            } else if (result[i] == 5) {
+                res.push('X渠道帐号');
+            }
         }
     }
     return res;

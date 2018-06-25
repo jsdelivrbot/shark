@@ -55,9 +55,6 @@ export function shieldForm() {
             "placeholder": "请选择可见设备类型",
             "type": "select",
             "options": [{
-                value: 0,
-                label: '全部'
-            }, {
                 value: 1,
                 label: 'Android'
             }, {
